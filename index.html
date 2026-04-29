@@ -9,17 +9,30 @@
 body {
     margin: 0;
     height: 100vh;
-    background: url("https://picsum.photos/1920/1080") no-repeat center/cover;
+    background: url("2.jpg") no-repeat center/cover;
     font-family: -apple-system;
     overflow: hidden;
 }
 
-/* 暗色遮罩 */
+/* 粒子层 */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* 渐变遮罩 */
 .overlay {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.4)
+    );
+    z-index: 1;
 }
 
 /* 中间内容 */
@@ -30,26 +43,43 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
+    z-index: 2;
 }
 
-/* 头像 */
-.avatar {
-    width: 100px;
-    height: 100px;
+/* 光环 */
+.avatar-wrap {
+    display: inline-block;
+    padding: 4px;
     border-radius: 50%;
-    border: 3px solid #ff66cc;
-    box-shadow: 0 0 20px #ff66cc;
+    background: linear-gradient(45deg, #ff66cc, #66ccff, #ff66cc);
+    background-size: 300% 300%;
+    animation: rotateGlow 6s linear infinite;
 }
 
-/* 标题 */
+.avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    animation: glow 2.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px #ff66cc; }
+    50% { box-shadow: 0 0 25px #ff66cc; }
+    100% { box-shadow: 0 0 5px #ff66cc; }
+}
+
+@keyframes rotateGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
 h1 {
     margin: 15px 0;
     font-size: 40px;
-}
-
-/* 按钮 */
-.buttons {
-    margin-top: 30px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 .btn {
@@ -57,8 +87,8 @@ h1 {
     padding: 15px 25px;
     margin: 10px;
     border-radius: 15px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
     color: white;
     text-decoration: none;
     transition: 0.3s;
@@ -73,18 +103,40 @@ h1 {
 
 <body>
 
+<!-- 粒子 -->
+<div id="particles-js"></div>
+
+<!-- 遮罩 -->
 <div class="overlay"></div>
 
 <div class="center">
-    <img src="https://i.pravatar.cc/100" class="avatar">
-    <h1>你的名字</h1>
+    <div class="avatar-wrap">
+        <img src="1.jpg" class="avatar">
+    </div>
+
+    <h1>小米周</h1>
     <p>一个会用AI做网站的人</p>
 
-<div class="buttons">
-    <a href="home.html" class="btn">主页</a>
-    <a href="blog.html" class="btn">博客</a>
+    <div class="buttons">
+        <a href="home.html" class="btn">主页</a>
+        <a href="blog.html" class="btn">博客</a>
+    </div>
 </div>
-</div>
+
+<!-- 粒子库 -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#ffffff" },
+    opacity: { value: 0.3 },
+    size: { value: 2 },
+    move: { speed: 0.6 }
+  }
+});
+</script>
 
 </body>
 </html>
