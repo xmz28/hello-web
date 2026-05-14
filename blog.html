@@ -13,31 +13,44 @@
 
 <nav class="site-nav" aria-label="主导航">
     <img src="avatar.jpg" alt="头像">
-    <a href="index.html">首页</a>
-    <a href="home.html">个人页</a>
-    <a href="blog.html" class="active">博客</a>
+    <a href="index.html" class="nav-link"><span>🏠</span><span data-i18n="home">首页</span></a>
+    <a href="home.html" class="nav-link"><span>🌸</span><span data-i18n="profile">个人页</span></a>
+    <a href="blog.html" class="nav-link active"><span>📚</span><span data-i18n="blog">博客</span></a>
+    <a href="games.html" class="nav-link"><span>🎮</span><span data-i18n="games">小游戏</span></a>
+    <div class="nav-controls">
+        <div class="lang-menu">
+            <button id="langToggle" class="icon-toggle" type="button" aria-label="语言">文</button>
+            <div class="lang-panel">
+                <button type="button" data-lang-option="zh-CN"><span class="flag-emoji">🇨🇳</span>简体中文</button>
+                <button type="button" data-lang-option="zh-TW"><span class="flag-emoji">🇭🇰</span>繁體中文</button>
+                <button type="button" data-lang-option="en"><span class="flag-emoji">🇺🇸</span>English</button>
+                <button type="button" data-lang-option="ja"><span class="flag-emoji">🇯🇵</span>日本語</button>
+            </div>
+        </div>
+        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题">☀</button>
+    </div>
 </nav>
 
 <main class="blog-main">
     <section class="blog-hero">
-        <h1>我的博客</h1>
-        <p>记录技术、AI 与生活里的小发现</p>
+        <h1 data-i18n="blogTitle">我的博客</h1>
+        <p data-i18n="blogSubtitle">记录技术、AI 与生活里的小发现</p>
 
         <div class="blog-tools">
-            <input id="searchInput" class="search-input" type="search" placeholder="搜索文章标题、摘要或内容..." aria-label="搜索文章">
+            <input id="searchInput" class="search-input" type="search" placeholder="搜索文章标题、摘要或内容..." aria-label="搜索文章" data-i18n-placeholder="searchPlaceholder">
 
             <div class="tabs" role="tablist" aria-label="文章分类">
-                <button class="tab active" type="button" data-category="全部">全部</button>
-                <button class="tab" type="button" data-category="技术">技术</button>
+                <button class="tab active" type="button" data-category="全部" data-category-label>全部</button>
+                <button class="tab" type="button" data-category="技术" data-category-label>技术</button>
                 <button class="tab" type="button" data-category="AI">AI</button>
-                <button class="tab" type="button" data-category="视频">视频</button>
-                <button class="tab" type="button" data-category="生活">生活</button>
+                <button class="tab" type="button" data-category="视频" data-category-label>视频</button>
+                <button class="tab" type="button" data-category="生活" data-category-label>生活</button>
             </div>
         </div>
     </section>
 
     <section id="postGrid" class="post-grid" aria-label="文章列表"></section>
-    <p id="emptyState" class="empty-state">没有找到匹配的文章，换个关键词试试。</p>
+    <p id="emptyState" class="empty-state" data-i18n="emptyState">没有找到匹配的文章，换个关键词试试。</p>
 </main>
 
 <div id="postModal" class="post-modal" role="dialog" aria-modal="true" aria-labelledby="postTitle">
@@ -51,12 +64,74 @@
             <h2 id="postTitle" class="post-detail-title"></h2>
             <div id="postMeta" class="post-detail-meta"></div>
             <div id="postContent" class="post-detail-content"></div>
-            <a id="postLink" class="btn post-link" href="#" target="_blank" rel="noopener">去 B 站观看</a>
+            <a id="postLink" class="btn post-link" href="#" target="_blank" rel="noopener" data-i18n="biliWatch">去 B 站观看</a>
         </div>
     </article>
 </div>
 
+<div id="mobileQrModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="手机阅读二维码">
+    <div class="qr-box social-box">
+        <h2 data-i18n="mobileReadTitle">手机阅读</h2>
+        <p data-i18n="mobileReadText">扫码在手机上打开这个博客。</p>
+        <img class="mobile-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fxmz28.github.io%2Fhello-web" alt="手机阅读二维码">
+        <div class="mobile-url">https://xmz28.github.io/hello-web</div>
+        <a class="btn social-link" href="https://xmz28.github.io/hello-web" target="_blank" rel="noopener" data-i18n="openMobileSite">打开网页</a>
+    </div>
+</div>
+
+<div class="floating-actions" aria-label="快捷操作">
+    <button class="float-button" type="button" onclick="showMobileQR()" aria-label="手机阅读二维码">📱</button>
+</div>
+
+<script src="site.js"></script>
 <script>
+const blogLocales = {
+    "zh-CN": {
+        blogTitle: "我的博客",
+        blogSubtitle: "记录技术、AI 与生活里的小发现",
+        searchPlaceholder: "搜索文章标题、摘要或内容...",
+        emptyState: "没有找到匹配的文章，换个关键词试试。",
+        biliWatch: "去 B 站观看",
+        mobileReadTitle: "手机阅读",
+        mobileReadText: "扫码在手机上打开这个博客。",
+        openMobileSite: "打开网页",
+        views: "浏览"
+    },
+    "zh-TW": {
+        blogTitle: "我的部落格",
+        blogSubtitle: "記錄技術、AI 與生活裡的小發現",
+        searchPlaceholder: "搜尋文章標題、摘要或內容...",
+        emptyState: "沒有找到匹配的文章，換個關鍵字試試。",
+        biliWatch: "去 B 站觀看",
+        mobileReadTitle: "手機閱讀",
+        mobileReadText: "掃碼在手機上開啟這個部落格。",
+        openMobileSite: "開啟網頁",
+        views: "瀏覽"
+    },
+    en: {
+        blogTitle: "My Blog",
+        blogSubtitle: "Notes on tech, AI, and small discoveries in life",
+        searchPlaceholder: "Search titles, summaries, or content...",
+        emptyState: "No matching posts. Try another keyword.",
+        biliWatch: "Watch on Bilibili",
+        mobileReadTitle: "Read on Phone",
+        mobileReadText: "Scan to open this blog on your phone.",
+        openMobileSite: "Open Site",
+        views: "Views"
+    },
+    ja: {
+        blogTitle: "私のブログ",
+        blogSubtitle: "技術、AI、日常の小さな発見を記録します",
+        searchPlaceholder: "タイトル、概要、本文を検索...",
+        emptyState: "一致する記事がありません。別のキーワードを試してください。",
+        biliWatch: "Bilibili で見る",
+        mobileReadTitle: "スマホで読む",
+        mobileReadText: "QR コードを読み取ってスマホで開けます。",
+        openMobileSite: "サイトを開く",
+        views: "閲覧"
+    }
+};
+
 const posts = [
     {
         id: "first-post",
@@ -167,9 +242,16 @@ const tabs = document.querySelectorAll(".tab");
 const emptyState = document.getElementById("emptyState");
 const modal = document.getElementById("postModal");
 const closePost = document.getElementById("closePost");
+const mobileQrModal = document.getElementById("mobileQrModal");
 let activeCategory = "全部";
 
+function pageText(key) {
+    const lang = getStoredLang();
+    return (blogLocales[lang] && blogLocales[lang][key]) || blogLocales["zh-CN"][key] || key;
+}
+
 function renderPosts() {
+    const lang = getStoredLang();
     const keyword = searchInput.value.trim().toLowerCase();
     const filtered = posts.filter((post) => {
         const matchesCategory = activeCategory === "全部" || post.category === activeCategory;
@@ -179,14 +261,14 @@ function renderPosts() {
 
     postGrid.innerHTML = filtered.map((post) => `
         <button class="post-card" type="button" data-id="${post.id}">
-            <span class="post-category">${post.category}</span>
+            <span class="post-category">${categoryLabel(post.category, lang)}</span>
             <img src="${post.image}" alt="${post.title}封面">
             <div class="post-content">
                 <h2>${post.title}</h2>
                 <p>${post.summary}</p>
                 <div class="post-meta">
                     <span>${post.date}</span>
-                    <span>浏览 ${post.views}</span>
+                    <span>${pageText("views")} ${post.views}</span>
                 </div>
             </div>
         </button>
@@ -201,9 +283,9 @@ function openPost(postId) {
 
     document.getElementById("postImage").src = post.image;
     document.getElementById("postImage").alt = `${post.title}封面`;
-    document.getElementById("postCategory").textContent = post.category;
+    document.getElementById("postCategory").textContent = categoryLabel(post.category);
     document.getElementById("postTitle").textContent = post.title;
-    document.getElementById("postMeta").textContent = `${post.date} · 浏览 ${post.views}`;
+    document.getElementById("postMeta").textContent = `${post.date} · ${pageText("views")} ${post.views}`;
     document.getElementById("postContent").innerHTML = post.content.map((paragraph) => `<p>${paragraph}</p>`).join("");
     const postLink = document.getElementById("postLink");
     postLink.href = post.url || "#";
@@ -238,10 +320,26 @@ modal.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeModal();
+    if (event.key === "Escape") {
+        closeModal();
+        mobileQrModal.classList.remove("show");
+    }
 });
 
-renderPosts();
+function showMobileQR() {
+    mobileQrModal.classList.add("show");
+}
+
+mobileQrModal.addEventListener("click", (event) => {
+    if (event.target === mobileQrModal) mobileQrModal.classList.remove("show");
+});
+
+setupSiteControls(blogLocales, () => {
+    document.querySelectorAll("[data-category-label]").forEach((tab) => {
+        tab.textContent = categoryLabel(tab.dataset.category);
+    });
+    renderPosts();
+});
 </script>
 </body>
 </html>

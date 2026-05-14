@@ -21,9 +21,16 @@
         <h1 class="home-title">小米周</h1>
         <p class="home-subtitle">一个会用 AI 做网站的人</p>
 
+        <div class="time-widget" aria-label="北京时间">
+            <span class="time-label">北京时间</span>
+            <time id="beijingTime" class="pixel-time" datetime="">00:00:00</time>
+            <span id="beijingDate" class="time-date">加载中...</span>
+        </div>
+
         <div class="button-row">
             <a href="home.html" class="btn">个人页</a>
             <a href="blog.html" class="btn">博客</a>
+            <a href="games.html" class="btn">小游戏</a>
         </div>
     </section>
 </main>
@@ -41,6 +48,33 @@ if (window.particlesJS) {
         }
     });
 }
+
+const beijingTime = document.getElementById("beijingTime");
+const beijingDate = document.getElementById("beijingDate");
+const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    weekday: "long"
+});
+const timeFormatter = new Intl.DateTimeFormat("zh-CN", {
+    timeZone: "Asia/Shanghai",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+});
+
+function updateBeijingTime() {
+    const now = new Date();
+    beijingTime.textContent = timeFormatter.format(now);
+    beijingTime.dateTime = now.toISOString();
+    beijingDate.textContent = dateFormatter.format(now).replace(/\//g, ".");
+}
+
+updateBeijingTime();
+setInterval(updateBeijingTime, 1000);
 </script>
 </body>
 </html>
