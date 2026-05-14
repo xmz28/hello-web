@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>小游戏</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -17,6 +17,7 @@
     <a href="home.html" class="nav-link"><span>🌸</span><span data-i18n="profile">个人页</span></a>
     <a href="blog.html" class="nav-link"><span>📚</span><span data-i18n="blog">博客</span></a>
     <a href="games.html" class="nav-link active"><span>🎮</span><span data-i18n="games">小游戏</span></a>
+    <a href="nav.html" class="nav-link"><span>🧭</span><span data-i18n="siteNav">网站导航</span></a>
     <div class="nav-controls">
         <div class="lang-menu">
             <button id="langToggle" class="icon-toggle" type="button" aria-label="语言">文</button>
@@ -76,9 +77,13 @@
         </section>
 
         <section class="game-panel" id="gobangPanel">
-            <div class="game-head"><div><h1>五子棋</h1><p>黑白轮流落子，五子连线获胜。</p></div><strong id="gobangStatus">黑棋先手</strong></div>
+            <div class="game-head"><div><h1>五子棋</h1><p>人人对局或人机对局，五子连线获胜。</p></div><strong id="gobangStatus">黑棋先手</strong></div>
             <canvas id="gobangCanvas" width="420" height="420"></canvas>
-            <div class="game-actions"><button class="btn" type="button" onclick="startGobang()">重新开始</button></div>
+            <div class="game-actions">
+                <button class="btn" type="button" onclick="setGobangMode('pvp')">人人对局</button>
+                <button class="btn" type="button" onclick="setGobangMode('ai')">人机对局</button>
+                <button class="btn" type="button" onclick="startGobang()">重新开始</button>
+            </div>
         </section>
 
         <section class="game-panel" id="huarongPanel">
@@ -473,13 +478,18 @@ function drawFlappy() {
 
 const gobangCanvas = document.getElementById("gobangCanvas");
 const gCtx = gobangCanvas.getContext("2d");
-let gobang, gobangTurn, gobangOver;
+let gobang, gobangTurn, gobangOver, gobangMode = "pvp";
 function startGobang() {
     gobang = Array.from({ length: 15 }, () => Array(15).fill(0));
     gobangTurn = 1;
     gobangOver = false;
-    document.getElementById("gobangStatus").textContent = "黑棋先手";
+    document.getElementById("gobangStatus").textContent = gobangMode === "ai" ? "人机对局：你执黑" : "人人对局：黑棋先手";
     drawGobang();
+}
+
+function setGobangMode(mode) {
+    gobangMode = mode;
+    startGobang();
 }
 function drawGobang() {
     gCtx.fillStyle = "rgba(255,255,255,.72)";
@@ -502,21 +512,76 @@ function drawGobang() {
     }));
 }
 gobangCanvas.addEventListener("click", (event) => {
-    if (gobangOver) return;
+    if (gobangOver || (gobangMode === "ai" && gobangTurn === 2)) return;
     const rect = gobangCanvas.getBoundingClientRect();
     const c = Math.round((event.clientX - rect.left - 14) / 28);
     const r = Math.round((event.clientY - rect.top - 14) / 28);
     if (r < 0 || c < 0 || r >= 15 || c >= 15 || gobang[r][c]) return;
+    placeGobang(r, c);
+    if (gobangMode === "ai" && !gobangOver) {
+        setTimeout(aiGobangMove, 220);
+    }
+});
+
+function placeGobang(r, c) {
     gobang[r][c] = gobangTurn;
     if (checkGobang(r, c, gobangTurn)) {
         gobangOver = true;
         document.getElementById("gobangStatus").textContent = gobangTurn === 1 ? "黑棋胜利" : "白棋胜利";
     } else {
         gobangTurn = 3 - gobangTurn;
-        document.getElementById("gobangStatus").textContent = gobangTurn === 1 ? "黑棋回合" : "白棋回合";
+        document.getElementById("gobangStatus").textContent = gobangMode === "ai"
+            ? (gobangTurn === 1 ? "你的回合" : "AI 思考中")
+            : (gobangTurn === 1 ? "黑棋回合" : "白棋回合");
     }
     drawGobang();
-});
+}
+
+function aiGobangMove() {
+    if (gobangOver || gobangTurn !== 2) return;
+    const [r, c] = findBestGobangMove();
+    placeGobang(r, c);
+}
+
+function findBestGobangMove() {
+    const empty = [];
+    for (let r = 0; r < 15; r++) {
+        for (let c = 0; c < 15; c++) {
+            if (!gobang[r][c]) empty.push([r, c]);
+        }
+    }
+    return empty
+        .map(([r, c]) => [scoreGobangPoint(r, c, 2) + scoreGobangPoint(r, c, 1) * 0.92, r, c])
+        .sort((a, b) => b[0] - a[0])[0]
+        .slice(1);
+}
+
+function scoreGobangPoint(r, c, player) {
+    return [[1, 0], [0, 1], [1, 1], [1, -1]].reduce((score, [dr, dc]) => {
+        let count = 1;
+        let open = 0;
+        for (const sign of [-1, 1]) {
+            let nr = r + dr * sign;
+            let nc = c + dc * sign;
+            while (gobang[nr] && gobang[nr][nc] === player) {
+                count++;
+                nr += dr * sign;
+                nc += dc * sign;
+            }
+            if (gobang[nr] && gobang[nr][nc] === 0) open++;
+        }
+        if (count >= 5) return score + 100000;
+        if (count === 4 && open) return score + 12000;
+        if (count === 3 && open === 2) return score + 2500;
+        if (count === 3 && open === 1) return score + 800;
+        if (count === 2 && open === 2) return score + 220;
+        return score + count * 18 + open * 8;
+    }, centerBonus(r, c));
+}
+
+function centerBonus(r, c) {
+    return 14 - Math.abs(7 - r) - Math.abs(7 - c);
+}
 function checkGobang(r, c, v) {
     return [[1, 0], [0, 1], [1, 1], [1, -1]].some(([dr, dc]) => {
         let count = 1;
