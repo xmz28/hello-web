@@ -1,257 +1,90 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>个人简介</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: url("bg.jpg") center/cover no-repeat;
-    color: white;
-}
-
-/* 背景模糊 */
-body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(15px);
-    background: rgba(0,0,0,0.05);
-}
-
-/* 顶部导航 */
-.nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-}
-
-.nav img {
-    width: 40px;
-    border-radius: 50%;
-}
-
-.nav a {
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.nav a:hover {
-    color: white;
-}
-
-/* 主体布局 */
-.container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 80px;
-    position: relative;
-}
-
-/* 中间视觉头像（关键） */
-.hero-avatar {
-    position: absolute;
-    left: 38%;
-    top: 55%;
-    transform: translate(-50%, -50%);
-    opacity: 0.95;
-}
-
-.hero-avatar img {
-    width: 220px;
-    border-radius: 50%;
-    box-shadow: 0 0 80px rgba(255,255,255,0.2);
-}
-
-/* 左侧信息 */
-.left {
-    text-align: center;
-    z-index: 2;
-}
-
-.avatar {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.4);
-    margin-bottom: 20px;
-}
-
-.name {
-    font-size: 28px;
-    font-weight: 600;
-}
-
-.tag {
-    font-size: 14px;
-    opacity: 0.7;
-}
-
-/* 右侧卡片 */
-.right {
-    max-width: 400px;
-    padding: 30px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(15px);
-    z-index: 2;
-}
-
-.title {
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-.text {
-    font-size: 14px;
-    line-height: 1.6;
-    opacity: 0.8;
-    margin-bottom: 20px;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tag-item {
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    background: rgba(255,255,255,0.15);
-}
-
-/* 按钮 */
-.btns {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    padding: 8px 18px;
-    border-radius: 20px;
-    text-decoration: none;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3);
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-/* 抖音二维码弹窗 */
-.qr-modal {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    top: 0;
-    left: 0;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.qr-box {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-}
-
-.qr-box img {
-    width: 200px;
-    margin-bottom: 10px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="profile-page">
+<div class="site-bg" style="background-image: url('bg.jpg');"></div>
+<div class="site-overlay"></div>
 
-<!-- 导航 -->
-<div class="nav">
-    <img src="avatar.jpg">
-    <a href="home.html">主页</a>
+<nav class="site-nav" aria-label="主导航">
+    <img src="1.jpg" alt="头像">
+    <a href="index.html">首页</a>
+    <a href="home.html" class="active">个人页</a>
     <a href="blog.html">博客</a>
-</div>
+</nav>
 
-<!-- 主体 -->
-<div class="container">
+<main class="profile-main">
+    <section class="profile-left">
+        <img src="1.jpg" class="profile-avatar" alt="个人头像">
+        <div class="profile-name">小米周</div>
+        <div class="profile-tagline">探索世界与技术边界</div>
+    </section>
 
-    <!-- 中间视觉头像 -->
+    <section class="profile-panel">
+        <h1>关于我</h1>
+        <p>喜欢数码、旅行、摄影，也会折腾各种有意思的东西。</p>
 
-
-    <!-- 左侧 -->
-    <div class="left">
-        <img src="avatar.jpg" class="avatar">
-        <div class="name">你的名字</div>
-        <div class="tag">探索世界与技术边界</div>
-    </div>
-
-    <!-- 右侧 -->
-    <div class="right">
-        <div class="title">关于我</div>
-        <div class="text">
-            喜欢数码、旅行、摄影，也会折腾各种有意思的东西。
+        <div class="tag-list">
+            <span class="tag-pill">数码</span>
+            <span class="tag-pill">旅行</span>
+            <span class="tag-pill">摄影</span>
+            <span class="tag-pill">折腾</span>
         </div>
 
-        <div class="tags">
-            <div class="tag-item">数码</div>
-            <div class="tag-item">旅行</div>
-            <div class="tag-item">摄影</div>
-            <div class="tag-item">折腾</div>
-        </div>
-
-        <div class="btns">
+        <div class="button-row">
             <a href="blog.html" class="btn">博客</a>
-            <a href="https://space.bilibili.com/338302827" target="_blank" class="btn">B站</a>
-            <a href="#" class="btn" onclick="showQR()">抖音</a>
+            <button class="btn" type="button" onclick="showBili()">B站</button>
+            <button class="btn" type="button" onclick="showDouyin()">抖音</button>
         </div>
-    </div>
+    </section>
+</main>
 
+<div id="biliModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="B站介绍">
+    <div class="qr-box social-box">
+        <h2>B站：小米周_bili</h2>
+        <p>这里会更新数码体验、折腾记录和一些轻技术向的视频内容。想看完整视频合集，可以从这里跳到我的 B 站主页。</p>
+        <a class="btn social-link" href="https://space.bilibili.com/338302827" target="_blank" rel="noopener">前往 B站主页</a>
+    </div>
 </div>
 
-<!-- 抖音二维码 -->
-<div id="qrModal" class="qr-modal">
-    <div class="qr-box">
-        <img src="douyin.png">
-        <p>扫码关注我的抖音</p>
+<div id="douyinModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="抖音介绍">
+    <div class="qr-box social-box">
+        <h2>抖音：小米周</h2>
+        <p>抖音会放更短、更直接的日常分享和视频片段。可以扫码关注，也可以点击底部按钮跳转。</p>
+        <img src="douyin.png" alt="抖音二维码">
+        <a class="btn social-link" href="https://v.douyin.com/x64M2NbYj0A/" target="_blank" rel="noopener">前往抖音主页</a>
     </div>
 </div>
 
 <script>
-function showQR() {
-    document.getElementById("qrModal").style.display = "flex";
+function showBili() {
+    document.getElementById("biliModal").classList.add("show");
 }
 
-document.getElementById("qrModal").onclick = function() {
-    this.style.display = "none";
+function showDouyin() {
+    document.getElementById("douyinModal").classList.add("show");
 }
+
+document.querySelectorAll(".qr-modal").forEach(function(modal) {
+    modal.addEventListener("click", function(event) {
+        if (event.target === modal) {
+            modal.classList.remove("show");
+        }
+    });
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.querySelectorAll(".qr-modal").forEach(function(modal) {
+            modal.classList.remove("show");
+        });
+    }
+});
 </script>
-
 </body>
 </html>

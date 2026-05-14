@@ -1,142 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>我的主页</title>
-
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    background: url("2.jpg") no-repeat center/cover;
-    font-family: -apple-system;
-    overflow: hidden;
-}
-
-/* 粒子层 */
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-/* 渐变遮罩 */
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.2),
-        rgba(0,0,0,0.4)
-    );
-    z-index: 1;
-}
-
-/* 中间内容 */
-.center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 2;
-}
-
-/* 光环 */
-.avatar-wrap {
-    display: inline-block;
-    padding: 4px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #ff66cc, #66ccff, #ff66cc);
-    background-size: 300% 300%;
-    animation: rotateGlow 6s linear infinite;
-}
-
-.avatar {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    animation: glow 2.5s ease-in-out infinite;
-}
-
-@keyframes glow {
-    0% { box-shadow: 0 0 5px #ff66cc; }
-    50% { box-shadow: 0 0 25px #ff66cc; }
-    100% { box-shadow: 0 0 5px #ff66cc; }
-}
-
-@keyframes rotateGlow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
-}
-
-h1 {
-    margin: 15px 0;
-    font-size: 40px;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
-
-.btn {
-    display: inline-block;
-    padding: 15px 25px;
-    margin: 10px;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(15px);
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-5px);
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-
-<!-- 粒子 -->
+<body class="home-page">
+<div class="site-bg" style="background-image: url('2.jpg');"></div>
+<div class="site-overlay"></div>
 <div id="particles-js"></div>
 
-<!-- 遮罩 -->
-<div class="overlay"></div>
+<main class="home-center">
+    <section class="home-card">
+        <div class="avatar-wrap">
+            <img src="1.jpg" class="avatar" alt="头像">
+        </div>
 
-<div class="center">
-    <div class="avatar-wrap">
-        <img src="1.jpg" class="avatar">
-    </div>
+        <h1 class="home-title">小米周</h1>
+        <p class="home-subtitle">一个会用 AI 做网站的人</p>
 
-    <h1>小米周</h1>
-    <p>一个会用AI做网站的人</p>
+        <div class="button-row">
+            <a href="home.html" class="btn">个人页</a>
+            <a href="blog.html" class="btn">博客</a>
+        </div>
+    </section>
+</main>
 
-    <div class="buttons">
-        <a href="home.html" class="btn">主页</a>
-        <a href="blog.html" class="btn">博客</a>
-    </div>
-</div>
-
-<!-- 粒子库 -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
 <script>
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 60 },
-    color: { value: "#ffffff" },
-    opacity: { value: 0.3 },
-    size: { value: 2 },
-    move: { speed: 0.6 }
-  }
-});
+if (window.particlesJS) {
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 60 },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.3 },
+            size: { value: 2 },
+            move: { speed: 0.6 }
+        }
+    });
+}
 </script>
-
 </body>
 </html>
