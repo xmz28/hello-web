@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>网站导航</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="portal-page">
+<div class="site-bg" style="background-image: url('2.jpg');"></div>
+<div class="site-overlay"></div>
+
+<nav class="site-nav" aria-label="主导航">
+    <img src="1.jpg" alt="头像">
+    <a href="index.html" class="nav-link"><span>🏠</span><span data-i18n="home">首页</span></a>
+    <a href="home.html" class="nav-link"><span>🌸</span><span data-i18n="profile">个人页</span></a>
+    <a href="blog.html" class="nav-link"><span>📚</span><span data-i18n="blog">博客</span></a>
+    <a href="games.html" class="nav-link"><span>🎮</span><span data-i18n="games">小游戏</span></a>
+    <a href="nav.html" class="nav-link active"><span>🧭</span><span data-i18n="siteNav">网站导航</span></a>
+    <div class="nav-controls">
+        <div class="lang-menu">
+            <button id="langToggle" class="icon-toggle" type="button" aria-label="语言">文</button>
+            <div class="lang-panel">
+                <button type="button" data-lang-option="zh-CN"><span class="flag-emoji">🇨🇳</span>简体中文</button>
+                <button type="button" data-lang-option="zh-TW"><span class="flag-emoji">🇭🇰</span>繁體中文</button>
+                <button type="button" data-lang-option="en"><span class="flag-emoji">🇺🇸</span>English</button>
+                <button type="button" data-lang-option="ja"><span class="flag-emoji">🇯🇵</span>日本語</button>
+            </div>
+        </div>
+        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题">☀</button>
+    </div>
+</nav>
+
+<main class="portal-main">
+    <section class="portal-hero">
+        <p>XMZ Launchpad</p>
+        <h1>网站导航</h1>
+    </section>
+
+    <section class="portal-grid" aria-label="网站导航列表">
+        <article class="portal-category">
+            <h2><span class="portal-cat-icon">✨</span>AI 工具</h2>
+            <div class="portal-links">
+                <a href="https://chatgpt.com" target="_blank" rel="noopener"><span>💬</span>ChatGPT</a>
+                <a href="https://claude.ai" target="_blank" rel="noopener"><span>🧠</span>Claude</a>
+                <a href="https://gemini.google.com" target="_blank" rel="noopener"><span>💎</span>Gemini</a>
+                <a href="https://www.midjourney.com" target="_blank" rel="noopener"><span>🎨</span>Midjourney</a>
+                <a href="https://www.perplexity.ai" target="_blank" rel="noopener"><span>🔎</span>Perplexity</a>
+                <a href="https://poe.com" target="_blank" rel="noopener"><span>🤖</span>Poe</a>
+            </div>
+        </article>
+
+        <article class="portal-category">
+            <h2><span class="portal-cat-icon">🧰</span>开发工具</h2>
+            <div class="portal-links">
+                <a href="https://github.com" target="_blank" rel="noopener"><span>🐙</span>GitHub</a>
+                <a href="https://wokwi.com" target="_blank" rel="noopener"><span>⚡</span>Wokwi</a>
+                <a href="https://code.visualstudio.com" target="_blank" rel="noopener"><span>🧩</span>VS Code</a>
+                <a href="https://www.arduino.cc" target="_blank" rel="noopener"><span>🔌</span>Arduino</a>
+                <a href="https://platformio.org" target="_blank" rel="noopener"><span>🛠️</span>PlatformIO</a>
+                <a href="https://developer.mozilla.org" target="_blank" rel="noopener"><span>📘</span>MDN Web Docs</a>
+            </div>
+        </article>
+
+        <article class="portal-category">
+            <h2><span class="portal-cat-icon">🎬</span>视频 / 社交</h2>
+            <div class="portal-links">
+                <a href="https://www.youtube.com" target="_blank" rel="noopener"><span>▶️</span>YouTube</a>
+                <a href="https://x.com" target="_blank" rel="noopener"><span>𝕏</span>X</a>
+                <a href="https://www.reddit.com" target="_blank" rel="noopener"><span>🟠</span>Reddit</a>
+                <a href="https://web.telegram.org" target="_blank" rel="noopener"><span>✈️</span>Telegram</a>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener"><span>📘</span>Facebook</a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener"><span>📷</span>Instagram</a>
+                <a href="https://discord.com" target="_blank" rel="noopener"><span>🎧</span>Discord</a>
+            </div>
+        </article>
+
+        <article class="portal-category">
+            <h2><span class="portal-cat-icon">🎮</span>游戏 / 娱乐</h2>
+            <div class="portal-links">
+                <a href="https://store.steampowered.com" target="_blank" rel="noopener"><span>🎮</span>Steam</a>
+                <a href="https://store.epicgames.com" target="_blank" rel="noopener"><span>🕹️</span>Epic Games</a>
+                <a href="https://www.xbox.com" target="_blank" rel="noopener"><span>🟢</span>Xbox</a>
+                <a href="https://moonlight-stream.org" target="_blank" rel="noopener"><span>🌙</span>Moonlight</a>
+                <a href="https://steamdb.info" target="_blank" rel="noopener"><span>📊</span>SteamDB</a>
+                <a href="https://www.nexusmods.com" target="_blank" rel="noopener"><span>🧬</span>Nexus Mods</a>
+            </div>
+        </article>
+
+        <article class="portal-category portal-category-wide">
+            <h2><span class="portal-cat-icon">💾</span>下载 / 系统工具</h2>
+            <div class="portal-links">
+                <a href="https://www.tbtool.cn" target="_blank" rel="noopener"><span>🧪</span>图吧工具箱</a>
+                <a href="https://www.microsoft.com/software-download" target="_blank" rel="noopener"><span>🪟</span>Microsoft 官方镜像下载</a>
+                <a href="https://www.nvidia.com/Download/index.aspx" target="_blank" rel="noopener"><span>🟩</span>NVIDIA 驱动下载</a>
+                <a href="https://www.intel.com/content/www/us/en/download-center/home.html" target="_blank" rel="noopener"><span>🔵</span>Intel 驱动下载</a>
+                <a href="https://www.amd.com/en/support" target="_blank" rel="noopener"><span>🔴</span>AMD 驱动下载</a>
+            </div>
+        </article>
+    </section>
+</main>
+
+<script src="site.js"></script>
+<script>
+setupSiteControls();
+</script>
+</body>
+</html>

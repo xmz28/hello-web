@@ -28,13 +28,17 @@
 
 html {
     min-height: 100%;
+    min-height: 100dvh;
+    background: #18212f;
 }
 
 body {
     min-height: 100vh;
+    min-height: 100dvh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
     color: var(--text);
     background: #18212f;
+    overflow-x: hidden;
 }
 
 a {
@@ -48,19 +52,33 @@ input {
 
 .site-bg {
     position: fixed;
-    inset: 0;
+    inset: calc(env(safe-area-inset-top) * -1) 0 calc(env(safe-area-inset-bottom) * -1) 0;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: -2;
+    filter: saturate(1.08) brightness(1.02);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .site-overlay {
     position: fixed;
-    inset: 0;
+    inset: calc(env(safe-area-inset-top) * -1) 0 calc(env(safe-area-inset-bottom) * -1) 0;
     background: var(--overlay-bg);
     backdrop-filter: blur(8px);
-    z-index: -1;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.portal-page .site-bg {
+    opacity: 0.72;
+}
+
+.portal-page .site-overlay {
+    background:
+        radial-gradient(circle at 50% 12%, rgba(110, 231, 249, 0.16), transparent 30%),
+        linear-gradient(to bottom, rgba(10, 18, 28, 0.38), rgba(10, 18, 28, 0.62));
+    backdrop-filter: blur(4px);
 }
 
 .site-nav {
@@ -68,11 +86,11 @@ input {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 20;
+    z-index: 30;
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 14px clamp(18px, 4vw, 42px);
+    padding: calc(12px + env(safe-area-inset-top)) clamp(18px, 4vw, 42px) 12px;
     background: linear-gradient(to bottom, rgba(10, 18, 28, 0.22), rgba(10, 18, 28, 0));
     border-bottom: 0;
     backdrop-filter: none;
@@ -222,6 +240,9 @@ input {
 
 .home-center {
     min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    z-index: 3;
     display: grid;
     place-items: center;
     padding: 96px 20px 48px;
@@ -380,7 +401,8 @@ input {
 #particles-js {
     position: fixed;
     inset: 0;
-    z-index: 0;
+    z-index: 2;
+    pointer-events: none;
 }
 
 .profile-page {
@@ -389,6 +411,9 @@ input {
 
 .profile-main {
     min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -630,11 +655,14 @@ input {
 
 .blog-page {
     min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
 }
 
 .blog-main {
     width: min(1120px, calc(100% - 32px));
+    position: relative;
+    z-index: 3;
     margin: 0 auto;
     padding: 112px 0 56px;
     text-align: center;
@@ -863,7 +891,7 @@ input {
     position: fixed;
     right: 22px;
     bottom: 22px;
-    z-index: 18;
+    z-index: 25;
     display: grid;
     gap: 12px;
 }
@@ -894,16 +922,135 @@ input {
 
 .games-page {
     min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
 }
 
 .games-main {
     width: min(980px, calc(100% - 32px));
     min-height: 100vh;
+    position: relative;
+    z-index: 3;
     display: grid;
     place-items: center;
     margin: 0 auto;
     padding: 108px 0 56px;
+}
+
+.portal-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+}
+
+.portal-main {
+    width: min(1180px, calc(100% - 32px));
+    position: relative;
+    z-index: 3;
+    margin: 0 auto;
+    padding: 112px 0 56px;
+}
+
+.portal-hero {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.portal-hero p {
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.portal-hero h1 {
+    margin-top: 8px;
+    font-size: clamp(38px, 8vw, 68px);
+    text-shadow: 0 0 24px rgba(110, 231, 249, 0.36);
+}
+
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.portal-category {
+    grid-column: span 2;
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+    padding: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08)),
+        radial-gradient(circle at top right, rgba(110, 231, 249, 0.18), transparent 34%);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 46px rgba(15, 23, 42, 0.2);
+}
+
+.portal-category::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity: 0.28;
+    pointer-events: none;
+}
+
+.portal-category-wide {
+    grid-column: span 4;
+}
+
+.portal-category h2 {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 22px;
+}
+
+.portal-cat-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.13);
+    box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+.portal-links {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.portal-links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.11);
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.portal-links a:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
 }
 
 .games-shell {
@@ -1018,6 +1165,14 @@ input {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     padding: 10px;
+}
+
+.portal-links a span {
+    width: 24px;
+    flex: 0 0 24px;
+    display: inline-grid;
+    place-items: center;
+    font-size: 17px;
 }
 
 .mines-board {
@@ -1150,9 +1305,17 @@ input {
 
 @media (max-width: 820px) {
     .site-nav {
-        gap: 12px;
-        padding: 12px 18px;
-        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+        overflow-x: auto;
+        overflow-y: visible;
+        white-space: nowrap;
+        scrollbar-width: none;
+    }
+
+    .site-nav::-webkit-scrollbar {
+        display: none;
     }
 
     .nav-spacer {
@@ -1196,6 +1359,19 @@ input {
         padding: 0 10px;
         font-size: 14px;
     }
+
+    .portal-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .portal-category,
+    .portal-category-wide {
+        grid-column: span 1;
+    }
+
+    .portal-links {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (min-width: 821px) {
@@ -1206,7 +1382,7 @@ input {
 
 @media (max-width: 560px) {
     .site-nav {
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .site-nav img {
@@ -1214,14 +1390,32 @@ input {
     }
 
     .nav-controls {
-        width: 100%;
+        width: auto;
         justify-content: center;
         margin-left: 0;
+        padding-right: env(safe-area-inset-right);
+    }
+
+    .nav-link {
+        font-size: 15px;
+    }
+
+    .home-center {
+        padding: calc(58px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
+        align-items: center;
+    }
+
+    .home-title {
+        font-size: clamp(34px, 11vw, 48px);
+    }
+
+    .profile-main {
+        padding: calc(86px + env(safe-area-inset-top)) 18px calc(34px + env(safe-area-inset-bottom));
     }
 
     .blog-main {
         width: min(100% - 24px, 1120px);
-        padding-top: 92px;
+        padding-top: calc(88px + env(safe-area-inset-top));
     }
 
     .post-grid {
@@ -1243,7 +1437,8 @@ input {
 
     .games-main {
         width: min(100% - 20px, 980px);
-        padding-top: 120px;
+        padding-top: calc(104px + env(safe-area-inset-top));
+        padding-bottom: calc(120px + env(safe-area-inset-bottom));
     }
 
     .game-panel {
@@ -1263,8 +1458,23 @@ input {
 
     .mobile-gamepad {
         right: 10px;
-        bottom: 10px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
         transform: scale(0.88);
         transform-origin: bottom right;
+    }
+
+    .portal-main {
+        width: min(100% - 22px, 1180px);
+        padding: calc(96px + env(safe-area-inset-top)) 0 calc(32px + env(safe-area-inset-bottom));
+    }
+
+    .portal-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .portal-category {
+        min-height: auto;
+        padding: 18px;
     }
 }
