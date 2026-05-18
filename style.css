@@ -731,6 +731,22 @@ input {
     gap: 24px;
 }
 
+.comments-panel {
+    margin-top: 46px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px);
+    text-align: left;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.16);
+}
+
+.comments-panel h2 {
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
 .post-card {
     position: relative;
     min-height: 100%;
@@ -943,12 +959,248 @@ input {
     overflow-x: hidden;
 }
 
+.dashboard-page,
+.terminal-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+}
+
 .portal-main {
     width: min(1180px, calc(100% - 32px));
     position: relative;
     z-index: 3;
     margin: 0 auto;
     padding: 112px 0 56px;
+}
+
+.dashboard-main {
+    width: min(1180px, calc(100% - 32px));
+    position: relative;
+    z-index: 3;
+    margin: 0 auto;
+    padding: 112px 0 56px;
+}
+
+.dash-hero {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.dash-hero p {
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.dash-hero h1 {
+    margin-top: 8px;
+    font-size: clamp(38px, 8vw, 64px);
+    text-shadow: 0 0 24px rgba(110, 231, 249, 0.34);
+}
+
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.dash-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 150px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08)),
+        radial-gradient(circle at top right, rgba(110, 231, 249, 0.18), transparent 34%);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 44px rgba(15, 23, 42, 0.2);
+}
+
+.dash-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.22;
+    pointer-events: none;
+}
+
+.dash-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.dash-card span {
+    display: block;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.dash-card strong {
+    display: block;
+    font-size: clamp(30px, 5vw, 44px);
+}
+
+.weather,
+.quote,
+.regions,
+.music,
+.launchers {
+    grid-column: span 2;
+}
+
+.updates,
+.boot {
+    grid-column: span 2;
+    min-height: 260px;
+}
+
+.quote p {
+    font-size: 22px;
+    line-height: 1.7;
+}
+
+.regions ul {
+    display: grid;
+    gap: 8px;
+    list-style: none;
+}
+
+.regions li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.updates article {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.updates time {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 13px;
+}
+
+.updates h3 {
+    margin: 4px 0;
+}
+
+.updates p {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.boot-log,
+.terminal-output {
+    height: 210px;
+    overflow: auto;
+    padding: 14px;
+    border-radius: 14px;
+    background: rgba(4, 10, 20, 0.68);
+    color: #8df7b5;
+    font-family: Consolas, "Courier New", monospace;
+    line-height: 1.7;
+}
+
+.music,
+.launchers {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+}
+
+.music-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.2);
+}
+
+.launchers .btn,
+.music .btn {
+    width: fit-content;
+}
+
+.terminal-main {
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    padding: 90px 18px 42px;
+}
+
+.terminal-window {
+    width: min(900px, 100%);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    background: rgba(4, 10, 20, 0.76);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+}
+
+.terminal-window header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.terminal-window header span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-window header span:nth-child(1) { background: #ff5f57; }
+.terminal-window header span:nth-child(2) { background: #ffbd2e; }
+.terminal-window header span:nth-child(3) { background: #28c840; }
+
+.terminal-window header strong {
+    margin-left: 8px;
+}
+
+.terminal-window header a {
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+}
+
+.terminal-output {
+    height: min(520px, 58vh);
+    border-radius: 0;
+    background: transparent;
+}
+
+.terminal-input {
+    display: flex;
+    gap: 10px;
+    padding: 14px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    color: #8df7b5;
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.terminal-input input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    background: transparent;
+    font-family: inherit;
 }
 
 .portal-hero {
@@ -1372,6 +1624,20 @@ input {
     .portal-links {
         grid-template-columns: 1fr;
     }
+
+    .dash-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .weather,
+    .quote,
+    .regions,
+    .music,
+    .launchers,
+    .updates,
+    .boot {
+        grid-column: span 2;
+    }
 }
 
 @media (min-width: 821px) {
@@ -1476,5 +1742,29 @@ input {
     .portal-category {
         min-height: auto;
         padding: 18px;
+    }
+
+    .dashboard-main {
+        width: min(100% - 22px, 1180px);
+        padding: calc(96px + env(safe-area-inset-top)) 0 calc(32px + env(safe-area-inset-bottom));
+    }
+
+    .dash-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-card,
+    .weather,
+    .quote,
+    .regions,
+    .music,
+    .launchers,
+    .updates,
+    .boot {
+        grid-column: span 1;
+    }
+
+    .terminal-main {
+        padding: calc(30px + env(safe-area-inset-top)) 12px calc(24px + env(safe-area-inset-bottom));
     }
 }

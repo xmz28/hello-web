@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>终端控制台</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="terminal-page">
+<div class="site-bg" style="background-image: url('2.jpg');"></div>
+<div class="site-overlay"></div>
+<main class="terminal-main">
+    <section class="terminal-window">
+        <header><span></span><span></span><span></span><strong>XMZ Terminal</strong><a href="dashboard.html">返回状态面板</a></header>
+        <div id="terminalOutput" class="terminal-output"></div>
+        <label class="terminal-input"><span>$</span><input id="terminalInput" autocomplete="off" spellcheck="false"></label>
+    </section>
+</main>
+<script src="site-widgets.js"></script>
+<script>setupTerminalPage("terminal");</script>
+</body>
+</html>

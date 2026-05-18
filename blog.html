@@ -18,6 +18,7 @@
     <a href="blog.html" class="nav-link active"><span>📚</span><span data-i18n="blog">博客</span></a>
     <a href="games.html" class="nav-link"><span>🎮</span><span data-i18n="games">小游戏</span></a>
     <a href="nav.html" class="nav-link"><span>🧭</span><span data-i18n="siteNav">网站导航</span></a>
+    <a href="dashboard.html" class="nav-link"><span>🖥</span><span data-i18n="dashboard">状态面板</span></a>
     <div class="nav-controls">
         <div class="lang-menu">
             <button id="langToggle" class="icon-toggle" type="button" aria-label="语言">文</button>
@@ -52,6 +53,11 @@
 
     <section id="postGrid" class="post-grid" aria-label="文章列表"></section>
     <p id="emptyState" class="empty-state" data-i18n="emptyState">没有找到匹配的文章，换个关键词试试。</p>
+
+    <section class="comments-panel" aria-label="评论区">
+        <h2>评论区</h2>
+        <div class="giscus"></div>
+    </section>
 </main>
 
 <div id="postModal" class="post-modal" role="dialog" aria-modal="true" aria-labelledby="postTitle">
@@ -85,6 +91,21 @@
 </div>
 
 <script src="site.js"></script>
+<script src="https://giscus.app/client.js"
+        data-repo="xmz28/hello-web"
+        data-repo-id="R_kgDOSPiVBA"
+        data-category="General"
+        data-category-id="DIC_kwDOSPiVBM4C9SKm"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
 <script>
 const blogLocales = {
     "zh-CN": {

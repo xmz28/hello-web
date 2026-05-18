@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>状态面板</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+<div class="site-bg" style="background-image: url('2.jpg');"></div>
+<div class="site-overlay"></div>
+
+<nav class="site-nav" aria-label="主导航">
+    <img src="1.jpg" alt="头像">
+    <a href="index.html" class="nav-link"><span>🏠</span><span data-i18n="home">首页</span></a>
+    <a href="home.html" class="nav-link"><span>🌸</span><span data-i18n="profile">个人页</span></a>
+    <a href="blog.html" class="nav-link"><span>📚</span><span data-i18n="blog">博客</span></a>
+    <a href="games.html" class="nav-link"><span>🎮</span><span data-i18n="games">小游戏</span></a>
+    <a href="nav.html" class="nav-link"><span>🧭</span><span data-i18n="siteNav">网站导航</span></a>
+    <a href="dashboard.html" class="nav-link active"><span>🖥</span><span data-i18n="dashboard">状态面板</span></a>
+    <div class="nav-controls">
+        <div class="lang-menu">
+            <button id="langToggle" class="icon-toggle" type="button" aria-label="语言">文</button>
+            <div class="lang-panel">
+                <button type="button" data-lang-option="zh-CN"><span class="flag-emoji">🇨🇳</span>简体中文</button>
+                <button type="button" data-lang-option="zh-TW"><span class="flag-emoji">🇭🇰</span>繁體中文</button>
+                <button type="button" data-lang-option="en"><span class="flag-emoji">🇺🇸</span>English</button>
+                <button type="button" data-lang-option="ja"><span class="flag-emoji">🇯🇵</span>日本語</button>
+            </div>
+        </div>
+        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题">☀</button>
+    </div>
+</nav>
+
+<main class="dashboard-main">
+    <section class="dash-hero">
+        <p>XMZ Control Center</p>
+        <h1>状态面板</h1>
+    </section>
+
+    <section class="dash-grid">
+        <article class="dash-card metric"><span>总访问量</span><strong id="totalVisits">--</strong></article>
+        <article class="dash-card metric"><span>当前在线</span><strong id="onlineUsers">--</strong></article>
+        <article class="dash-card weather"><span>东京实时天气</span><strong id="tokyoTemp">--</strong><p id="tokyoWeather">加载中</p><p id="tokyoMeta"></p></article>
+        <article class="dash-card updates"><span>最近更新日志</span><div id="updateList"></div></article>
+        <article class="dash-card boot"><span>服务器启动日志</span><div id="bootLog" class="boot-log"></div></article>
+        <article class="dash-card music"><span>音乐播放器</span><strong id="musicStatus">尝试自动播放中...</strong><audio id="onlineMusic" preload="auto" loop src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Classical_Sampler/Kevin_MacLeod_-_Canon_in_D_Major.mp3"></audio><button id="musicToggle" class="btn" type="button">播放</button></article>
+        <article class="dash-card launchers"><span>控制台入口</span><a class="btn" href="terminal.html">终端控制台</a></article>
+    </section>
+</main>
+
+<script src="site.js"></script>
+<script src="site-widgets.js"></script>
+<script>
+setupSiteControls();
+setupDashboardWidgets();
+</script>
+</body>
+</html>
