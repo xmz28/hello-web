@@ -5,23 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>个人简介</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="remixicon.css">
 </head>
 
 <body class="profile-page">
-<div class="site-bg" style="background-image: url('bg.jpg');"></div>
+<div class="site-bg" style="background-image: url('2.jpg');"></div>
 <div class="site-overlay"></div>
+<div class="profile-grid" aria-hidden="true"></div>
 
 <nav class="site-nav" aria-label="主导航">
-    <img src="1.jpg" alt="头像">
-    <a href="index.html" class="nav-link"><span>🏠</span><span data-i18n="home">首页</span></a>
-    <a href="home.html" class="nav-link active"><span>🌸</span><span data-i18n="profile">个人页</span></a>
-    <a href="blog.html" class="nav-link"><span>📚</span><span data-i18n="blog">博客</span></a>
-    <a href="games.html" class="nav-link"><span>🎮</span><span data-i18n="games">小游戏</span></a>
-    <a href="nav.html" class="nav-link"><span>🧭</span><span data-i18n="siteNav">网站导航</span></a>
-    <a href="dashboard.html" class="nav-link"><span>🖥</span><span data-i18n="dashboard">状态面板</span></a>
+    <a href="index.html" class="profile-brand" aria-label="返回首页">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>FUJI DIGITAL SPACE</span>
+    </a>
+    <div class="profile-nav-links">
+        <a href="index.html" class="nav-link"><i class="ri-home-5-line" aria-hidden="true"></i><span data-i18n="home">首页</span></a>
+        <a href="home.html" class="nav-link active"><i class="ri-user-3-line" aria-hidden="true"></i><span data-i18n="profile">个人页</span></a>
+        <a href="blog.html" class="nav-link"><i class="ri-article-line" aria-hidden="true"></i><span data-i18n="blog">博客</span></a>
+        <a href="games.html" class="nav-link"><i class="ri-gamepad-line" aria-hidden="true"></i><span data-i18n="games">小游戏</span></a>
+        <a href="nav.html" class="nav-link"><i class="ri-compass-3-line" aria-hidden="true"></i><span data-i18n="siteNav">网站导航</span></a>
+        <a href="dashboard.html" class="nav-link"><i class="ri-bar-chart-box-line" aria-hidden="true"></i><span data-i18n="dashboard">状态面板</span></a>
+    </div>
     <div class="nav-controls">
+        <span class="profile-location"><i class="ri-map-pin-line" aria-hidden="true"></i> ASIA / SHANGHAI</span>
         <div class="lang-menu">
-            <button id="langToggle" class="icon-toggle" type="button" aria-label="语言">文</button>
+            <button id="langToggle" class="icon-toggle" type="button" aria-label="语言"><i class="ri-translate-2"></i></button>
             <div class="lang-panel">
                 <button type="button" data-lang-option="zh-CN"><span class="flag-emoji">🇨🇳</span>简体中文</button>
                 <button type="button" data-lang-option="zh-TW"><span class="flag-emoji">🇭🇰</span>繁體中文</button>
@@ -29,45 +37,99 @@
                 <button type="button" data-lang-option="ja"><span class="flag-emoji">🇯🇵</span>日本語</button>
             </div>
         </div>
-        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题">☀</button>
+        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题"><i class="ri-sun-line"></i></button>
     </div>
 </nav>
 
 <main class="profile-main">
-    <section class="profile-left">
-        <img src="1.jpg" class="profile-avatar" alt="个人头像">
-        <div class="profile-name">小米周</div>
-        <div class="profile-tagline" data-i18n="tagline">探索世界与技术边界</div>
+    <section class="profile-identity" aria-labelledby="profileName">
+        <div class="profile-index">01 <small>/ USER</small></div>
+        <div class="profile-avatar-shell">
+            <img src="1.jpg" class="profile-avatar" alt="小米周的个人头像">
+            <span class="profile-online-dot" aria-label="在线"></span>
+        </div>
+        <div class="profile-name-row">
+            <h1 id="profileName" class="profile-name">小米周</h1>
+            <span class="online-badge">终端在线</span>
+        </div>
+        <p class="profile-tagline" data-i18n="tagline">探索世界与技术边界</p>
+        <blockquote>用代码记录想法，用镜头记录世界，<br>在不断折腾中，让热爱持续发生。</blockquote>
+        <div class="profile-meta">
+            <span><i class="ri-map-pin-line"></i> 中国 · 上海</span>
+            <span><i class="ri-code-s-slash-line"></i> AI Builder</span>
+            <span><i class="ri-calendar-line"></i> 2026.06.25</span>
+        </div>
+        <div class="profile-social-mini" aria-label="社交链接">
+            <a href="https://github.com/xmz28" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-line"></i></a>
+            <a href="blog.html" aria-label="博客"><i class="ri-book-open-line"></i></a>
+            <button type="button" onclick="showBili()" aria-label="B站"><i class="ri-bilibili-line"></i></button>
+            <button type="button" onclick="showDouyin()" aria-label="抖音"><i class="ri-tiktok-line"></i></button>
+        </div>
     </section>
 
-    <section class="profile-content">
-        <div class="uptime-card" aria-label="博客稳定运行时间">
-            <span data-i18n="uptimeLabel">博客已稳定运行</span>
-            <strong id="uptimeCounter">计算中...</strong>
-        </div>
-
-        <div class="profile-panel">
-            <h1 data-i18n="aboutTitle">关于我</h1>
-            <p data-i18n="aboutText">喜欢数码、旅行、摄影，也会折腾各种有意思的东西。</p>
-
-            <div class="tag-list">
-                <span class="tag-pill" data-i18n="tagDigital">数码</span>
-                <span class="tag-pill" data-i18n="tagTravel">旅行</span>
-                <span class="tag-pill" data-i18n="tagPhoto">摄影</span>
-                <span class="tag-pill" data-i18n="tagTinker">折腾</span>
+    <section class="profile-content" aria-label="个人资料">
+        <article class="command-panel about-module">
+            <div class="module-heading">
+                <h2><i class="ri-user-heart-line"></i><span data-i18n="aboutTitle">关于我</span></h2>
+                <span class="module-code">&gt;_</span>
             </div>
+            <div class="about-layout">
+                <div>
+                    <p data-i18n="aboutText">热爱技术与创造，专注于 Web 开发与嵌入式探索。喜欢把想法落地成有趣的作品，也在旅行与摄影中寻找灵感。</p>
+                    <p class="about-motto"><span>//</span> Keep Exploring. Keep Coding.</p>
+                </div>
+                <img src="bg.jpg" alt="旅行中拍摄的绿色草地与建筑">
+            </div>
+        </article>
+
+        <article class="command-panel interests-module">
+            <div class="module-heading">
+                <h2><i class="ri-heart-3-line"></i>兴趣与热爱</h2>
+            </div>
+            <div class="interest-grid">
+                <div class="interest-item"><i class="ri-cpu-line"></i><strong data-i18n="tagDigital">数码</strong><span>新奇硬件<br>与生产力工具</span></div>
+                <div class="interest-item"><i class="ri-plane-line"></i><strong data-i18n="tagTravel">旅行</strong><span>探索未知<br>收集地图与故事</span></div>
+                <div class="interest-item"><i class="ri-camera-3-line"></i><strong data-i18n="tagPhoto">摄影</strong><span>记录光影<br>定格美好瞬间</span></div>
+                <div class="interest-item"><i class="ri-tools-line"></i><strong data-i18n="tagTinker">折腾</strong><span>折腾硬件<br>创造有趣的东西</span></div>
+            </div>
+        </article>
+
+        <div class="profile-stats-row">
+            <article class="command-panel uptime-card" aria-label="博客稳定运行时间">
+                <div class="module-heading"><h2><i class="ri-time-line"></i><span data-i18n="uptimeLabel">博客运行时长</span></h2></div>
+                <strong id="uptimeCounter">计算中...</strong>
+                <span class="stat-caption">本次运行时间 <b></b></span>
+            </article>
+            <article class="command-panel current-status">
+                <div class="module-heading"><h2><i class="ri-pulse-line"></i>当前状态</h2></div>
+                <ul>
+                    <li>专注模式　·　学习 Rust</li>
+                    <li>优化个人项目　·　准备下一次旅行</li>
+                    <li>记录生活与灵感</li>
+                </ul>
+            </article>
+            <article class="command-panel project-focus">
+                <div class="module-heading"><h2><i class="ri-cube-line"></i>项目焦点</h2></div>
+                <h3><i class="ri-cpu-line"></i> ESP32 智能设备</h3>
+                <p>基于 ESP32 的物联网控制器，打造更智能的生活体验。</p>
+                <a href="https://github.com/xmz28/esp32-vehicle-dashboard" target="_blank" rel="noopener">查看项目 <i class="ri-arrow-right-line"></i></a>
+            </article>
         </div>
 
-        <div class="button-row profile-actions">
-            <a href="blog.html" class="btn" data-i18n="blog">博客</a>
-            <button class="btn" type="button" onclick="showBili()" data-i18n="bili">B站</button>
-            <button class="btn" type="button" onclick="showDouyin()" data-i18n="douyin">抖音</button>
-        </div>
+        <article class="command-panel launch-module">
+            <div class="module-heading"><h2><i class="ri-rocket-2-line"></i>快速入口</h2></div>
+            <div class="launch-grid">
+                <a href="blog.html"><i class="ri-book-open-line"></i><span><strong>我的博客</strong><small>记录技术与生活</small></span><i class="ri-arrow-right-line"></i></a>
+                <button type="button" onclick="showBili()"><i class="ri-bilibili-line"></i><span><strong>B站空间</strong><small>视频 · 教程 · 分享</small></span><i class="ri-arrow-right-line"></i></button>
+                <button type="button" onclick="showDouyin()"><i class="ri-tiktok-line"></i><span><strong>抖音主页</strong><small>随拍 · 旅行 · 日常</small></span><i class="ri-arrow-right-line"></i></button>
+            </div>
+        </article>
     </section>
 </main>
 
 <div id="biliModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="B站介绍">
     <div class="qr-box social-box">
+        <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line"></i></button>
         <h2 data-i18n="biliTitle">B站：小米周_bili</h2>
         <p data-i18n="biliText">这里会更新数码体验、折腾记录和一些轻技术向的视频内容。想看完整视频合集，可以从这里跳到我的 B 站主页。</p>
         <a class="btn social-link" href="https://space.bilibili.com/338302827" target="_blank" rel="noopener" data-i18n="biliLink">前往 B站主页</a>
@@ -76,6 +138,7 @@
 
 <div id="douyinModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="抖音介绍">
     <div class="qr-box social-box">
+        <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line"></i></button>
         <h2 data-i18n="douyinTitle">抖音：小米周</h2>
         <p data-i18n="douyinText">抖音会放更短、更直接的日常分享和视频片段。可以扫码关注，也可以点击底部按钮跳转。</p>
         <img src="douyin.png" alt="抖音二维码">
@@ -89,7 +152,7 @@ const homeLocales = {
     "zh-CN": {
         tagline: "探索世界与技术边界",
         aboutTitle: "关于我",
-        aboutText: "喜欢数码、旅行、摄影，也会折腾各种有意思的东西。",
+        aboutText: "热爱技术与创造，专注于 Web 开发与嵌入式探索。喜欢把想法落地成有趣的作品，也在旅行与摄影中寻找灵感。",
         tagDigital: "数码",
         tagTravel: "旅行",
         tagPhoto: "摄影",
@@ -102,7 +165,7 @@ const homeLocales = {
         douyinTitle: "抖音：小米周",
         douyinText: "抖音会放更短、更直接的日常分享和视频片段。可以扫码关注，也可以点击底部按钮跳转。",
         douyinLink: "前往抖音主页",
-        uptimeLabel: "博客已稳定运行"
+        uptimeLabel: "博客运行时长"
     },
     "zh-TW": {
         tagline: "探索世界與技術邊界",
@@ -162,8 +225,26 @@ const homeLocales = {
 
 setupSiteControls(homeLocales);
 
+function syncProfileThemeIcon() {
+    const themeButton = document.getElementById("themeToggle");
+    if (!themeButton) return;
+    const isDark = document.documentElement.dataset.theme === "dark";
+    themeButton.innerHTML = `<i class="${isDark ? "ri-moon-line" : "ri-sun-line"}" aria-hidden="true"></i>`;
+}
+
+syncProfileThemeIcon();
+document.getElementById("themeToggle")?.addEventListener("click", function() {
+    requestAnimationFrame(syncProfileThemeIcon);
+});
+document.querySelectorAll("[data-lang-option]").forEach(function(button) {
+    button.addEventListener("click", function() {
+        requestAnimationFrame(syncProfileThemeIcon);
+    });
+});
+
 const uptimeStart = new Date("2026-04-29T13:20:00+08:00").getTime();
 const uptimeCounter = document.getElementById("uptimeCounter");
+let lastFocusedElement = null;
 
 function updateUptime() {
     const diff = Math.max(0, Date.now() - uptimeStart);
@@ -178,17 +259,29 @@ updateUptime();
 setInterval(updateUptime, 1000);
 
 function showBili() {
-    document.getElementById("biliModal").classList.add("show");
+    openSocialModal("biliModal");
 }
 
 function showDouyin() {
-    document.getElementById("douyinModal").classList.add("show");
+    openSocialModal("douyinModal");
+}
+
+function openSocialModal(id) {
+    lastFocusedElement = document.activeElement;
+    const modal = document.getElementById(id);
+    modal.classList.add("show");
+    modal.querySelector(".modal-close").focus();
+}
+
+function closeSocialModal(modal) {
+    modal.classList.remove("show");
+    if (lastFocusedElement) lastFocusedElement.focus();
 }
 
 document.querySelectorAll(".qr-modal").forEach(function(modal) {
     modal.addEventListener("click", function(event) {
-        if (event.target === modal) {
-            modal.classList.remove("show");
+        if (event.target === modal || event.target.closest(".modal-close")) {
+            closeSocialModal(modal);
         }
     });
 });
@@ -196,9 +289,17 @@ document.querySelectorAll(".qr-modal").forEach(function(modal) {
 document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
         document.querySelectorAll(".qr-modal").forEach(function(modal) {
-            modal.classList.remove("show");
+            if (modal.classList.contains("show")) closeSocialModal(modal);
         });
     }
+});
+
+document.querySelectorAll(".command-panel").forEach(function(panel) {
+    panel.addEventListener("pointermove", function(event) {
+        const rect = panel.getBoundingClientRect();
+        panel.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+        panel.style.setProperty("--my", `${event.clientY - rect.top}px`);
+    });
 });
 </script>
 </body>

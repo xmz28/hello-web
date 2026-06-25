@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>我的主页</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="remixicon.css">
 </head>
 
 <body class="home-page">
@@ -12,14 +13,31 @@
 <div class="site-overlay"></div>
 <div id="particles-js"></div>
 
-<main class="home-center">
-    <section class="home-card">
-        <div class="avatar-wrap">
-            <img src="1.jpg" class="avatar" alt="头像">
-        </div>
+<header class="home-status" aria-label="页面状态">
+    <div class="home-status-item">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>FUJI DIGITAL SPACE</span>
+    </div>
+    <div class="home-status-item home-status-location">
+        <i class="ri-map-pin-line" aria-hidden="true"></i>
+        <span>ASIA / SHANGHAI</span>
+    </div>
+</header>
 
-        <h1 class="home-title">小米周</h1>
-        <p class="home-subtitle">一个会用 AI 做网站的人</p>
+<main class="home-center" id="mainContent">
+    <p class="home-eyebrow">WELCOME TO MY DIGITAL SPACE</p>
+
+    <section class="home-dock" aria-label="个人主页入口">
+        <div class="identity-panel">
+            <div class="avatar-wrap">
+                <img src="1.jpg" class="avatar" alt="小米周的头像">
+                <span class="avatar-status" aria-label="在线"></span>
+            </div>
+            <div class="identity-copy">
+                <h1 class="home-title">小米周</h1>
+                <p class="home-subtitle">AI Builder <span>/</span> Web Explorer</p>
+            </div>
+        </div>
 
         <div class="time-widget" aria-label="北京时间">
             <span class="time-label">北京时间</span>
@@ -27,15 +45,41 @@
             <span id="beijingDate" class="time-date">加载中...</span>
         </div>
 
-        <div class="button-row">
-            <a href="home.html" class="btn">个人页</a>
-            <a href="blog.html" class="btn">博客</a>
-            <a href="games.html" class="btn">小游戏</a>
-            <a href="nav.html" class="btn">网站导航</a>
-            <a href="dashboard.html" class="btn">状态面板</a>
-            <a href="https://github.com/xmz28/esp32-vehicle-dashboard" class="btn" target="_blank" rel="noopener noreferrer">ESP32项目</a>
-        </div>
+        <nav class="home-nav" aria-label="主要导航">
+            <a href="home.html" class="home-nav-link">
+                <i class="ri-user-3-line" aria-hidden="true"></i>
+                <span>个人页</span>
+            </a>
+            <a href="blog.html" class="home-nav-link">
+                <i class="ri-article-line" aria-hidden="true"></i>
+                <span>博客</span>
+            </a>
+            <a href="games.html" class="home-nav-link">
+                <i class="ri-gamepad-line" aria-hidden="true"></i>
+                <span>小游戏</span>
+            </a>
+            <a href="nav.html" class="home-nav-link">
+                <i class="ri-compass-3-line" aria-hidden="true"></i>
+                <span>网站导航</span>
+            </a>
+            <a href="dashboard.html" class="home-nav-link">
+                <i class="ri-bar-chart-box-line" aria-hidden="true"></i>
+                <span>状态面板</span>
+            </a>
+        </nav>
+
+        <a href="https://github.com/xmz28/esp32-vehicle-dashboard"
+           class="project-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="查看 ESP32 项目，将在新标签页打开">
+            <i class="ri-cpu-line" aria-hidden="true"></i>
+            <span>ESP32 项目</span>
+            <i class="ri-arrow-right-up-line project-arrow" aria-hidden="true"></i>
+        </a>
     </section>
+
+    <p class="home-hint"><span aria-hidden="true"></span> SELECT A DESTINATION</p>
 </main>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -43,11 +87,18 @@
 if (window.particlesJS) {
     particlesJS("particles-js", {
         particles: {
-            number: { value: 60 },
+            number: { value: 30, density: { enable: true, value_area: 1100 } },
             color: { value: "#ffffff" },
-            opacity: { value: 0.3 },
-            size: { value: 2 },
-            move: { speed: 0.6 }
+            opacity: { value: 0.2 },
+            size: { value: 1.6 },
+            line_linked: {
+                enable: true,
+                distance: 145,
+                color: "#d9f4ff",
+                opacity: 0.1,
+                width: 0.7
+            },
+            move: { speed: 0.35 }
         }
     });
 }
@@ -78,6 +129,15 @@ function updateBeijingTime() {
 
 updateBeijingTime();
 setInterval(updateBeijingTime, 1000);
+
+const homeDock = document.querySelector(".home-dock");
+if (homeDock && window.matchMedia("(pointer: fine)").matches) {
+    homeDock.addEventListener("pointermove", (event) => {
+        const rect = homeDock.getBoundingClientRect();
+        homeDock.style.setProperty("--pointer-x", `${event.clientX - rect.left}px`);
+        homeDock.style.setProperty("--pointer-y", `${event.clientY - rect.top}px`);
+    });
+}
 </script>
 </body>
 </html>
