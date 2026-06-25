@@ -61,7 +61,6 @@
         </div>
         <div class="profile-social-mini" aria-label="社交链接">
             <a href="https://github.com/xmz28" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-line"></i></a>
-            <a href="blog.html" aria-label="博客"><i class="ri-book-open-line"></i></a>
             <button type="button" onclick="showBili()" aria-label="B站"><i class="ri-bilibili-line"></i></button>
             <button type="button" onclick="showDouyin()" aria-label="抖音"><i class="ri-tiktok-line"></i></button>
         </div>
@@ -119,7 +118,7 @@
         <article class="command-panel launch-module">
             <div class="module-heading"><h2><i class="ri-rocket-2-line"></i>快速入口</h2></div>
             <div class="launch-grid">
-                <a href="blog.html"><i class="ri-book-open-line"></i><span><strong>我的博客</strong><small>记录技术与生活</small></span><i class="ri-arrow-right-line"></i></a>
+                <a href="https://github.com/xmz28" target="_blank" rel="noopener"><i class="ri-github-line"></i><span><strong>GitHub</strong><small>项目 · 代码 · 开源</small></span><i class="ri-arrow-right-line"></i></a>
                 <button type="button" onclick="showBili()"><i class="ri-bilibili-line"></i><span><strong>B站空间</strong><small>视频 · 教程 · 分享</small></span><i class="ri-arrow-right-line"></i></button>
                 <button type="button" onclick="showDouyin()"><i class="ri-tiktok-line"></i><span><strong>抖音主页</strong><small>随拍 · 旅行 · 日常</small></span><i class="ri-arrow-right-line"></i></button>
             </div>
@@ -128,20 +127,25 @@
 </main>
 
 <div id="biliModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="B站介绍">
-    <div class="qr-box social-box">
+    <div class="qr-box social-box bili-social-box">
         <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line"></i></button>
         <h2 data-i18n="biliTitle">B站：小米周_bili</h2>
         <p data-i18n="biliText">这里会更新数码体验、折腾记录和一些轻技术向的视频内容。想看完整视频合集，可以从这里跳到我的 B 站主页。</p>
+        <div class="social-qr-stage">
+            <img class="social-qr social-qr-square" src="bilibili-qr.png" alt="B站二维码">
+        </div>
         <a class="btn social-link" href="https://space.bilibili.com/338302827" target="_blank" rel="noopener" data-i18n="biliLink">前往 B站主页</a>
     </div>
 </div>
 
 <div id="douyinModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="抖音介绍">
-    <div class="qr-box social-box">
+    <div class="qr-box social-box douyin-social-box">
         <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line"></i></button>
         <h2 data-i18n="douyinTitle">抖音：小米周</h2>
         <p data-i18n="douyinText">抖音会放更短、更直接的日常分享和视频片段。可以扫码关注，也可以点击底部按钮跳转。</p>
-        <img src="douyin.png" alt="抖音二维码">
+        <div class="social-qr-stage">
+            <img class="social-qr social-qr-round" src="douyin-qr.png" alt="抖音二维码">
+        </div>
         <a class="btn social-link" href="https://v.douyin.com/x64M2NbYj0A/" target="_blank" rel="noopener" data-i18n="douyinLink">前往抖音主页</a>
     </div>
 </div>
@@ -252,7 +256,12 @@ function updateUptime() {
     const hours = Math.floor(diff / 3600000) % 24;
     const minutes = Math.floor(diff / 60000) % 60;
     const seconds = Math.floor(diff / 1000) % 60;
-    uptimeCounter.textContent = `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+    uptimeCounter.innerHTML = `
+        <span class="uptime-segment"><span class="uptime-number">${days}</span><span class="uptime-unit">天</span></span>
+        <span class="uptime-segment"><span class="uptime-number">${hours}</span><span class="uptime-unit">时</span></span>
+        <span class="uptime-segment"><span class="uptime-number">${minutes}</span><span class="uptime-unit">分</span></span>
+        <span class="uptime-segment"><span class="uptime-number">${seconds}</span><span class="uptime-unit">秒</span></span>
+    `;
 }
 
 updateUptime();

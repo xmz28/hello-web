@@ -1,60 +1,68 @@
 # Design QA
 
-- Source visual truth: `profile-reference-command-deck.png`
-- Implementation screenshot: `profile-desktop.png`
-- Responsive screenshot: `profile-mobile-500.png`
-- Combined comparison: `profile-design-comparison.png`
+- Source visual truth: `blog-reference-cloud-editorial.png`
+- Implementation screenshot: `blog-desktop.png`
+- Responsive screenshot: `blog-mobile-500.png`
+- Combined comparison: `blog-design-comparison.png`
 - Desktop viewport: 1440 × 1024
 - Responsive verification viewport: 500 × 900
-- State: initial loaded personal profile
+- State: initial loaded blog with all categories selected
 
 ## Full-view comparison evidence
 
-The source and implementation were normalized side by side in
-`profile-design-comparison.png`. Both preserve the selected command-deck
-composition: cinematic Fuji lake backdrop, compact glass navigation, a dominant
-identity column, and a denser modular information deck on the right.
+The selected Cloud Editorial mock and implementation were normalized side by
+side in `blog-design-comparison.png`. Both preserve the bright sky-and-sea
+background, shared glass navigation, narrow editorial sidebar, dominant featured
+story, and continuous horizontal article feed.
 
 ## Focused region comparison evidence
 
-The full-view comparison is 2880 × 1024 and keeps the identity area, typography,
-photography, interest modules, status row, project action, and launch controls
-large enough to inspect. The 500 px responsive screenshot separately verifies
-the reflow, image crop, two-column interest grid, and six-item bottom navigation.
+The 2880 × 1024 comparison keeps the navigation, sidebar controls, featured
+story, article thumbnails, metadata, and long-title wrapping large enough to
+inspect. The 500 × 900 screenshot separately verifies the stacked editorial
+layout, five category controls, featured-story crop, compact feed, and fixed
+six-destination navigation.
 
 ## Findings
 
 - No actionable P0, P1, or P2 issues remain.
-- Fonts and typography: the existing system Chinese stack and Consolas-style
-  terminal accents reproduce the visual hierarchy while keeping generated-mock
-  microcopy at a readable size.
-- Spacing and layout rhythm: the two-column desktop composition, module gaps,
-  corner radii, separators, and mobile stacking remain consistent and unclipped.
-- Colors and visual tokens: navy glass, cyan edge light, pink emphasis, and green
-  online state are consistently mapped through profile-scoped CSS tokens.
-- Image quality and asset fidelity: the original avatar, Fuji lake photograph,
-  and travel photograph are used directly with deliberate crops. Remix Icon is
-  used for interface icons; no placeholder or hand-drawn icon assets remain.
-- Copy and content: identity, interests, uptime, current status, ESP32 project,
-  blog, Bilibili, and Douyin destinations match the approved direction.
-- Interaction and accessibility: navigation and cards have hover/focus states;
-  social dialogs have visible close controls, Escape/backdrop closing, and focus
-  restoration; reduced-motion preferences disable nonessential movement.
+- Fonts and typography: the system Chinese font stack and monospaced metadata
+  reproduce the source hierarchy while preserving readable body and metadata
+  sizes. Long post titles wrap without colliding with arrows or thumbnails.
+- Spacing and layout rhythm: desktop sidebar and reading canvas align cleanly;
+  article rows use consistent separators and image sizes. Mobile stacking has
+  sufficient bottom padding for the fixed navigation.
+- Colors and visual tokens: the page keeps the original bright background while
+  sharing cyan icons, pink active indicators, thin glass borders, and navigation
+  geometry with the personal profile.
+- Image quality and asset fidelity: article imagery uses real raster assets;
+  seeded editorial images remain stable, and unavailable external video
+  thumbnails fall back to the local travel photograph rather than exposing
+  broken-image text.
+- Copy and content: search, categories, seven posts, summaries, dates, views,
+  video links, comments, and multilingual labels remain present.
+- Interaction and accessibility: search supports the `/` shortcut; category
+  buttons rerender both featured and feed content; cards and featured story open
+  the article dialog; Escape, backdrop, and visible close controls dismiss
+  dialogs with focus restoration; keyboard focus and reduced-motion states are
+  defined.
 
 ## Patches made during QA
 
-- Replaced the legacy emoji navigation with a consistent Remix Icon system.
-- Added the complete command-deck information hierarchy and responsive reflow.
-- Corrected mobile navigation positioning and exposed all six destinations.
-- Removed entrance opacity animation after it delayed visible content capture.
-- Increased small-screen panel opacity for better text contrast.
-- Added local asset and route checks; every local reference resolves.
+- Replaced legacy emoji navigation with the same Remix Icon navigation used by
+  the personal page.
+- Converted the uniform card grid into a featured story plus editorial row feed.
+- Added sidebar search, category counts, tags, stats, and mobile-read access.
+- Added stable seeded covers and local fallback handling for failed remote images.
+- Corrected mobile navigation to expose all six destinations without clipping.
+- Restyled article and QR dialogs to match the lighter blog design language.
 
 ## Follow-up polish
 
-- P3: the live implementation keeps slightly more open lake area than the mock,
-  preserving the original photograph and reducing visual crowding.
-- P3: some generated decorative telemetry was omitted because it did not add a
-  functional or meaningful state.
+- P3: source and implementation article photos differ because the generated mock
+  used illustrative editorial imagery; the live page intentionally uses actual
+  post data and stable remote images.
+- P3: the implementation title is slightly larger than the source to improve
+  contrast against the brighter original background.
 
 final result: passed
