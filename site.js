@@ -100,7 +100,11 @@ function applyTheme(mode = getStoredTheme()) {
     const button = document.getElementById("themeToggle");
     if (button) {
         const locale = siteLocales[getStoredLang()] || siteLocales["zh-CN"];
-        button.textContent = resolvedTheme === "dark" ? "☾" : "☀";
+        if (button.dataset.iconUi === "remix") {
+            button.innerHTML = `<i class="${resolvedTheme === "dark" ? "ri-moon-line" : "ri-sun-line"}" aria-hidden="true"></i>`;
+        } else {
+            button.textContent = resolvedTheme === "dark" ? "☾" : "☀";
+        }
         button.setAttribute("aria-label", `${locale.themeLabel}: ${resolvedTheme === "dark" ? locale.themeDark : locale.themeLight}`);
     }
 }
@@ -156,3 +160,32 @@ function categoryLabel(category, lang = getStoredLang()) {
     const locale = siteLocales[lang] || siteLocales["zh-CN"];
     return locale.categories[category] || category;
 }
+
+(function setupSoftPageNavigation() {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const supportsNativeTransition = typeof document.startViewTransition === "function"
+        && CSS.supports("view-transition-name: root");
+
+    if (reducedMotion || supportsNativeTransition) return;
+
+    document.addEventListener("click", (event) => {
+        const link = event.target.closest("a[href]");
+        if (!link || event.defaultPrevented || event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (link.hasAttribute("download") || (link.target && link.target !== "_self")) return;
+
+        const destination = new URL(link.href, window.location.href);
+        const isLocalPage = destination.origin === window.location.origin
+            && /\.html$/i.test(destination.pathname);
+
+        if (!isLocalPage || destination.href === window.location.href) return;
+
+        event.preventDefault();
+        document.documentElement.classList.add("page-is-leaving");
+        window.setTimeout(() => window.location.assign(destination.href), 180);
+    });
+
+    window.addEventListener("pageshow", () => {
+        document.documentElement.classList.remove("page-is-leaving");
+    });
+})();

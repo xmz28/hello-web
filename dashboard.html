@@ -5,22 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>状态面板</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="remixicon.css">
 </head>
 <body class="dashboard-page">
 <div class="site-bg" style="background-image: url('2.jpg');"></div>
 <div class="site-overlay"></div>
 
-<nav class="site-nav" aria-label="主导航">
-    <img src="1.jpg" alt="头像">
-    <a href="index.html" class="nav-link"><span>🏠</span><span data-i18n="home">首页</span></a>
-    <a href="home.html" class="nav-link"><span>🌸</span><span data-i18n="profile">个人页</span></a>
-    <a href="blog.html" class="nav-link"><span>📚</span><span data-i18n="blog">博客</span></a>
-    <a href="games.html" class="nav-link"><span>🎮</span><span data-i18n="games">小游戏</span></a>
-    <a href="nav.html" class="nav-link"><span>🧭</span><span data-i18n="siteNav">网站导航</span></a>
-    <a href="dashboard.html" class="nav-link active"><span>🖥</span><span data-i18n="dashboard">状态面板</span></a>
+<nav class="site-nav unified-nav" aria-label="主导航">
+    <a href="index.html" class="profile-brand" aria-label="返回首页">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>FUJI DIGITAL SPACE</span>
+    </a>
+    <div class="profile-nav-links">
+        <a href="index.html" class="nav-link"><i class="ri-home-5-line" aria-hidden="true"></i><span data-i18n="home">首页</span></a>
+        <a href="home.html" class="nav-link"><i class="ri-user-3-line" aria-hidden="true"></i><span data-i18n="profile">个人页</span></a>
+        <a href="blog.html" class="nav-link"><i class="ri-article-line" aria-hidden="true"></i><span data-i18n="blog">博客</span></a>
+        <a href="games.html" class="nav-link"><i class="ri-gamepad-line" aria-hidden="true"></i><span data-i18n="games">小游戏</span></a>
+        <a href="nav.html" class="nav-link"><i class="ri-compass-3-line" aria-hidden="true"></i><span data-i18n="siteNav">网站导航</span></a>
+        <a href="dashboard.html" class="nav-link active"><i class="ri-bar-chart-box-line" aria-hidden="true"></i><span data-i18n="dashboard">状态面板</span></a>
+    </div>
     <div class="nav-controls">
+        <span class="profile-location"><i class="ri-map-pin-line" aria-hidden="true"></i> ASIA / SHANGHAI</span>
         <div class="lang-menu">
-            <button id="langToggle" class="icon-toggle" type="button" aria-label="语言">文</button>
+            <button id="langToggle" class="icon-toggle" type="button" aria-label="语言"><i class="ri-translate-2"></i></button>
             <div class="lang-panel">
                 <button type="button" data-lang-option="zh-CN"><span class="flag-emoji">🇨🇳</span>简体中文</button>
                 <button type="button" data-lang-option="zh-TW"><span class="flag-emoji">🇭🇰</span>繁體中文</button>
@@ -28,7 +35,7 @@
                 <button type="button" data-lang-option="ja"><span class="flag-emoji">🇯🇵</span>日本語</button>
             </div>
         </div>
-        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题">☀</button>
+        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题" data-icon-ui="remix"><i class="ri-sun-line"></i></button>
     </div>
 </nav>
 
