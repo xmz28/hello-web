@@ -62,12 +62,19 @@
         <section class="game-panel" id="game2048Panel">
             <div class="game-head"><div><h1>2048</h1><p>滑动合并数字，试着得到 2048。</p></div><strong>得分 <span id="score2048">0</span></strong></div>
             <div id="board2048" class="board-2048" aria-label="2048 棋盘"></div>
+            <div id="game2048Message" class="game-message" hidden></div>
             <div class="game-actions"><button class="btn" type="button" onclick="start2048()">重新开始</button></div>
         </section>
 
         <section class="game-panel" id="tetrisPanel">
             <div class="game-head"><div><h1>俄罗斯方块</h1><p>← → 移动，↑ 旋转，↓ 加速。</p></div><strong>得分 <span id="tetrisScore">0</span></strong></div>
-            <canvas id="tetrisCanvas" width="240" height="400"></canvas>
+            <div class="tetris-stage">
+                <canvas id="tetrisCanvas" width="240" height="400"></canvas>
+                <aside class="tetris-next" aria-label="下一个俄罗斯方块">
+                    <span>下一个</span>
+                    <canvas id="tetrisNextCanvas" width="100" height="80"></canvas>
+                </aside>
+            </div>
             <div id="tetrisMessage" class="game-message" hidden>游戏结束</div>
             <div class="game-actions"><button class="btn" type="button" onclick="startTetris()">重新开始</button><button class="btn" type="button" onclick="toggleTetrisPause()">暂停/继续</button></div>
         </section>
@@ -75,6 +82,7 @@
         <section class="game-panel" id="minesPanel">
             <div class="game-head"><div><h1>扫雷</h1><p>点开安全格，避开地雷。长按或右键可标记。</p></div><strong>雷 <span id="mineCount">10</span></strong></div>
             <div id="minesBoard" class="mines-board"></div>
+            <div id="minesMessage" class="game-message" hidden></div>
             <div class="game-actions"><button class="btn" type="button" onclick="startMines()">重新开始</button></div>
         </section>
 
@@ -133,6 +141,7 @@ document.querySelectorAll(".game-item").forEach((item) => {
         Object.values(panels).forEach((panel) => panel.classList.remove("active"));
         item.classList.add("active");
         panels[activeGame].classList.add("active");
+        syncRealtimeTimers();
     });
 });
 
@@ -177,14 +186,16 @@ function stepSnake() {
     if (snakePaused || snakeOver) return;
     snakeDir = nextSnakeDir;
     const head = { x: snake[0].x + snakeDir.x, y: snake[0].y + snakeDir.y };
-    if (head.x < 0 || head.y < 0 || head.x >= snakeTiles || head.y >= snakeTiles || snake.some((part) => part.x === head.x && part.y === head.y)) {
+    const willEat = head.x === snakeFood.x && head.y === snakeFood.y;
+    const collisionBody = willEat ? snake : snake.slice(0, -1);
+    if (head.x < 0 || head.y < 0 || head.x >= snakeTiles || head.y >= snakeTiles || collisionBody.some((part) => part.x === head.x && part.y === head.y)) {
         snakeOver = true;
         document.getElementById("snakeMessage").hidden = false;
         clearInterval(snakeTimer);
         return;
     }
     snake.unshift(head);
-    if (head.x === snakeFood.x && head.y === snakeFood.y) {
+    if (willEat) {
         snakeScore += 10;
         document.getElementById("snakeScore").textContent = snakeScore;
         placeSnakeFood();
@@ -206,12 +217,13 @@ function restartSnake() {
     document.getElementById("snakeScore").textContent = snakeScore;
     placeSnakeFood();
     drawSnake();
-    snakeTimer = setInterval(stepSnake, 120);
+    syncRealtimeTimers();
 }
 
 function toggleSnakePause() {
     if (snakeOver) return;
     snakePaused = !snakePaused;
+    syncRealtimeTimers();
 }
 
 function controlSnake(action) {
@@ -224,11 +236,14 @@ function controlSnake(action) {
 }
 
 const board2048 = document.getElementById("board2048");
-let grid2048, score2048;
+let grid2048, score2048, game2048Over = false, game2048Won = false;
 
 function start2048() {
     grid2048 = Array.from({ length: 4 }, () => Array(4).fill(0));
     score2048 = 0;
+    game2048Over = false;
+    game2048Won = false;
+    document.getElementById("game2048Message").hidden = true;
     addTile2048();
     addTile2048();
     render2048();
@@ -258,7 +273,7 @@ function compact2048(row) {
 }
 
 function move2048(dir) {
-    if (!dir) return;
+    if (!dir || game2048Over) return;
     const before = JSON.stringify(grid2048);
     if (dir === "left") grid2048 = grid2048.map(compact2048);
     if (dir === "right") grid2048 = grid2048.map((row) => compact2048([...row].reverse()).reverse());
@@ -272,7 +287,26 @@ function move2048(dir) {
         }
     }
     if (before !== JSON.stringify(grid2048)) addTile2048();
+    update2048State();
     render2048();
+}
+
+function update2048State() {
+    const message = document.getElementById("game2048Message");
+    if (!game2048Won && grid2048.flat().some((value) => value >= 2048)) {
+        game2048Won = true;
+        message.textContent = "达到 2048！你可以继续游戏";
+        message.hidden = false;
+    }
+    const hasEmpty = grid2048.some((row) => row.some((value) => !value));
+    const canMerge = grid2048.some((row, r) => row.some((value, c) =>
+        (c < 3 && value === row[c + 1]) || (r < 3 && value === grid2048[r + 1][c])
+    ));
+    if (!hasEmpty && !canMerge) {
+        game2048Over = true;
+        message.textContent = "游戏结束：没有可用移动";
+        message.hidden = false;
+    }
 }
 
 function render2048() {
@@ -282,6 +316,8 @@ function render2048() {
 
 const tetrisCanvas = document.getElementById("tetrisCanvas");
 const tetrisCtx = tetrisCanvas.getContext("2d");
+const tetrisNextCanvas = document.getElementById("tetrisNextCanvas");
+const tetrisNextCtx = tetrisNextCanvas.getContext("2d");
 const tSize = 20;
 const tCols = 12;
 const tRows = 20;
@@ -290,11 +326,18 @@ const pieces = [
     [[1, 1, 0], [0, 1, 1]], [[0, 1, 1], [1, 1, 0]],
     [[1, 0, 0], [1, 1, 1]], [[0, 0, 1], [1, 1, 1]]
 ];
-let tBoard, tPiece, tScore, tTimer, tPaused = false, tOver = false;
+let tBoard, tPiece, tNextPiece, tScore, tTimer, tPaused = false, tOver = false;
+
+function createTetrisPiece() {
+    const shape = pieces[Math.floor(Math.random() * pieces.length)].map((row) => [...row]);
+    return { shape, color: `hsl(${Math.random() * 360}, 80%, 68%)` };
+}
 
 function newPiece() {
-    const shape = pieces[Math.floor(Math.random() * pieces.length)].map((row) => [...row]);
-    tPiece = { shape, x: 4, y: 0, color: `hsl(${Math.random() * 360}, 80%, 68%)` };
+    const current = tNextPiece || createTetrisPiece();
+    tPiece = { shape: current.shape, x: 4, y: 0, color: current.color };
+    tNextPiece = createTetrisPiece();
+    drawTetrisNext();
     if (collides(tPiece.x, tPiece.y, tPiece.shape)) {
         tOver = true;
         document.getElementById("tetrisMessage").hidden = false;
@@ -341,6 +384,22 @@ function drawBlock(x, y, color) {
     tetrisCtx.fillRect(x * tSize + 1, y * tSize + 1, tSize - 2, tSize - 2);
 }
 
+function drawTetrisNext() {
+    tetrisNextCtx.clearRect(0, 0, tetrisNextCanvas.width, tetrisNextCanvas.height);
+    tetrisNextCtx.fillStyle = "rgba(5, 12, 22, 0.82)";
+    tetrisNextCtx.fillRect(0, 0, tetrisNextCanvas.width, tetrisNextCanvas.height);
+    if (!tNextPiece) return;
+    const previewSize = 16;
+    const shapeWidth = tNextPiece.shape[0].length * previewSize;
+    const shapeHeight = tNextPiece.shape.length * previewSize;
+    const offsetX = Math.floor((tetrisNextCanvas.width - shapeWidth) / 2);
+    const offsetY = Math.floor((tetrisNextCanvas.height - shapeHeight) / 2);
+    tetrisNextCtx.fillStyle = tNextPiece.color;
+    tNextPiece.shape.forEach((row, r) => row.forEach((cell, c) => {
+        if (cell) tetrisNextCtx.fillRect(offsetX + c * previewSize + 1, offsetY + r * previewSize + 1, previewSize - 2, previewSize - 2);
+    }));
+}
+
 function dropTetris() {
     if (tPaused || tOver) return;
     if (!collides(tPiece.x, tPiece.y + 1, tPiece.shape)) {
@@ -361,7 +420,11 @@ function rotatePiece() {
 
 function controlTetris(action) {
     if (tOver) return;
-    if (action === "action") toggleTetrisPause();
+    if (action === "action") {
+        toggleTetrisPause();
+        return;
+    }
+    if (tPaused) return;
     if (action === "up") rotatePiece();
     if (action === "left" && !collides(tPiece.x - 1, tPiece.y, tPiece.shape)) tPiece.x--;
     if (action === "right" && !collides(tPiece.x + 1, tPiece.y, tPiece.shape)) tPiece.x++;
@@ -372,6 +435,7 @@ function controlTetris(action) {
 function toggleTetrisPause() {
     if (tOver) return;
     tPaused = !tPaused;
+    syncRealtimeTimers();
 }
 
 function startTetris() {
@@ -380,11 +444,12 @@ function startTetris() {
     tScore = 0;
     tPaused = false;
     tOver = false;
+    tNextPiece = null;
     document.getElementById("tetrisMessage").hidden = true;
     document.getElementById("tetrisScore").textContent = tScore;
     newPiece();
     drawTetris();
-    tTimer = setInterval(dropTetris, 600);
+    syncRealtimeTimers();
 }
 
 const minesBoard = document.getElementById("minesBoard");
@@ -392,6 +457,7 @@ let mines = [];
 let mineDone = false;
 function startMines() {
     mineDone = false;
+    document.getElementById("minesMessage").hidden = true;
     mines = Array.from({ length: 64 }, (_, i) => ({ i, mine: false, open: false, flag: false, n: 0 }));
     [...mines].sort(() => Math.random() - 0.5).slice(0, 10).forEach((cell) => cell.mine = true);
     mines.forEach((cell) => {
@@ -414,14 +480,23 @@ function openMine(i) {
     if (mines[i].mine) {
         mineDone = true;
         mines.forEach((cell) => cell.open = true);
+        const message = document.getElementById("minesMessage");
+        message.textContent = "游戏结束：踩到地雷";
+        message.hidden = false;
     } else if (!mines[i].n) {
         const r = Math.floor(i / 8), c = i % 8;
         neighbors8(r, c).forEach(([nr, nc]) => openMine(nr * 8 + nc));
     }
+    if (!mineDone && mines.filter((cell) => !cell.mine).every((cell) => cell.open)) {
+        mineDone = true;
+        const message = document.getElementById("minesMessage");
+        message.textContent = "你赢了！";
+        message.hidden = false;
+    }
     renderMines();
 }
 function renderMines() {
-    document.getElementById("mineCount").textContent = mines.filter((c) => c.mine).length;
+    document.getElementById("mineCount").textContent = Math.max(0, mines.filter((cell) => cell.mine).length - mines.filter((cell) => cell.flag).length);
     minesBoard.innerHTML = mines.map((cell) => `<button type="button" class="${cell.open ? "open" : ""}" data-mine="${cell.i}">${cell.open ? (cell.mine ? "💣" : cell.n || "") : cell.flag ? "🚩" : ""}</button>`).join("");
 }
 minesBoard.addEventListener("click", (event) => {
@@ -431,7 +506,7 @@ minesBoard.addEventListener("click", (event) => {
 minesBoard.addEventListener("contextmenu", (event) => {
     event.preventDefault();
     const btn = event.target.closest("[data-mine]");
-    if (!btn) return;
+    if (!btn || mineDone) return;
     const cell = mines[Number(btn.dataset.mine)];
     if (!cell.open) cell.flag = !cell.flag;
     renderMines();
@@ -447,7 +522,7 @@ function startFlappy() {
     flappyScore = 0;
     flappyOver = false;
     document.getElementById("flappyScore").textContent = 0;
-    flappyTimer = setInterval(stepFlappy, 28);
+    syncRealtimeTimers();
 }
 function flap() {
     if (flappyOver) startFlappy();
@@ -460,13 +535,16 @@ function stepFlappy() {
     pipes.forEach((p) => p.x -= 2.4);
     pipes = pipes.filter((p) => p.x > -50);
     pipes.forEach((p) => {
-        if (!p.passed && p.x < bird.x) {
+        if (!p.passed && p.x + 46 < bird.x - 14) {
             p.passed = true;
             flappyScore++;
             document.getElementById("flappyScore").textContent = flappyScore;
         }
     });
-    flappyOver = bird.y < 0 || bird.y > 420 || pipes.some((p) => bird.x + 12 > p.x && bird.x - 12 < p.x + 46 && (bird.y < p.gap - 70 || bird.y > p.gap + 70));
+    flappyOver = bird.y - 14 < 0 || bird.y + 14 > flappyCanvas.height || pipes.some((p) =>
+        bird.x + 14 > p.x && bird.x - 14 < p.x + 46
+        && (bird.y - 14 < p.gap - 70 || bird.y + 14 > p.gap + 70)
+    );
     drawFlappy();
     if (flappyOver) clearInterval(flappyTimer);
 }
@@ -522,8 +600,10 @@ function drawGobang() {
 gobangCanvas.addEventListener("click", (event) => {
     if (gobangOver || (gobangMode === "ai" && gobangTurn === 2)) return;
     const rect = gobangCanvas.getBoundingClientRect();
-    const c = Math.round((event.clientX - rect.left - 14) / 28);
-    const r = Math.round((event.clientY - rect.top - 14) / 28);
+    const canvasX = (event.clientX - rect.left) * (gobangCanvas.width / rect.width);
+    const canvasY = (event.clientY - rect.top) * (gobangCanvas.height / rect.height);
+    const c = Math.round((canvasX - 14) / 28);
+    const r = Math.round((canvasY - 14) / 28);
     if (r < 0 || c < 0 || r >= 15 || c >= 15 || gobang[r][c]) return;
     placeGobang(r, c);
     if (gobangMode === "ai" && !gobangOver) {
@@ -536,6 +616,9 @@ function placeGobang(r, c) {
     if (checkGobang(r, c, gobangTurn)) {
         gobangOver = true;
         document.getElementById("gobangStatus").textContent = gobangTurn === 1 ? "黑棋胜利" : "白棋胜利";
+    } else if (gobang.every((row) => row.every(Boolean))) {
+        gobangOver = true;
+        document.getElementById("gobangStatus").textContent = "和棋";
     } else {
         gobangTurn = 3 - gobangTurn;
         document.getElementById("gobangStatus").textContent = gobangMode === "ai"
@@ -547,7 +630,9 @@ function placeGobang(r, c) {
 
 function aiGobangMove() {
     if (gobangOver || gobangTurn !== 2) return;
-    const [r, c] = findBestGobangMove();
+    const move = findBestGobangMove();
+    if (!move) return;
+    const [r, c] = move;
     placeGobang(r, c);
 }
 
@@ -558,10 +643,10 @@ function findBestGobangMove() {
             if (!gobang[r][c]) empty.push([r, c]);
         }
     }
-    return empty
+    const best = empty
         .map(([r, c]) => [scoreGobangPoint(r, c, 2) + scoreGobangPoint(r, c, 1) * 0.92, r, c])
-        .sort((a, b) => b[0] - a[0])[0]
-        .slice(1);
+        .sort((a, b) => b[0] - a[0])[0];
+    return best ? best.slice(1) : null;
 }
 
 function scoreGobangPoint(r, c, player) {
@@ -608,11 +693,13 @@ function checkGobang(r, c, v) {
 const huarongBoard = document.getElementById("huarongBoard");
 let huarong, huarongSteps, huarongWon;
 function startHuarong() {
-    huarong = [1, 2, 3, 4, 5, 6, 7, 8, ""];
     huarongSteps = 0;
     huarongWon = false;
     document.getElementById("huarongMessage").hidden = true;
-    for (let i = 0; i < 60; i++) moveHuarongByControl(["up", "down", "left", "right"][Math.floor(Math.random() * 4)], true);
+    do {
+        huarong = [1, 2, 3, 4, 5, 6, 7, 8, ""];
+        for (let i = 0; i < 60; i++) moveHuarongByControl(["up", "down", "left", "right"][Math.floor(Math.random() * 4)], true);
+    } while (huarong.join(",") === "1,2,3,4,5,6,7,8,");
     renderHuarong();
 }
 function moveHuarongByControl(action, silent = false) {
@@ -632,6 +719,7 @@ function moveHuarongByControl(action, silent = false) {
     }
 }
 huarongBoard.addEventListener("click", (event) => {
+    if (huarongWon) return;
     const tile = event.target.closest("[data-huarong]");
     if (!tile) return;
     const i = Number(tile.dataset.huarong);
@@ -655,9 +743,27 @@ function renderHuarong() {
     huarongBoard.innerHTML = huarong.map((value, i) => `<button type="button" data-huarong="${i}" class="${value ? "" : "empty"}">${value}</button>`).join("");
 }
 
+function syncRealtimeTimers() {
+    clearInterval(snakeTimer);
+    clearInterval(tTimer);
+    clearInterval(flappyTimer);
+    snakeTimer = null;
+    tTimer = null;
+    flappyTimer = null;
+    if (activeGame === "snake" && !snakePaused && !snakeOver) snakeTimer = setInterval(stepSnake, 120);
+    if (activeGame === "tetris" && !tPaused && !tOver) tTimer = setInterval(dropTetris, 600);
+    if (activeGame === "flappy" && !flappyOver) flappyTimer = setInterval(stepFlappy, 28);
+}
+
 document.addEventListener("keydown", (event) => {
     const map = { ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right", " ": "action", Enter: "action" };
-    if (map[event.key]) {
+    const target = event.target;
+    const isTyping = target instanceof Element
+        && (target.closest("input, textarea, select") || target.closest("[contenteditable='true']"));
+    const isNativeActivation = (event.key === " " || event.key === "Enter")
+        && target instanceof Element
+        && Boolean(target.closest("button, a"));
+    if (map[event.key] && !isTyping && !isNativeActivation) {
         event.preventDefault();
         handleControl(map[event.key]);
     }
