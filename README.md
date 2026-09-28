@@ -8,6 +8,7 @@
 
 - 个性化首页与个人介绍
 - 博客内容展示
+- B 站视频快照展示
 - 网页小游戏
 - 常用网站导航
 - 站点状态面板
@@ -21,6 +22,7 @@ hello-web/
 ├── index.html          # 首页入口
 ├── home.html           # 个人页面
 ├── blog.html           # 博客页面
+├── blog-videos.js      # 已核实的 B 站视频数据
 ├── games.html          # 小游戏页面
 ├── nav.html            # 网站导航
 ├── dashboard.html      # 状态面板
@@ -45,6 +47,24 @@ python -m http.server 8080
 ```text
 http://localhost:8080
 ```
+
+## 更新 B 站视频
+
+博客使用 `blog-videos.js` 中的静态快照。当前 30 条来自已登录投稿页的“最新发布”列表，并逐条通过 B 站视频详情接口核实归属。公开投稿列表接口会限流，因此网页打开时无法可靠地直接同步最近 30 条。
+
+在 PowerShell 中运行以下命令，可尝试重新获取最近 30 条并更新快照：
+
+```powershell
+.\tools\update-bilibili-videos.ps1
+```
+
+若接口返回限流或不足 30 条，脚本会报错并保留原有快照。也可以用 `-Bvid` 参数加入已知视频，例如：
+
+```powershell
+.\tools\update-bilibili-videos.ps1 -Bvid @('BV1qAaN6tErG', 'BV1St8J6SEhE')
+```
+
+`-Bvid` 会用所提供的视频重建快照，并验证投稿者是否为本站的 B 站账号。
 
 ## 在线仓库
 

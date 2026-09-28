@@ -1,3 +1,4 @@
+const sessionSettings = {};
 const siteLocales = {
     "zh-CN": {
         home: "首页",
@@ -82,11 +83,29 @@ const siteLocales = {
 };
 
 function getStoredLang() {
-    return localStorage.getItem("siteLang") || "zh-CN";
+    try {
+        return sessionSettings.siteLang || localStorage.getItem("siteLang") || "zh-CN";
+    } catch {
+        return sessionSettings.siteLang || "zh-CN";
+    }
 }
 
 function getStoredTheme() {
-    return localStorage.getItem("siteTheme") || "auto";
+    try {
+        const mode = sessionSettings.siteTheme || localStorage.getItem("siteTheme");
+        return mode === "light" || mode === "dark" ? mode : "auto";
+    } catch {
+        return sessionSettings.siteTheme || "auto";
+    }
+}
+
+function storeSiteSetting(key, value) {
+    sessionSettings[key] = value;
+    try {
+        localStorage.setItem(key, value);
+    } catch {
+        // Keep the control usable for this page when storage is unavailable.
+    }
 }
 
 function getResolvedTheme(mode = getStoredTheme()) {
@@ -101,11 +120,14 @@ function applyTheme(mode = getStoredTheme()) {
     if (button) {
         const locale = siteLocales[getStoredLang()] || siteLocales["zh-CN"];
         if (button.dataset.iconUi === "remix") {
-            button.innerHTML = `<i class="${resolvedTheme === "dark" ? "ri-moon-line" : "ri-sun-line"}" aria-hidden="true"></i>`;
+            const icon = mode === "auto" ? "ri-contrast-2-line" : mode === "dark" ? "ri-moon-line" : "ri-sun-line";
+            button.innerHTML = `<i class="${icon}" aria-hidden="true"></i>`;
         } else {
-            button.textContent = resolvedTheme === "dark" ? "☾" : "☀";
+            button.textContent = mode === "auto" ? "◐" : mode === "dark" ? "☾" : "☀";
         }
-        button.setAttribute("aria-label", `${locale.themeLabel}: ${resolvedTheme === "dark" ? locale.themeDark : locale.themeLight}`);
+        const modeLabel = mode === "auto" ? locale.themeAuto : mode === "dark" ? locale.themeDark : locale.themeLight;
+        button.setAttribute("aria-label", `${locale.themeLabel}: ${modeLabel}`);
+        button.title = `${locale.themeLabel}: ${modeLabel}`;
     }
 }
 
@@ -114,7 +136,8 @@ function applyLanguage(pageLocales = {}, onChange) {
     const locale = { ...siteLocales["zh-CN"], ...(siteLocales[lang] || {}) };
     const pageLocale = pageLocales[lang] || pageLocales["zh-CN"] || {};
 
-    document.documentElement.lang = lang;
+    // Most page body copy is Chinese; only fully translated pages may change html lang.
+    document.documentElement.lang = "zh-CN";
     document.querySelectorAll("[data-i18n]").forEach((node) => {
         const key = node.dataset.i18n;
         node.textContent = pageLocale[key] || locale[key] || key;
@@ -126,25 +149,65 @@ function applyLanguage(pageLocales = {}, onChange) {
 
     document.querySelectorAll("[data-lang-option]").forEach((button) => {
         button.classList.toggle("active", button.dataset.langOption === lang);
+        button.setAttribute("aria-pressed", String(button.dataset.langOption === lang));
     });
+    document.querySelectorAll("[data-i18n-aria]").forEach((node) => {
+        node.setAttribute("aria-label", locale[node.dataset.i18nAria] || node.textContent.trim());
+    });
+    const langToggle = document.getElementById("langToggle");
+    if (langToggle) langToggle.setAttribute("aria-label", locale.language);
     applyTheme();
     if (onChange) onChange(lang);
 }
 
 function setupSiteControls(pageLocales = {}, onChange) {
     const themeToggle = document.getElementById("themeToggle");
+    const langToggle = document.getElementById("langToggle");
+    const langPanel = document.querySelector(".lang-panel");
+
+    function closeLanguageMenu(restoreFocus = false) {
+        if (!langToggle || !langPanel) return;
+        langPanel.hidden = true;
+        langToggle.setAttribute("aria-expanded", "false");
+        if (restoreFocus) langToggle.focus();
+    }
+
+    if (langToggle && langPanel) {
+        langPanel.hidden = true;
+        langToggle.setAttribute("aria-expanded", "false");
+        langToggle.addEventListener("click", () => {
+            const willOpen = langPanel.hidden;
+            langPanel.hidden = !willOpen;
+            langToggle.setAttribute("aria-expanded", String(willOpen));
+            if (willOpen) langPanel.querySelector("[aria-pressed='true']")?.focus();
+        });
+        langToggle.closest(".lang-menu").addEventListener("focusout", (event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) closeLanguageMenu();
+        });
+        document.addEventListener("pointerdown", (event) => {
+            if (!event.target.closest(".lang-menu")) closeLanguageMenu();
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !langPanel.hidden) {
+                event.preventDefault();
+                closeLanguageMenu(true);
+            }
+        });
+    }
 
     document.querySelectorAll("[data-lang-option]").forEach((button) => {
         button.addEventListener("click", () => {
-            localStorage.setItem("siteLang", button.dataset.langOption);
+            storeSiteSetting("siteLang", button.dataset.langOption);
             applyLanguage(pageLocales, onChange);
+            closeLanguageMenu(true);
         });
     });
 
     if (themeToggle) {
         themeToggle.addEventListener("click", () => {
-            const next = getResolvedTheme() === "dark" ? "light" : "dark";
-            localStorage.setItem("siteTheme", next);
+            const current = getStoredTheme();
+            const next = current === "auto" ? "light" : current === "light" ? "dark" : "auto";
+            storeSiteSetting("siteTheme", next);
             applyTheme(next);
         });
     }
