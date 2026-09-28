@@ -11,7 +11,7 @@
 
 <body class="blog-page">
 <a class="skip-link" href="#mainContent">跳到主内容</a>
-<div class="site-bg" style="background-image: url('bbg.png');"></div>
+<div class="site-bg" style="background-image: url('assets/images/bbg.png');"></div>
 <div class="site-overlay"></div>
 
 <nav class="site-nav unified-nav" aria-label="主导航">
@@ -106,7 +106,7 @@
 <div id="postModal" class="post-modal" role="dialog" aria-modal="true" aria-labelledby="postTitle">
     <article class="post-dialog">
         <div class="post-detail-hero">
-            <img id="postImage" src="" alt="">
+            <img id="postImage" src="" alt="" referrerpolicy="no-referrer">
             <span class="post-detail-shade" aria-hidden="true"></span>
             <button id="closePost" class="close-button post-detail-close" type="button" aria-label="关闭文章详情"><i class="ri-close-line" aria-hidden="true"></i></button>
             <div class="post-detail-heading">
@@ -391,7 +391,7 @@ function renderPosts() {
         featuredPost.hidden = false;
         featuredPost.innerHTML = `
             <button type="button" data-id="${escapeHtml(featured.id)}">
-                <img src="${escapeHtml(featured.image)}" alt="${escapeHtml(featured.title)}封面" decoding="async" onerror="this.onerror=null;this.src='bg.jpg'">
+                <img src="${escapeHtml(featured.image)}" alt="${escapeHtml(featured.title)}封面" referrerpolicy="no-referrer" decoding="async" onerror="this.onerror=null;this.src='assets/images/bg.jpg'">
                 <span class="featured-shade" aria-hidden="true"></span>
                 <span class="post-category">${escapeHtml(categoryLabel(featured.category, lang))}</span>
                 <span class="featured-copy">
@@ -410,7 +410,7 @@ function renderPosts() {
     postGrid.innerHTML = filtered.slice(1).map((post) => `
         <button class="post-card" type="button" data-id="${escapeHtml(post.id)}">
             <span class="post-thumb">
-                <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}封面" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='bg.jpg'">
+                <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}封面" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/images/bg.jpg'">
                 <span class="post-category">${escapeHtml(categoryLabel(post.category, lang))}</span>
             </span>
             <span class="post-content">
@@ -443,7 +443,7 @@ function openPost(postId) {
     const postImage = document.getElementById("postImage");
     postImage.onerror = function() {
         this.onerror = null;
-        this.src = "bg.jpg";
+        this.src = "assets/images/bg.jpg";
     };
     postImage.src = post.image;
     postImage.alt = `${post.title}封面`;

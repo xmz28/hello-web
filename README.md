@@ -26,6 +26,11 @@ hello-web/
 ├── games.html          # 小游戏页面
 ├── nav.html            # 网站导航
 ├── dashboard.html      # 状态面板
+├── assets/
+│   ├── images/          # 页面图片、社交二维码及其原图
+│   └── blog/            # 博客文章封面
+├── docs/design/         # 设计参考图、对比截图和验收记录
+├── tools/               # 素材处理与视频快照更新脚本
 ├── style.css           # 页面样式
 ├── site.js             # 公共交互逻辑
 ├── site-widgets.js     # 状态面板组件

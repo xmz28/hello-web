@@ -6,10 +6,11 @@ from PIL import Image, ImageDraw
 
 
 ROOT = Path(__file__).resolve().parent.parent
+IMAGE_DIR = ROOT / "assets" / "images"
 
 
 def extract_douyin() -> None:
-    source = Image.open(ROOT / "douyin.png").convert("RGBA")
+    source = Image.open(IMAGE_DIR / "douyin.png").convert("RGBA")
 
     # The original white circular code occupies this area in the 1125px poster.
     crop_box = (188, 186, 937, 935)
@@ -33,11 +34,11 @@ def extract_douyin() -> None:
     )
     mask = mask.resize(qr.size, Image.Resampling.LANCZOS)
     qr.putalpha(mask)
-    qr.save(ROOT / "douyin-qr.png", optimize=True)
+    qr.save(IMAGE_DIR / "douyin-qr.png", optimize=True)
 
 
 def extract_bilibili() -> None:
-    source = Image.open(ROOT / "bilibili.jpg").convert("RGBA")
+    source = Image.open(IMAGE_DIR / "bilibili.jpg").convert("RGBA")
 
     # Preserve the complete white quiet zone; it is required for reliable scans.
     qr = source.crop((739, 752, 895, 908))
@@ -53,10 +54,10 @@ def extract_bilibili() -> None:
     )
     mask = mask.resize(qr.size, Image.Resampling.LANCZOS)
     qr.putalpha(mask)
-    qr.save(ROOT / "bilibili-qr.png", optimize=True)
+    qr.save(IMAGE_DIR / "bilibili-qr.png", optimize=True)
 
 
 if __name__ == "__main__":
     extract_douyin()
     extract_bilibili()
-    print("Created douyin-qr.png and bilibili-qr.png")
+    print(f"Created {IMAGE_DIR / 'douyin-qr.png'} and {IMAGE_DIR / 'bilibili-qr.png'}")
