@@ -23,6 +23,7 @@
         <a href="index.html" class="nav-link" aria-label="首页" data-i18n-aria="home"><i class="ri-home-5-line" aria-hidden="true"></i><span data-i18n="home">首页</span></a>
         <a href="home.html" class="nav-link" aria-label="个人页" data-i18n-aria="profile"><i class="ri-user-3-line" aria-hidden="true"></i><span data-i18n="profile">个人页</span></a>
         <a href="blog.html" class="nav-link active" aria-label="博客" data-i18n-aria="blog" aria-current="page"><i class="ri-article-line" aria-hidden="true"></i><span data-i18n="blog">博客</span></a>
+        <a href="projects.html" class="nav-link" aria-label="作品" data-i18n-aria="projects"><i class="ri-code-box-line" aria-hidden="true"></i><span data-i18n="projects">作品</span></a>
         <a href="games.html" class="nav-link" aria-label="小游戏" data-i18n-aria="games"><i class="ri-gamepad-line" aria-hidden="true"></i><span data-i18n="games">小游戏</span></a>
         <a href="nav.html" class="nav-link" aria-label="网站导航" data-i18n-aria="siteNav"><i class="ri-compass-3-line" aria-hidden="true"></i><span data-i18n="siteNav">网站导航</span></a>
         <a href="dashboard.html" class="nav-link" aria-label="状态面板" data-i18n-aria="dashboard"><i class="ri-bar-chart-box-line" aria-hidden="true"></i><span data-i18n="dashboard">状态面板</span></a>
@@ -97,7 +98,13 @@
         <p id="emptyState" class="empty-state" data-i18n="emptyState">没有找到匹配的文章，换个关键词试试。</p>
 
         <section class="comments-panel" aria-label="评论区">
-            <h2><i class="ri-chat-3-line"></i> 评论区</h2>
+            <div class="comments-heading">
+                <div>
+                    <span class="comments-kicker">COMMUNITY / DISCUSSION</span>
+                    <h2><i class="ri-chat-3-line" aria-hidden="true"></i> 留言交流</h2>
+                </div>
+                <p>欢迎留下想法，和大家聊聊技术与生活。</p>
+            </div>
             <div class="giscus"></div>
         </section>
     </section>
@@ -148,7 +155,7 @@
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
-        data-theme="preferred_color_scheme"
+        data-theme="noborder_light"
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>

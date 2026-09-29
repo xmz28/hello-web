@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="小米周的项目与作品：ESP32 车辆仪表、ESP32-S3 NES 掌机、投屏导航及更多软件实验。">
+<title>项目与作品 · 小米周</title>
+<script src="theme-init.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="remixicon.css">
+</head>
+<body class="projects-page">
+<a class="skip-link" href="#mainContent">跳到主内容</a>
+<div class="site-bg" style="background-image: url('assets/images/2.jpg');"></div>
+<div class="site-overlay"></div>
+
+<nav class="site-nav unified-nav" aria-label="主导航">
+    <a href="index.html" class="profile-brand" aria-label="返回首页"><span class="status-dot" aria-hidden="true"></span><span>FUJI DIGITAL SPACE</span></a>
+    <div class="profile-nav-links">
+        <a href="index.html" class="nav-link" aria-label="首页" data-i18n-aria="home"><i class="ri-home-5-line" aria-hidden="true"></i><span data-i18n="home">首页</span></a>
+        <a href="home.html" class="nav-link" aria-label="个人页" data-i18n-aria="profile"><i class="ri-user-3-line" aria-hidden="true"></i><span data-i18n="profile">个人页</span></a>
+        <a href="blog.html" class="nav-link" aria-label="博客" data-i18n-aria="blog"><i class="ri-article-line" aria-hidden="true"></i><span data-i18n="blog">博客</span></a>
+        <a href="projects.html" class="nav-link active" aria-label="作品" data-i18n-aria="projects" aria-current="page"><i class="ri-code-box-line" aria-hidden="true"></i><span data-i18n="projects">作品</span></a>
+        <a href="games.html" class="nav-link" aria-label="小游戏" data-i18n-aria="games"><i class="ri-gamepad-line" aria-hidden="true"></i><span data-i18n="games">小游戏</span></a>
+        <a href="nav.html" class="nav-link" aria-label="网站导航" data-i18n-aria="siteNav"><i class="ri-compass-3-line" aria-hidden="true"></i><span data-i18n="siteNav">网站导航</span></a>
+        <a href="dashboard.html" class="nav-link" aria-label="状态面板" data-i18n-aria="dashboard"><i class="ri-bar-chart-box-line" aria-hidden="true"></i><span data-i18n="dashboard">状态面板</span></a>
+    </div>
+    <div class="nav-controls">
+        <span class="profile-location"><i class="ri-map-pin-line" aria-hidden="true"></i> ASIA / SHANGHAI</span>
+        <div class="lang-menu">
+            <button id="langToggle" aria-controls="languageOptions" aria-expanded="false" class="icon-toggle" type="button" aria-label="语言"><i class="ri-translate-2"></i></button>
+            <div id="languageOptions" class="lang-panel" hidden>
+                <button type="button" data-lang-option="zh-CN"><span class="flag-emoji">🇨🇳</span>简体中文</button>
+                <button type="button" data-lang-option="zh-TW"><span class="flag-emoji">🇭🇰</span>繁體中文</button>
+                <button type="button" data-lang-option="en"><span class="flag-emoji">🇺🇸</span>English</button>
+                <button type="button" data-lang-option="ja"><span class="flag-emoji">🇯🇵</span>日本語</button>
+            </div>
+        </div>
+        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题" data-icon-ui="remix"><i class="ri-sun-line"></i></button>
+    </div>
+</nav>
+
+<main id="mainContent" tabindex="-1" class="projects-main">
+    <header class="projects-hero">
+        <p class="projects-kicker"><span class="status-dot" aria-hidden="true"></span> SELECTED WORK / XMZ28</p>
+        <h1>把想法做成<span>可以体验的作品。</span></h1>
+        <p class="projects-intro">从 ESP32 硬件与固件，到手机、桌面和浏览器里的小实验。这里挑出有代表性的项目，说明它们能做什么，以及目前公开了哪些内容。</p>
+        <a class="projects-github" href="https://github.com/xmz28?tab=repositories" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i>查看 GitHub 全部仓库<i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+    </header>
+
+    <section class="projects-section" aria-labelledby="featuredProjects">
+        <div class="projects-section-heading"><div><span>01 / HARDWARE</span><h2 id="featuredProjects">重点项目</h2></div><p>两种不同方向的 ESP32 实践</p></div>
+        <div class="projects-feature-grid">
+            <article class="project-card project-card-feature project-card-dashboard">
+                <div class="project-art" aria-hidden="true"><span class="project-art-orbit"></span><i class="ri-dashboard-3-line"></i><span class="project-art-code">CAN / RS485</span></div>
+                <div class="project-card-body">
+                    <p class="project-eyebrow">01 <span>ESP32 · 车辆电子</span></p>
+                    <h3>ESP32 车辆仪表</h3>
+                    <p class="project-summary">面向车辆使用的仪表固件，通过总线读取行驶与电池数据，在彩色屏幕显示速度、挡位、电量、功率和故障状态。它支持按键操作、无线连接与固件升级，仓库还提供接线资料、使用说明和实物照片。</p>
+                    <ul class="project-tags" aria-label="项目特点"><li>ST7789 屏幕</li><li>WiFi OTA</li><li>固件与接线文档</li></ul>
+                    <p class="project-availability"><i class="ri-information-line" aria-hidden="true"></i>公开固件、接线资料和用户文档；完整源码未公开。</p>
+                    <a class="project-action" href="https://github.com/xmz28/esp32-vehicle-dashboard" target="_blank" rel="noopener noreferrer" aria-label="查看 ESP32 车辆仪表仓库，新标签页打开">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+                </div>
+            </article>
+            <article class="project-card project-card-feature project-card-nes">
+                <div class="project-art" aria-hidden="true"><span class="project-art-orbit"></span><i class="ri-gamepad-line"></i><span class="project-art-code">800 × 480 / RGB</span></div>
+                <div class="project-card-body">
+                    <p class="project-eyebrow">02 <span>ESP32-S3 · 掌机固件</span></p>
+                    <h3>NES 掌机与 Xbox 手柄</h3>
+                    <p class="project-summary">这套掌机固件驱动高分辨率彩屏、触摸面板、游戏手柄和音频功放，可在菜单中选择并运行红白机游戏。游戏中能调节背光与音量，也能通过组合键或触摸返回菜单；仓库提供源码和构建说明。</p>
+                    <ul class="project-tags" aria-label="项目特点"><li>GT911 触摸</li><li>USB 手柄</li><li>开源固件</li></ul>
+                    <p class="project-availability"><i class="ri-information-line" aria-hidden="true"></i>源码与构建说明已公开；仓库不包含商业游戏 ROM。</p>
+                    <a class="project-action" href="https://github.com/xmz28/NES_XBOX_S3" target="_blank" rel="noopener noreferrer" aria-label="查看 NES 掌机仓库，新标签页打开">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="projects-section" aria-labelledby="moreProjects">
+        <div class="projects-section-heading"><div><span>02 / SOFTWARE</span><h2 id="moreProjects">更多作品</h2></div><p>手机、桌面与浏览器</p></div>
+        <div class="projects-more-grid">
+            <article class="project-card project-card-small"><div class="project-small-icon"><i class="ri-smartphone-line" aria-hidden="true"></i></div><div class="project-card-body"><p class="project-eyebrow">ANDROID APP · APK</p><h3>投屏导航 SE</h3><p class="project-summary">连接兼容仪表的无线网络后，这款手机应用可将相册媒体、摄像头画面和手机屏幕投到仪表。仪表固件达到要求时，还能从手机选择图片设置壁纸；仓库提供安装包、版本说明和基本操作步骤。</p><p class="project-availability">公开 APK 与使用说明</p><a class="project-action" href="https://github.com/xmz28/mirror-nav-se-apk" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div></article>
+            <article class="project-card project-card-small"><div class="project-small-icon"><i class="ri-mac-line" aria-hidden="true"></i></div><div class="project-card-body"><p class="project-eyebrow">MACOS · SWIFT</p><h3>iMac Fold</h3><p class="project-summary">这是一项面向英特尔一体机的桌面视觉实验：接收姿态追踪器的数据，将屏幕转动映射为实时透视折叠、模糊与淡出效果。用户可以校准展开角度、切换旋转轴和随时暂停，仓库公开了源码与构建说明。</p><p class="project-availability">公开源码与构建说明</p><a class="project-action" href="https://github.com/xmz28/iMac-Fold" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div></article>
+            <article class="project-card project-card-small"><div class="project-small-icon"><i class="ri-volume-up-line" aria-hidden="true"></i></div><div class="project-card-body"><p class="project-eyebrow">WINDOWS · PYTHON</p><h3>RevWave Simulator</h3><p class="project-summary">这款桌面程序实时合成并混合多层发动机音色，让声音随转速、负载和挡位变化。你可以用手柄或界面控制油门、刹车与变速箱，也能加入循环音频素材；项目提供多种车辆风格预设和运行说明。</p><p class="project-availability">公开源码与运行说明</p><a class="project-action" href="https://github.com/xmz28/revwave-simulator" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div></article>
+            <article class="project-card project-card-small"><div class="project-small-icon"><i class="ri-sparkling-2-line" aria-hidden="true"></i></div><div class="project-card-body"><p class="project-eyebrow">WEB · THREE.JS</p><h3>手势粒子宇宙</h3><p class="project-summary">这项浏览器实验通过摄像头识别手势，再切换粒子造型和动画，让双手直接参与画面的变化。项目采用纯前端实现，允许摄像头访问后即可体验；如果本地浏览器限制调用，也可以启动本地服务运行。</p><p class="project-availability">公开源码；运行时需联网加载依赖</p><a class="project-action" href="https://github.com/xmz28/gesture-particle-universe" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div></article>
+        </div>
+    </section>
+
+    <aside class="projects-site-card" aria-label="本站项目"><div><span>03 / THIS SITE</span><h2>你正在浏览的个人网站</h2><p>这个网站本身也是一个作品，使用原生网页技术构建，汇集个人介绍、博客、小游戏、网站导航与状态面板。页面为桌面和手机屏幕调整布局，还加入明暗主题、多语言切换与交互；源码公开在仓库中。</p></div><a href="https://github.com/xmz28/hello-web" target="_blank" rel="noopener noreferrer">查看 hello-web 源码 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></aside>
+</main>
+
+<script src="site.js"></script>
+<script>setupSiteControls();</script>
+</body>
+</html>
