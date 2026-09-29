@@ -24,7 +24,8 @@
         <a href="index.html" class="nav-link" aria-label="首页" data-i18n-aria="home"><i class="ri-home-5-line" aria-hidden="true"></i><span data-i18n="home">首页</span></a>
         <a href="home.html" class="nav-link active" aria-label="个人页" data-i18n-aria="profile" aria-current="page"><i class="ri-user-3-line" aria-hidden="true"></i><span data-i18n="profile">个人页</span></a>
         <a href="blog.html" class="nav-link" aria-label="博客" data-i18n-aria="blog"><i class="ri-article-line" aria-hidden="true"></i><span data-i18n="blog">博客</span></a>
-        <a href="projects.html" class="nav-link" aria-label="作品" data-i18n-aria="projects"><i class="ri-code-box-line" aria-hidden="true"></i><span data-i18n="projects">作品</span></a>
+        <a href="projects.html" class="nav-link" aria-label="我的作品" data-i18n-aria="projects"><i class="ri-code-box-line" aria-hidden="true"></i><span data-i18n="projects">我的作品</span></a>
+        <a href="visa.html" class="nav-link" aria-label="签证信息" data-i18n-aria="visa"><i class="ri-passport-line" aria-hidden="true"></i><span data-i18n="visa">签证信息</span></a>
         <a href="games.html" class="nav-link" aria-label="小游戏" data-i18n-aria="games"><i class="ri-gamepad-line" aria-hidden="true"></i><span data-i18n="games">小游戏</span></a>
         <a href="nav.html" class="nav-link" aria-label="网站导航" data-i18n-aria="siteNav"><i class="ri-compass-3-line" aria-hidden="true"></i><span data-i18n="siteNav">网站导航</span></a>
         <a href="dashboard.html" class="nav-link" aria-label="状态面板" data-i18n-aria="dashboard"><i class="ri-bar-chart-box-line" aria-hidden="true"></i><span data-i18n="dashboard">状态面板</span></a>
@@ -62,10 +63,11 @@
             <span><i class="ri-code-s-slash-line"></i> AI Builder</span>
             <span><i class="ri-calendar-line"></i> 2026.06.25</span>
         </div>
-        <div class="profile-social-mini" aria-label="社交链接">
-            <a href="https://github.com/xmz28" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-line"></i></a>
-            <button type="button" onclick="showBili()" aria-label="B站"><i class="ri-bilibili-line"></i></button>
-            <button type="button" onclick="showDouyin()" aria-label="抖音"><i class="ri-tiktok-line"></i></button>
+        <div class="profile-social-mini" role="group" aria-label="社交与手机访问">
+            <button type="button" data-social-modal="githubModal" aria-label="GitHub"><i class="ri-github-line" aria-hidden="true"></i></button>
+            <button type="button" data-social-modal="biliModal" aria-label="B站"><i class="ri-bilibili-line" aria-hidden="true"></i></button>
+            <button type="button" data-social-modal="douyinModal" aria-label="抖音"><i class="ri-tiktok-line" aria-hidden="true"></i></button>
+            <button type="button" data-social-modal="mobileQrModal" aria-label="手机访问个人页"><i class="ri-smartphone-line" aria-hidden="true"></i></button>
         </div>
     </section>
 
@@ -112,8 +114,8 @@
             </article>
             <article class="command-panel project-focus">
                 <div class="module-heading"><h2><i class="ri-cube-line"></i>项目焦点</h2></div>
-                <h3><i class="ri-cpu-line"></i> ESP32 车辆仪表</h3>
-                <p>通过 CAN / RS485 接入车辆数据，展示速度、电量与车辆状态。</p>
+                <h3><i class="ri-gamepad-line"></i> NES 掌机与 Xbox 手柄</h3>
+                <p>ESP32-S3 驱动 800×480 彩屏、触摸与 USB 手柄，运行红白机游戏；源码和构建说明已公开。</p>
                 <a href="projects.html">查看全部作品 <i class="ri-arrow-right-line"></i></a>
             </article>
         </div>
@@ -121,13 +123,23 @@
         <article class="command-panel launch-module">
             <div class="module-heading"><h2><i class="ri-rocket-2-line"></i>快速入口</h2></div>
             <div class="launch-grid">
-                <a href="https://github.com/xmz28" target="_blank" rel="noopener"><i class="ri-github-line"></i><span><strong>GitHub</strong><small>项目 · 代码 · 开源</small></span><i class="ri-arrow-right-line"></i></a>
-                <button type="button" onclick="showBili()"><i class="ri-bilibili-line"></i><span><strong>B站空间</strong><small>视频 · 教程 · 分享</small></span><i class="ri-arrow-right-line"></i></button>
-                <button type="button" onclick="showDouyin()"><i class="ri-tiktok-line"></i><span><strong>抖音主页</strong><small>随拍 · 旅行 · 日常</small></span><i class="ri-arrow-right-line"></i></button>
+                <a href="https://github.com/xmz28" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span><strong>GitHub</strong><small>项目 · 代码 · 开源</small></span><div class="launch-preview" aria-hidden="true"><strong>GitHub</strong><p>查看公开项目与代码仓库</p><img src="assets/images/github-qr.png" alt=""></div><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                <a href="https://space.bilibili.com/338302827" target="_blank" rel="noopener noreferrer"><i class="ri-bilibili-line" aria-hidden="true"></i><span><strong>B站空间</strong><small>视频 · 教程 · 分享</small></span><div class="launch-preview" aria-hidden="true"><strong>B站空间</strong><p>数码体验、教程与分享</p><img src="assets/images/bilibili-link-qr.png" alt=""></div><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                <a href="https://v.douyin.com/x64M2NbYj0A/" target="_blank" rel="noopener noreferrer"><i class="ri-tiktok-line" aria-hidden="true"></i><span><strong>抖音主页</strong><small>随拍 · 旅行 · 日常</small></span><div class="launch-preview" aria-hidden="true"><strong>抖音主页</strong><p>随拍、旅行与日常片段</p><img src="assets/images/douyin-link-qr.png" alt=""></div><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
             </div>
         </article>
     </section>
 </main>
+
+<div id="githubModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="GitHub 介绍">
+    <div class="qr-box social-box">
+        <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line" aria-hidden="true"></i></button>
+        <h2 data-i18n="githubTitle">GitHub：xmz28</h2>
+        <p data-i18n="githubText">这里整理了公开项目、源码和构建说明。扫码或点击按钮查看全部仓库。</p>
+        <div class="social-qr-stage"><img class="social-qr social-qr-square" src="assets/images/github-qr.png" alt="GitHub 链接二维码"></div>
+        <a class="btn social-link" href="https://github.com/xmz28" target="_blank" rel="noopener noreferrer" data-i18n="githubLink">前往 GitHub</a>
+    </div>
+</div>
 
 <div id="biliModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="B站介绍">
     <div class="qr-box social-box bili-social-box">
@@ -135,7 +147,7 @@
         <h2 data-i18n="biliTitle">B站：小米周_bili</h2>
         <p data-i18n="biliText">这里会更新数码体验、折腾记录和一些轻技术向的视频内容。想看完整视频合集，可以从这里跳到我的 B 站主页。</p>
         <div class="social-qr-stage">
-            <img class="social-qr social-qr-square" src="assets/images/bilibili-qr.png" alt="B站二维码">
+            <img class="social-qr social-qr-square" src="assets/images/bilibili-link-qr.png" alt="B站二维码">
         </div>
         <a class="btn social-link" href="https://space.bilibili.com/338302827" target="_blank" rel="noopener" data-i18n="biliLink">前往 B站主页</a>
     </div>
@@ -147,13 +159,25 @@
         <h2 data-i18n="douyinTitle">抖音：小米周</h2>
         <p data-i18n="douyinText">抖音会放更短、更直接的日常分享和视频片段。可以扫码关注，也可以点击底部按钮跳转。</p>
         <div class="social-qr-stage">
-            <img class="social-qr social-qr-round" src="assets/images/douyin-qr.png" alt="抖音二维码">
+            <img class="social-qr social-qr-square" src="assets/images/douyin-link-qr.png" alt="抖音二维码">
         </div>
         <a class="btn social-link" href="https://v.douyin.com/x64M2NbYj0A/" target="_blank" rel="noopener" data-i18n="douyinLink">前往抖音主页</a>
     </div>
 </div>
 
+<div id="mobileQrModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="手机访问个人页">
+    <div class="qr-box social-box">
+        <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line" aria-hidden="true"></i></button>
+        <h2 data-i18n="mobileReadTitle">手机访问个人页</h2>
+        <p data-i18n="mobileReadText">扫码在手机上打开这个个人页。</p>
+        <div class="social-qr-stage"><img class="social-qr social-qr-square" src="assets/images/home-page-qr.png" alt="个人页链接二维码"></div>
+        <div class="mobile-url">https://xmz28.github.io/hello-web/home.html</div>
+        <a class="btn social-link" href="https://xmz28.github.io/hello-web/home.html" target="_blank" rel="noopener noreferrer" data-i18n="openMobileSite">打开个人页</a>
+    </div>
+</div>
+
 <script src="site.js"></script>
+<script src="social-modals.js"></script>
 <script>
 const homeLocales = {
     "zh-CN": {
@@ -172,6 +196,12 @@ const homeLocales = {
         douyinTitle: "抖音：小米周",
         douyinText: "抖音会放更短、更直接的日常分享和视频片段。可以扫码关注，也可以点击底部按钮跳转。",
         douyinLink: "前往抖音主页",
+        githubTitle: "GitHub：xmz28",
+        githubText: "这里整理了公开项目、源码和构建说明。扫码或点击按钮查看全部仓库。",
+        githubLink: "前往 GitHub",
+        mobileReadTitle: "手机访问个人页",
+        mobileReadText: "扫码在手机上打开这个个人页。",
+        openMobileSite: "打开个人页",
         uptimeLabel: "博客运行时长"
     },
     "zh-TW": {
@@ -190,6 +220,12 @@ const homeLocales = {
         douyinTitle: "抖音：小米周",
         douyinText: "抖音會放更短、更直接的日常分享和影片片段。可以掃碼關注，也可以點擊底部按鈕跳轉。",
         douyinLink: "前往抖音主頁",
+        githubTitle: "GitHub：xmz28",
+        githubText: "這裡整理了公開專案、原始碼和建置說明。掃碼或點擊按鈕查看全部倉庫。",
+        githubLink: "前往 GitHub",
+        mobileReadTitle: "手機瀏覽個人頁",
+        mobileReadText: "掃碼在手機上開啟這個個人頁。",
+        openMobileSite: "開啟個人頁",
         uptimeLabel: "部落格已穩定運行"
     },
     en: {
@@ -208,6 +244,12 @@ const homeLocales = {
         douyinTitle: "Douyin: 小米周",
         douyinText: "Douyin has shorter daily clips and quick video updates. Scan the QR code or use the button below.",
         douyinLink: "Open Douyin",
+        githubTitle: "GitHub: xmz28",
+        githubText: "Browse public projects, source code, and build guides. Scan the code or use the button below.",
+        githubLink: "Open GitHub",
+        mobileReadTitle: "Open Profile on Phone",
+        mobileReadText: "Scan to open this profile page on your phone.",
+        openMobileSite: "Open Profile",
         uptimeLabel: "Blog uptime"
     },
     ja: {
@@ -226,6 +268,12 @@ const homeLocales = {
         douyinTitle: "Douyin：小米周",
         douyinText: "Douyin では短い日常の共有や動画クリップを投稿しています。QR コードを読み取るか、下のボタンから開けます。",
         douyinLink: "Douyin を開く",
+        githubTitle: "GitHub：xmz28",
+        githubText: "公開プロジェクト、ソースコード、ビルド手順をまとめています。QR コードか下のボタンから開けます。",
+        githubLink: "GitHub を開く",
+        mobileReadTitle: "スマホでプロフィールを見る",
+        mobileReadText: "QR コードを読み取ってこのプロフィールページを開けます。",
+        openMobileSite: "プロフィールを開く",
         uptimeLabel: "ブログ稼働時間"
     }
 };
@@ -234,7 +282,6 @@ setupSiteControls(homeLocales);
 
 const uptimeStart = new Date("2026-04-29T13:20:00+08:00").getTime();
 const uptimeCounter = document.getElementById("uptimeCounter");
-let lastFocusedElement = null;
 
 function updateUptime() {
     const diff = Math.max(0, Date.now() - uptimeStart);
@@ -252,42 +299,6 @@ function updateUptime() {
 
 updateUptime();
 setInterval(updateUptime, 1000);
-
-function showBili() {
-    openSocialModal("biliModal");
-}
-
-function showDouyin() {
-    openSocialModal("douyinModal");
-}
-
-function openSocialModal(id) {
-    lastFocusedElement = document.activeElement;
-    const modal = document.getElementById(id);
-    modal.classList.add("show");
-    modal.querySelector(".modal-close").focus();
-}
-
-function closeSocialModal(modal) {
-    modal.classList.remove("show");
-    if (lastFocusedElement) lastFocusedElement.focus();
-}
-
-document.querySelectorAll(".qr-modal").forEach(function(modal) {
-    modal.addEventListener("click", function(event) {
-        if (event.target === modal || event.target.closest(".modal-close")) {
-            closeSocialModal(modal);
-        }
-    });
-});
-
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-        document.querySelectorAll(".qr-modal").forEach(function(modal) {
-            if (modal.classList.contains("show")) closeSocialModal(modal);
-        });
-    }
-});
 
 document.querySelectorAll(".command-panel").forEach(function(panel) {
     panel.addEventListener("pointermove", function(event) {

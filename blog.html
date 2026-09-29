@@ -23,7 +23,8 @@
         <a href="index.html" class="nav-link" aria-label="首页" data-i18n-aria="home"><i class="ri-home-5-line" aria-hidden="true"></i><span data-i18n="home">首页</span></a>
         <a href="home.html" class="nav-link" aria-label="个人页" data-i18n-aria="profile"><i class="ri-user-3-line" aria-hidden="true"></i><span data-i18n="profile">个人页</span></a>
         <a href="blog.html" class="nav-link active" aria-label="博客" data-i18n-aria="blog" aria-current="page"><i class="ri-article-line" aria-hidden="true"></i><span data-i18n="blog">博客</span></a>
-        <a href="projects.html" class="nav-link" aria-label="作品" data-i18n-aria="projects"><i class="ri-code-box-line" aria-hidden="true"></i><span data-i18n="projects">作品</span></a>
+        <a href="projects.html" class="nav-link" aria-label="我的作品" data-i18n-aria="projects"><i class="ri-code-box-line" aria-hidden="true"></i><span data-i18n="projects">我的作品</span></a>
+        <a href="visa.html" class="nav-link" aria-label="签证信息" data-i18n-aria="visa"><i class="ri-passport-line" aria-hidden="true"></i><span data-i18n="visa">签证信息</span></a>
         <a href="games.html" class="nav-link" aria-label="小游戏" data-i18n-aria="games"><i class="ri-gamepad-line" aria-hidden="true"></i><span data-i18n="games">小游戏</span></a>
         <a href="nav.html" class="nav-link" aria-label="网站导航" data-i18n-aria="siteNav"><i class="ri-compass-3-line" aria-hidden="true"></i><span data-i18n="siteNav">网站导航</span></a>
         <a href="dashboard.html" class="nav-link" aria-label="状态面板" data-i18n-aria="dashboard"><i class="ri-bar-chart-box-line" aria-hidden="true"></i><span data-i18n="dashboard">状态面板</span></a>
@@ -74,11 +75,11 @@
             <div><span>JavaScript</span><span>AI 工具</span><span>旅行</span><span>摄影</span><span>数码</span></div>
         </div>
         <blockquote>用代码记录想法，<br>用镜头记录世界，<br>在不断折腾中，让热爱持续发生。<cite>— 小米周</cite></blockquote>
-        <div class="blog-socials">
-            <a href="https://github.com/xmz28" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-line"></i></a>
-            <a href="https://space.bilibili.com/338302827" target="_blank" rel="noopener" aria-label="哔哩哔哩"><i class="ri-bilibili-line"></i></a>
-            <a href="https://v.douyin.com/x64M2NbYj0A/" target="_blank" rel="noopener" aria-label="抖音"><i class="ri-tiktok-line"></i></a>
-            <button type="button" onclick="showMobileQR()" aria-label="手机阅读"><i class="ri-smartphone-line"></i></button>
+        <div class="blog-socials" role="group" aria-label="社交与手机访问">
+            <button type="button" data-social-modal="githubModal" aria-label="GitHub"><i class="ri-github-line" aria-hidden="true"></i></button>
+            <button type="button" data-social-modal="biliModal" aria-label="哔哩哔哩"><i class="ri-bilibili-line" aria-hidden="true"></i></button>
+            <button type="button" data-social-modal="douyinModal" aria-label="抖音"><i class="ri-tiktok-line" aria-hidden="true"></i></button>
+            <button type="button" data-social-modal="mobileQrModal" aria-label="手机访问博客页"><i class="ri-smartphone-line" aria-hidden="true"></i></button>
         </div>
     </aside>
 
@@ -95,6 +96,9 @@
             <span>VIEW ALL <i class="ri-arrow-right-line"></i></span>
         </div>
         <section id="postGrid" class="post-grid" aria-label="内容列表"></section>
+        <button id="loadMorePosts" class="feed-more" type="button" aria-controls="postGrid" hidden>
+            <span data-i18n="loadMore">加载更多内容</span><i class="ri-arrow-down-line" aria-hidden="true"></i>
+        </button>
         <p id="emptyState" class="empty-state" data-i18n="emptyState">没有找到匹配的文章，换个关键词试试。</p>
 
         <section class="comments-panel" aria-label="评论区">
@@ -132,18 +136,49 @@
     </article>
 </div>
 
+<div id="githubModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="GitHub 介绍">
+    <div class="qr-box social-box">
+        <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line" aria-hidden="true"></i></button>
+        <h2 data-i18n="githubTitle">GitHub：xmz28</h2>
+        <p data-i18n="githubText">这里整理了公开项目、源码和构建说明。扫码或点击按钮查看全部仓库。</p>
+        <div class="social-qr-stage"><img class="social-qr social-qr-square" src="assets/images/github-qr.png" alt="GitHub 链接二维码"></div>
+        <a class="btn social-link" href="https://github.com/xmz28" target="_blank" rel="noopener noreferrer" data-i18n="githubLink">前往 GitHub</a>
+    </div>
+</div>
+
+<div id="biliModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="B站介绍">
+    <div class="qr-box social-box">
+        <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line" aria-hidden="true"></i></button>
+        <h2 data-i18n="biliTitle">B站：小米周_bili</h2>
+        <p data-i18n="biliText">这里会更新数码体验、折腾记录和一些轻技术向的视频内容。</p>
+        <div class="social-qr-stage"><img class="social-qr social-qr-square" src="assets/images/bilibili-link-qr.png" alt="B站二维码"></div>
+        <a class="btn social-link" href="https://space.bilibili.com/338302827" target="_blank" rel="noopener noreferrer" data-i18n="biliLink">前往 B站主页</a>
+    </div>
+</div>
+
+<div id="douyinModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="抖音介绍">
+    <div class="qr-box social-box">
+        <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line" aria-hidden="true"></i></button>
+        <h2 data-i18n="douyinTitle">抖音：小米周</h2>
+        <p data-i18n="douyinText">抖音会放更短、更直接的日常分享和视频片段。</p>
+        <div class="social-qr-stage"><img class="social-qr social-qr-square" src="assets/images/douyin-link-qr.png" alt="抖音二维码"></div>
+        <a class="btn social-link" href="https://v.douyin.com/x64M2NbYj0A/" target="_blank" rel="noopener noreferrer" data-i18n="douyinLink">前往抖音主页</a>
+    </div>
+</div>
+
 <div id="mobileQrModal" class="qr-modal" role="dialog" aria-modal="true" aria-label="手机阅读二维码">
     <div class="qr-box social-box">
         <button class="modal-close" type="button" aria-label="关闭"><i class="ri-close-line"></i></button>
         <h2 data-i18n="mobileReadTitle">手机阅读</h2>
-        <p data-i18n="mobileReadText">扫码在手机上打开这个博客。</p>
-        <img class="mobile-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fxmz28.github.io%2Fhello-web" alt="手机阅读二维码">
-        <div class="mobile-url">https://xmz28.github.io/hello-web</div>
-        <a class="btn social-link" href="https://xmz28.github.io/hello-web" target="_blank" rel="noopener" data-i18n="openMobileSite">打开网页</a>
+        <p data-i18n="mobileReadText">扫码在手机上打开这个博客页。</p>
+        <div class="social-qr-stage"><img class="social-qr social-qr-square" src="assets/images/blog-page-qr.png" alt="博客页链接二维码"></div>
+        <div class="mobile-url">https://xmz28.github.io/hello-web/blog.html</div>
+        <a class="btn social-link" href="https://xmz28.github.io/hello-web/blog.html" target="_blank" rel="noopener noreferrer" data-i18n="openMobileSite">打开博客页</a>
     </div>
 </div>
 
 <script src="site.js"></script>
+<script src="social-modals.js"></script>
 <script src="blog-videos.js"></script>
 <script src="https://giscus.app/client.js"
         data-repo="xmz28/hello-web"
@@ -168,15 +203,25 @@ const blogLocales = {
         searchPlaceholder: "搜索文章标题、摘要或内容...",
         emptyState: "没有找到匹配的文章，换个关键词试试。",
         biliWatch: "去 B 站观看",
-        mobileReadTitle: "手机阅读",
-        mobileReadText: "扫码在手机上打开这个博客。",
-        openMobileSite: "打开网页",
+        mobileReadTitle: "手机访问博客页",
+        mobileReadText: "扫码在手机上打开这个博客页。",
+        openMobileSite: "打开博客页",
+        githubTitle: "GitHub：xmz28",
+        githubText: "这里整理了公开项目、源码和构建说明。扫码或点击按钮查看全部仓库。",
+        githubLink: "前往 GitHub",
+        biliTitle: "B站：小米周_bili",
+        biliText: "这里会更新数码体验、折腾记录和一些轻技术向的视频内容。",
+        biliLink: "前往 B站主页",
+        douyinTitle: "抖音：小米周",
+        douyinText: "抖音会放更短、更直接的日常分享和视频片段。",
+        douyinLink: "前往抖音主页",
         views: "浏览",
         sortLabel: "内容排序",
         sortAll: "全部",
         sortTimeDesc: "时间排序↓",
         sortTimeAsc: "时间排序↑",
-        sortViews: "热度排序"
+        sortViews: "热度排序",
+        loadMore: "加载更多内容"
     },
     "zh-TW": {
         blogTitle: "我的部落格",
@@ -184,15 +229,25 @@ const blogLocales = {
         searchPlaceholder: "搜尋文章標題、摘要或內容...",
         emptyState: "沒有找到匹配的文章，換個關鍵字試試。",
         biliWatch: "去 B 站觀看",
-        mobileReadTitle: "手機閱讀",
-        mobileReadText: "掃碼在手機上開啟這個部落格。",
-        openMobileSite: "開啟網頁",
+        mobileReadTitle: "手機瀏覽部落格",
+        mobileReadText: "掃碼在手機上開啟這個部落格頁面。",
+        openMobileSite: "開啟部落格",
+        githubTitle: "GitHub：xmz28",
+        githubText: "這裡整理了公開專案、原始碼和建置說明。掃碼或點擊按鈕查看全部倉庫。",
+        githubLink: "前往 GitHub",
+        biliTitle: "B站：小米周_bili",
+        biliText: "這裡會更新數位體驗、折騰記錄和一些輕技術向的影片內容。",
+        biliLink: "前往 B站主頁",
+        douyinTitle: "抖音：小米周",
+        douyinText: "抖音會放更短、更直接的日常分享和影片片段。",
+        douyinLink: "前往抖音主頁",
         views: "瀏覽",
         sortLabel: "內容排序",
         sortAll: "全部",
         sortTimeDesc: "時間排序↓",
         sortTimeAsc: "時間排序↑",
-        sortViews: "熱度排序"
+        sortViews: "熱度排序",
+        loadMore: "載入更多內容"
     },
     en: {
         blogTitle: "My Blog",
@@ -200,15 +255,25 @@ const blogLocales = {
         searchPlaceholder: "Search titles, summaries, or content...",
         emptyState: "No matching posts. Try another keyword.",
         biliWatch: "Watch on Bilibili",
-        mobileReadTitle: "Read on Phone",
-        mobileReadText: "Scan to open this blog on your phone.",
-        openMobileSite: "Open Site",
+        mobileReadTitle: "Open Blog on Phone",
+        mobileReadText: "Scan to open this blog page on your phone.",
+        openMobileSite: "Open Blog",
+        githubTitle: "GitHub: xmz28",
+        githubText: "Browse public projects, source code, and build guides. Scan the code or use the button below.",
+        githubLink: "Open GitHub",
+        biliTitle: "Bilibili: 小米周_bili",
+        biliText: "Gadget experiences, experiments, and short technical videos are shared here.",
+        biliLink: "Open Bilibili",
+        douyinTitle: "Douyin: 小米周",
+        douyinText: "Short daily clips and quick video updates are shared here.",
+        douyinLink: "Open Douyin",
         views: "Views",
         sortLabel: "Sort content",
         sortAll: "All",
         sortTimeDesc: "Newest first",
         sortTimeAsc: "Oldest first",
-        sortViews: "Most viewed"
+        sortViews: "Most viewed",
+        loadMore: "Load more posts"
     },
     ja: {
         blogTitle: "私のブログ",
@@ -216,15 +281,25 @@ const blogLocales = {
         searchPlaceholder: "タイトル、概要、本文を検索...",
         emptyState: "一致する記事がありません。別のキーワードを試してください。",
         biliWatch: "Bilibili で見る",
-        mobileReadTitle: "スマホで読む",
-        mobileReadText: "QR コードを読み取ってスマホで開けます。",
-        openMobileSite: "サイトを開く",
+        mobileReadTitle: "スマホでブログを見る",
+        mobileReadText: "QR コードを読み取ってこのブログページを開けます。",
+        openMobileSite: "ブログを開く",
+        githubTitle: "GitHub：xmz28",
+        githubText: "公開プロジェクト、ソースコード、ビルド手順をまとめています。QR コードか下のボタンから開けます。",
+        githubLink: "GitHub を開く",
+        biliTitle: "Bilibili：小米周_bili",
+        biliText: "ガジェット体験、試行錯誤の記録、軽めの技術動画を投稿しています。",
+        biliLink: "Bilibili を開く",
+        douyinTitle: "Douyin：小米周",
+        douyinText: "短い日常の共有や動画クリップを投稿しています。",
+        douyinLink: "Douyin を開く",
         views: "閲覧",
         sortLabel: "コンテンツの並び順",
         sortAll: "すべて",
         sortTimeDesc: "新しい順",
         sortTimeAsc: "古い順",
-        sortViews: "閲覧数順"
+        sortViews: "閲覧数順",
+        loadMore: "さらに表示"
     }
 };
 
@@ -355,12 +430,13 @@ const featuredPost = document.getElementById("featuredPost");
 const searchInput = document.getElementById("searchInput");
 const tabs = document.querySelectorAll(".tab");
 const sortButtons = document.querySelectorAll(".feed-sort button");
+const loadMorePosts = document.getElementById("loadMorePosts");
 const emptyState = document.getElementById("emptyState");
 const modal = document.getElementById("postModal");
 const closePost = document.getElementById("closePost");
-const mobileQrModal = document.getElementById("mobileQrModal");
 let activeCategory = "全部";
 let activeSort = "all";
+let visiblePostCount = 10;
 let lastFocusedElement = null;
 let bodyOverflowBeforePost = "";
 const postBackground = document.querySelectorAll(".skip-link, .site-nav, .blog-main");
@@ -414,7 +490,7 @@ function renderPosts() {
         featuredPost.innerHTML = "";
     }
 
-    postGrid.innerHTML = filtered.slice(1).map((post) => `
+    postGrid.innerHTML = filtered.slice(1, visiblePostCount + 1).map((post) => `
         <button class="post-card" type="button" data-id="${escapeHtml(post.id)}">
             <span class="post-thumb">
                 <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}封面" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/images/bg.jpg'">
@@ -432,6 +508,7 @@ function renderPosts() {
         </button>
     `).join("");
 
+    loadMorePosts.hidden = filtered.length - 1 <= visiblePostCount;
     emptyState.classList.toggle("show", filtered.length === 0);
     document.getElementById("postCount").textContent = String(posts.length).padStart(2, "0");
     const latestDate = posts.reduce((latest, post) => post.date > latest ? post.date : latest, "");
@@ -502,6 +579,7 @@ tabs.forEach((tab) => {
             item.classList.toggle("active", selected);
             item.setAttribute("aria-pressed", String(selected));
         });
+        visiblePostCount = 10;
         renderPosts();
     });
 });
@@ -510,11 +588,21 @@ sortButtons.forEach((button) => {
     button.addEventListener("click", () => {
         activeSort = button.dataset.sort;
         sortButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        visiblePostCount = 10;
         renderPosts();
     });
 });
 
-searchInput.addEventListener("input", renderPosts);
+searchInput.addEventListener("input", () => {
+    visiblePostCount = 10;
+    renderPosts();
+});
+
+loadMorePosts.addEventListener("click", () => {
+    visiblePostCount += 15;
+    renderPosts();
+    if (loadMorePosts.hidden) postGrid.lastElementChild?.focus();
+});
 
 postGrid.addEventListener("click", (event) => {
     const card = event.target.closest(".post-card");
@@ -534,28 +622,10 @@ modal.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         if (modal.classList.contains("show")) closeModal();
-        if (mobileQrModal.classList.contains("show")) closeMobileQR();
     }
-    if (event.key === "/" && document.activeElement !== searchInput && !modal.classList.contains("show") && !mobileQrModal.classList.contains("show")) {
+    if (event.key === "/" && document.activeElement !== searchInput && !modal.classList.contains("show") && !document.querySelector(".qr-modal.show")) {
         event.preventDefault();
         searchInput.focus();
-    }
-});
-
-function showMobileQR() {
-    lastFocusedElement = document.activeElement;
-    mobileQrModal.classList.add("show");
-    mobileQrModal.querySelector(".modal-close").focus();
-}
-
-function closeMobileQR() {
-    mobileQrModal.classList.remove("show");
-    if (lastFocusedElement) lastFocusedElement.focus();
-}
-
-mobileQrModal.addEventListener("click", (event) => {
-    if (event.target === mobileQrModal || event.target.closest(".modal-close")) {
-        closeMobileQR();
     }
 });
 
