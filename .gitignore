@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+.network-helper-build/
+downloads/*.exe

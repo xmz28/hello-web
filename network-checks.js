@@ -249,6 +249,22 @@ function setupNetworkChecks() {
         } finally { ipButton.disabled = false; }
     }
 
+    let resumeAfterSpeed = false;
+    window.addEventListener("dashboard-speed-state", event => {
+        if (event.detail.running) {
+            resumeAfterSpeed = networkActive;
+            networkActive = false;
+            roundController?.abort();
+            networkButton.disabled = true;
+            networkButton.setAttribute("aria-pressed", "false");
+            setText("networkStatus", "测速期间暂停网站延迟检测");
+        } else {
+            networkButton.disabled = false;
+            if (resumeAfterSpeed) { networkActive = true; networkButton.textContent = "暂停检测"; networkButton.setAttribute("aria-pressed", "true"); runBatch(); }
+            else updateProgress();
+            resumeAfterSpeed = false;
+        }
+    });
     networkButton.addEventListener("click", toggleNetwork);
     ipButton.addEventListener("click", checkIp);
     document.addEventListener("visibilitychange", () => {

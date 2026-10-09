@@ -86,11 +86,11 @@ input {
     z-index: 1;
 }
 
-.portal-page .site-bg {
+.dashboard-page .site-bg {
     opacity: 0.72;
 }
 
-.portal-page .site-overlay {
+.dashboard-page .site-overlay {
     background:
         radial-gradient(circle at 50% 12%, rgba(110, 231, 249, 0.16), transparent 30%),
         linear-gradient(to bottom, rgba(10, 18, 28, 0.38), rgba(10, 18, 28, 0.62));
@@ -1647,7 +1647,6 @@ input {
 .quote,
 .regions,
 .music,
-.launchers,
 .network-check,
 .ip-check {
     grid-column: span 2;
@@ -1838,7 +1837,6 @@ input {
     }
 }
 
-.updates,
 .boot {
     grid-column: span 2;
     min-height: 260px;
@@ -1863,24 +1861,6 @@ input {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.updates article {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.updates time {
-    color: rgba(255, 255, 255, 0.58);
-    font-size: 13px;
-}
-
-.updates h3 {
-    margin: 4px 0;
-}
-
-.updates p {
-    color: rgba(255, 255, 255, 0.72);
-}
-
 .boot-log,
 .terminal-output {
     height: 210px;
@@ -1893,11 +1873,63 @@ input {
     line-height: 1.7;
 }
 
-.music,
-.launchers {
+.music {
     display: grid;
     align-content: start;
     gap: 14px;
+}
+
+.music strong {
+    font-size: clamp(24px, 3vw, 32px);
+    overflow-wrap: anywhere;
+}
+
+.music p {
+    margin: 0;
+}
+
+.music-picker {
+    display: grid;
+    gap: 8px;
+}
+
+.music-picker select {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    background: rgba(20, 45, 70, 0.4);
+    color: inherit;
+    font: inherit;
+}
+
+.music-picker option {
+    color: #172b45;
+    background: #fff;
+}
+
+.music-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.music .music-credit {
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.music-credit span {
+    display: inline;
+    margin: 0;
+    color: inherit;
+}
+
+.music-credit a {
+    color: inherit;
+    text-decoration: underline;
 }
 
 .music-frame {
@@ -1908,7 +1940,6 @@ input {
     box-shadow: 0 16px 34px rgba(15, 23, 42, 0.2);
 }
 
-.launchers .btn,
 .music .btn {
     width: fit-content;
 }
@@ -2092,6 +2123,7 @@ input {
     box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
 }
 
+/* Game controls stay in the panel flow instead of covering the board. */
 .games-shell {
     width: 100%;
     display: grid;
@@ -2443,10 +2475,8 @@ input {
     .quote,
     .regions,
     .music,
-    .launchers,
     .network-check,
     .ip-check,
-    .updates,
     .boot {
         grid-column: span 2;
     }
@@ -2575,10 +2605,8 @@ input {
     .quote,
     .regions,
     .music,
-    .launchers,
     .network-check,
     .ip-check,
-    .updates,
     .boot {
         grid-column: span 1;
     }
@@ -5638,4 +5666,107 @@ input {
     .project-small-icon { flex-basis: 61px; padding-top: 24px; font-size: 26px; }
     .project-card-small .project-card-body { padding: 22px 16px 22px 0; }
     .projects-site-card { align-items: start; flex-direction: column; padding: 25px; }
+}
+.dash-grid > .network-tool { grid-column: 1 / -1; min-width: 0; }
+.network-tool h2 { margin: 8px 0; font-size: 24px; }
+.tool-field { display: flex; flex-direction: column; gap: 8px; font-size: 14px; flex: 1; min-width: 0; }
+.tool-field input, .tool-field select { box-sizing: border-box; width: 100%; min-width: 0; border: 1px solid rgba(255,255,255,.45); border-radius: 12px; padding: 12px; font: inherit; color: inherit; background: rgba(20,45,70,.4); }
+.tool-field select option { color: #172b45; background: #fff; }
+.speed-metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin: 24px 0 12px; }
+.speed-metrics > div { display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,.12); padding: 16px; border-radius: 16px; min-width: 0; }
+.dash-card .speed-metrics strong { font-size: clamp(22px,3vw,34px); overflow-wrap: anywhere; }
+.speed-metrics small { opacity: .8; }
+#speedChart { width: 100%; height: 100px; border-radius: 12px; background: rgba(20,45,70,.15); }
+#speedCurve { stroke: #67e8f9; stroke-width: 2; fill: none; }
+.route-presets { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.route-presets .btn { padding: 8px 12px; font-size: 14px; }
+.route-controls { display: flex; gap: 16px; }
+.route-controls .tool-field:last-child { flex: 0 0 130px; }
+#routeHelp { margin: 16px 0; font-size: 14px; line-height: 1.7; }
+#routeHelp summary { cursor: pointer; }
+#routeMap { height: 340px; border-radius: 16px; overflow: hidden; margin: 20px 0; z-index: 0; background: rgba(20,45,70,.15); }
+#routeMap:empty::after { content: '开始追踪后显示跳点地图'; display: flex; height: 100%; align-items: center; justify-content: center; }
+.route-table-wrap { max-width: 100%; overflow-x: auto; }
+.route-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.route-table th, .route-table td { padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,.2); vertical-align: top; }
+.route-table td:nth-child(2) { overflow-wrap: anywhere; min-width: 110px; }
+.route-table td:nth-child(3) { min-width: 150px; font-variant-numeric: tabular-nums; }
+.hop-marker { background: #0284c7; color: #fff; border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: bold 12px sans-serif; }
+#routeMap .leaflet-control-zoom a, #routeMap .leaflet-control-attribution, #routeMap .leaflet-control-attribution a, #routeMap .leaflet-popup-content { color: #172b45; }
+.route-map-link { display: block; cursor: pointer; color: inherit; border: 0; background: transparent; text-decoration: underline; padding: 8px 0 0; }
+.network-tool button:disabled { opacity: .55; cursor: not-allowed; }
+#routeExit[hidden] { display: none; }
+@media(max-width:560px) { .speed-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; } .route-controls { flex-direction: column; } .route-controls .tool-field:last-child { flex-basis: auto; } #routeMap { height: 280px; } }
+
+/* Games: readable panels and controls that never cover the board. */
+.games-page .games-shell {
+    background: rgba(12, 30, 49, 0.86);
+}
+.games-page .game-head,
+.games-page .game-head h1,
+.games-page .game-head p,
+.games-page .game-head strong,
+.games-page .tetris-next {
+    color: #f3f7fc;
+}
+.games-page .game-item.active {
+    background: rgba(110, 231, 249, 0.2);
+    box-shadow: inset 3px 0 #6ee7f9;
+}
+.games-page .game-panel { min-width: 0; }
+.games-page .game-panel:focus { outline: none; }
+.games-page :is(button, canvas, .board-2048):focus-visible {
+    outline: 3px solid #6ee7f9;
+    outline-offset: 3px;
+}
+.games-page .game-actions .btn {
+    color: #fff;
+    background: rgba(18, 49, 72, 0.95);
+    min-height: 44px;
+}
+.games-page button:disabled { opacity: 0.5; cursor: default; }
+.games-page .mobile-gamepad {
+    position: static;
+    inset: auto;
+    z-index: auto;
+    display: grid;
+    transform: none;
+    margin: 0 auto;
+    width: 168px;
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(3, 52px);
+}
+.games-page .mobile-gamepad button {
+    width: 52px;
+    height: 52px;
+    color: #fff;
+    background: #173d55;
+    font-size: 16px;
+    touch-action: manipulation;
+}
+.games-page .mobile-gamepad[hidden],
+.games-page .mobile-gamepad button[hidden] { display: none; }
+.games-page .mobile-gamepad.flight-controls {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.games-page .flight-controls [data-control="action"] {
+    width: 140px;
+    border-radius: 26px;
+}
+.games-page :is(.board-2048, .huarong-board) { touch-action: none; }
+.games-page .mines-board { touch-action: pan-y; user-select: none; -webkit-touch-callout: none; }
+.games-page #flappyCanvas { cursor: pointer; touch-action: manipulation; }
+.games-page .game-panel canvas { max-width: 100%; height: auto; }
+@media (max-width: 820px) {
+    .games-page .games-list { max-height: none; overflow: visible; }
+}
+@media (min-width: 821px) {
+    .games-page .mobile-gamepad:not(.flight-controls) { display: none; }
+}
+@media (max-width: 560px) {
+    .games-page .games-main {
+        padding-bottom: calc(164px + env(safe-area-inset-bottom));
+    }
 }

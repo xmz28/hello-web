@@ -8,14 +8,6 @@ const bootLines = [
     "[ READY ] hello-web dashboard online"
 ];
 
-const fallbackUpdates = [
-    {
-        date: "v1.2",
-        title: "更新",
-        items: ["新增小游戏", "新增博客系统", "优化移动端"]
-    }
-];
-
 function seededNumber(seed, min, max) {
     let n = 0;
     for (let i = 0; i < seed.length; i++) n = (n * 31 + seed.charCodeAt(i)) % 9973;
@@ -24,9 +16,9 @@ function seededNumber(seed, min, max) {
 
 function setupDashboardWidgets() {
     renderBootLog();
-    loadUpdates();
     setupOnlineMusic();
     setupNetworkChecks();
+    setupNetworkTools();
 }
 
 function setText(id, value) {
@@ -46,28 +38,6 @@ function renderBootLog() {
             log.scrollTop = log.scrollHeight;
         }, index * 260);
     });
-}
-
-async function loadUpdates() {
-    const list = document.getElementById("updateList");
-    if (!list) return;
-    try {
-        const response = await fetch("updates.json", { cache: "no-store" });
-        const updates = await response.json();
-        renderUpdates(list, updates);
-    } catch {
-        renderUpdates(list, fallbackUpdates);
-    }
-}
-
-function renderUpdates(list, updates) {
-    list.innerHTML = updates.map((update) => `
-        <article>
-            <time>${update.date}</time>
-            <h3>${update.title}</h3>
-            <p>${update.items.join(" / ")}</p>
-        </article>
-    `).join("");
 }
 
 let cityWeatherController;
@@ -133,37 +103,101 @@ function weatherLabel(code) {
 }
 
 function setupOnlineMusic() {
+    const tracks = [
+        { title: "The Good Times", artist: "HoliznaCC0", page: "https://freemusicarchive.org/music/holiznacc0/be-happy-with-who-you-are/the-good-times/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/4e5GjL0fiBnn8ZtCegJ7U337KfG91HXRzDjE3mkg.mp3", license: "CC0 1.0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/" },
+        { title: "Blue Sky", artist: "1000 Handz", page: "https://freemusicarchive.org/music/1000-handz/cc-by-free-to-use-chillstudylounge-instrumentals/blue-sky-2/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/alphIsxvJbbdYlcC1mfCrO8dbf4m5zlcxiqn3Atb.mp3", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/" },
+        { title: "Life On Cassette", artist: "HoliznaCC0", page: "https://freemusicarchive.org/music/holiznacc0/be-happy-with-who-you-are/life-on-cassette/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/MYjVCcbfTE7rjSOgLOcL9knoc6lkk6IN4PlUacfc.mp3", license: "CC0 1.0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/" },
+        { title: "Tulip", artist: "1000 Handz", page: "https://freemusicarchive.org/music/1000-handz/cc-by-free-to-use-chillstudylounge-instrumentals/tulip/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/MnVpaTq1obQsafjtRufgDKm5b3Kpcbt2QE1HiLRj.mp3", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/" },
+        { title: "Finding Yourself", artist: "HoliznaCC0", page: "https://freemusicarchive.org/music/holiznacc0/be-happy-with-who-you-are/finding-yourself/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/oiidxxRMyz6B7XOLx2IOfeHKb1Pq3414iDMKQtvk.mp3", license: "CC0 1.0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/" },
+        { title: "Lemongrass", artist: "1000 Handz", page: "https://freemusicarchive.org/music/1000-handz/cc-by-free-to-use-chillstudylounge-instrumentals/lemongrass/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/yRtAooEEVEh9ho3HW2D8ZtHJ4N3xg4E91xLYrKOX.mp3", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/" },
+        { title: "City Lights", artist: "HoliznaCC0", page: "https://freemusicarchive.org/music/holiznacc0/be-happy-with-who-you-are/city-lights-1/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/3rTPHXICTqxoPmS0YLVUSm9qwOWoJxiXTaOy2vmx.mp3", license: "CC0 1.0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/" },
+        { title: "Community", artist: "1000 Handz", page: "https://freemusicarchive.org/music/1000-handz/cc-by-free-to-use-chillstudylounge-instrumentals/community/", file: "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/XBax459PuYU79ofiKfFQgkLE2ZAj6Pam57F2scvz.mp3", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/" }
+    ];
     const audio = document.getElementById("onlineMusic");
     const button = document.getElementById("musicToggle");
+    const previous = document.getElementById("musicPrevious");
+    const next = document.getElementById("musicNext");
+    const select = document.getElementById("musicSelect");
+    const title = document.getElementById("musicTrack");
     const status = document.getElementById("musicStatus");
-    if (!audio || !button || !status) return;
+    const artist = document.getElementById("musicArtist");
+    const source = document.getElementById("musicSource");
+    const license = document.getElementById("musicLicense");
+    if (!audio || !button || !previous || !next || !select || !title || !status || !artist || !source || !license) return;
 
-    const tryPlay = () => {
-        audio.volume = 0.35;
-        audio.play()
-            .then(() => {
-                status.textContent = "正在播放：久石让 - Summer";
-                button.textContent = "暂停";
-            })
-            .catch(() => {
-                status.textContent = "浏览器已拦截自动播放，点击播放";
-                button.textContent = "播放";
-            });
-    };
-
-    button.addEventListener("click", () => {
-        if (audio.paused) {
-            audio.play();
-            status.textContent = "正在播放：久石让 - Summer";
-            button.textContent = "暂停";
-        } else {
-            audio.pause();
-            status.textContent = "已暂停";
-            button.textContent = "播放";
-        }
+    let currentIndex = 0;
+    let playRequest = 0;
+    audio.volume = 0.35;
+    tracks.forEach((track, index) => {
+        const option = new Option(`${index + 1}. ${track.title} — ${track.artist}`, String(index));
+        select.add(option);
     });
 
-    setTimeout(tryPlay, 500);
+    const play = async () => {
+        const request = ++playRequest;
+        status.textContent = "正在加载音乐...";
+        try {
+            await audio.play();
+        } catch (error) {
+            if (request !== playRequest) return;
+            button.textContent = "播放";
+            status.textContent = error.name === "NotAllowedError"
+                ? "浏览器已拦截自动播放，点击播放"
+                : "音频加载失败，请换一首或稍后重试";
+        }
+    };
+
+    const chooseTrack = (index, startPlaying) => {
+        playRequest++;
+        currentIndex = (index + tracks.length) % tracks.length;
+        const track = tracks[currentIndex];
+        audio.src = track.file;
+        audio.load();
+        select.value = String(currentIndex);
+        title.textContent = track.title;
+        artist.textContent = track.artist;
+        source.href = track.page;
+        license.href = track.licenseUrl;
+        license.textContent = track.license;
+        button.textContent = "播放";
+        status.textContent = startPlaying ? "正在加载音乐..." : "点击播放";
+        if (startPlaying) play();
+    };
+
+    audio.addEventListener("playing", () => {
+        button.textContent = "暂停";
+        status.textContent = `正在播放：${tracks[currentIndex].artist} · ${tracks[currentIndex].title}`;
+    });
+    audio.addEventListener("pause", () => {
+        button.textContent = "播放";
+        if (!audio.ended) status.textContent = "已暂停";
+    });
+    audio.addEventListener("ended", () => chooseTrack(currentIndex + 1, true));
+    audio.addEventListener("error", () => {
+        button.textContent = "播放";
+        status.textContent = "音频加载失败，请换一首或稍后重试";
+    });
+    const cancelAutoplay = () => clearTimeout(autoplayTimer);
+    button.addEventListener("click", () => {
+        cancelAutoplay();
+        if (audio.paused) play();
+        else audio.pause();
+    });
+    previous.addEventListener("click", () => {
+        cancelAutoplay();
+        chooseTrack(currentIndex - 1, !audio.paused);
+    });
+    next.addEventListener("click", () => {
+        cancelAutoplay();
+        chooseTrack(currentIndex + 1, !audio.paused);
+    });
+    select.addEventListener("change", () => {
+        cancelAutoplay();
+        chooseTrack(Number(select.value), !audio.paused);
+    });
+
+    chooseTrack(0, false);
+    const autoplayTimer = setTimeout(play, 500);
 }
 
 

@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>状态面板</title>
 <script src="theme-init.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=network-tools-2">
 <link rel="stylesheet" href="remixicon.css">
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
 </head>
 <body class="dashboard-page">
 <a class="skip-link" href="#mainContent">跳到主内容</a>
@@ -83,15 +84,42 @@
             <button id="ipv6Refresh" class="btn" type="button">重新检测</button>
         </article>
         <article class="dash-card weather"><span id="cityWeatherTitle">IPIP 城市天气</span><strong id="cityTemp">--</strong><p id="cityWeather">等待 IPIP 城市检测</p><p id="cityWeatherMeta"></p></article>
-        <article class="dash-card updates"><span>最近更新日志</span><div id="updateList"></div></article>
+        <article class="dash-card network-tool">
+            <div class="check-heading"><div><span>浏览器直连 · 国际节点</span><h2>网络测速</h2></div><button id="speedStart" class="btn" type="button">开始测速</button></div>
+            <label class="tool-field">测速节点 <select id="speedNode"><option value="tokyo">日本东京 · A573 / LibreSpeed</option><option value="la">美国洛杉矶 · Clouvider / LibreSpeed</option></select></label>
+            <p id="speedStatus" role="status">点击开始后测量延迟、下载与上传速度。</p>
+            <div class="speed-metrics"><div><span>下载</span><strong id="speedDown">--</strong><small>Mbps</small></div><div><span>上传</span><strong id="speedUp">--</strong><small>Mbps</small></div><div><span>延迟 / 抖动</span><strong id="speedLatency">--</strong><small>ms</small></div><div><span>测试流量</span><strong id="speedTraffic">0</strong><small>MiB · 有效载荷</small></div></div>
+            <svg id="speedChart" viewBox="0 0 800 100" role="img" aria-label="当前阶段速度曲线"><path id="speedCurve" d=""/></svg>
+            <p class="check-note">仅手动启动。每阶段最多 8 秒；下载上限 64 MiB，上传上限 16 MiB，最多 3 个并发连接。HTTP 实测结果取决于节点、VPN 分流和当前网络，不代表套餐带宽；短样本会提示。测速时暂停常用网站检测，结束后恢复未完成的检测。</p>
+        </article>
+        <article class="dash-card network-tool">
+            <div class="check-heading"><div><span>本机 ICMP · Windows tracert</span><h2>路由追踪与地图</h2></div><button id="routeStart" class="btn" type="button" disabled>开始追踪</button></div>
+            <div id="routePresets" class="route-presets" aria-label="8 个预设网站"></div>
+            <div class="route-controls"><label class="tool-field">网站或 IP <input id="routeTarget" value="github.com" placeholder="example.com / IPv4 / IPv6" maxlength="2048"></label><label class="tool-field">协议 <select id="routeFamily"><option value="auto">自动</option><option value="4">IPv4</option><option value="6">IPv6</option></select></label></div>
+            <p id="routeStatus" role="status">正在检查本地助手…</p>
+            <details id="routeHelp"><summary>首次使用：下载免安装路由助手</summary><p>浏览器不能直接执行本机 traceroute。Windows 10 / 11（64 位）访客下载下方助手，双击运行后会自动打开本地面板；无需安装 Python、输入命令或安装浏览器扩展。选择网站或输入 IP，结果和地图会自动显示。</p><div class="route-presets"><a id="routeDownload" class="btn" href="downloads/NetworkRouteHelper-Windows-x64.exe" download>下载路由助手 · Windows 免安装</a><a class="btn" href="http://127.0.0.1:8765/dashboard.html" target="_blank" rel="noopener">助手已启动？打开追踪面板 ↗</a><button id="routeConnect" class="btn" type="button">检查本地连接</button></div><p class="check-note">下载后需要你手动运行一次程序，网页不能自动安装或启动它。目前助手支持 Windows；macOS、Linux 和手机暂不提供本机追踪。测速与网站延迟检测仍可直接使用。</p></details>
+            <button id="routeExit" class="btn" type="button" hidden>退出本地助手</button>
+            <div id="routeMap" aria-label="跳点 IP 估算位置地图"></div>
+            <div class="route-table-wrap"><table class="route-table"><thead><tr><th>跳数</th><th>IP</th><th>三次响应时间</th><th>归属地 / 网络</th></tr></thead><tbody id="routeHops"><tr><td colspan="4">等待开始追踪</td></tr></tbody></table></div>
+            <p class="check-note">最多 30 跳，约 100 秒。* 表示该次探测未响应，不等同于业务丢包。ICMP 可能不经过仅代理 HTTP 的 VPN；展示的是这台电脑实际收到的跳点。地图仅标记有坐标的公网 IP，虚线连接已知跳点，表示顺序而非实际光缆路线。IP 数据库位置为估算，Anycast IP 可能与实际机房不同；超时和私网地址不会伪造位置。归属地查询会向 IPinfo / ipwho.is 发送跳点 IP；底图来自 OpenStreetMap。</p>
+        </article>
+        <article class="dash-card music">
+            <span>音乐播放器 · Lo-fi 歌单</span>
+            <strong id="musicTrack">正在准备曲目...</strong>
+            <p id="musicStatus" role="status">尝试自动播放中...</p>
+            <label class="music-picker" for="musicSelect">曲目 <select id="musicSelect" aria-label="选择音乐曲目"></select></label>
+            <audio id="onlineMusic" preload="none"></audio>
+            <div class="music-controls"><button id="musicPrevious" class="btn" type="button">上一首</button><button id="musicToggle" class="btn" type="button">播放</button><button id="musicNext" class="btn" type="button">下一首</button></div>
+            <p class="music-credit">音乐：<span id="musicArtist"></span> · <a id="musicSource" target="_blank" rel="noopener noreferrer">FMA 曲目页</a> · <a id="musicLicense" target="_blank" rel="noopener noreferrer">授权条款</a></p>
+        </article>
         <article class="dash-card boot"><span>服务器启动日志</span><div id="bootLog" class="boot-log"></div></article>
-        <article class="dash-card music"><span>音乐播放器</span><strong id="musicStatus">尝试自动播放中...</strong><audio id="onlineMusic" preload="auto" loop src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Classical_Sampler/Kevin_MacLeod_-_Canon_in_D_Major.mp3"></audio><button id="musicToggle" class="btn" type="button">播放</button></article>
-        <article class="dash-card launchers"><span>控制台入口</span><a class="btn" href="terminal.html">终端控制台</a></article>
     </section>
 </main>
 
 <script src="site.js"></script>
 <script src="network-checks.js"></script>
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script src="network-tools.js?v=2"></script>
 <script src="site-widgets.js"></script>
 <script>
 setupSiteControls();
