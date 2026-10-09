@@ -13,6 +13,7 @@
 - 网页小游戏
 - 常用网站导航
 - 站点状态面板
+- 状态面板网络检查：网站响应时间、出口 IP、IPv4 / IPv6 与城市天气
 - 旅游签证类型与材料查询（日本、韩国、申根、英国、澳大利亚、新西兰、美国、加拿大）
 - GitHub、B 站、抖音及页面访问二维码弹窗
 - 模拟终端页面
@@ -44,6 +45,7 @@ hello-web/
 ├── social-modals.js    # 社交与页面二维码弹窗
 ├── theme-init.js       # 页面主题初始化
 ├── site-widgets.js     # 状态面板组件
+├── network-checks.js   # 多站点 HTTP 延迟与多来源出口 IP 查询
 └── updates.json        # 更新记录
 ```
 
@@ -62,6 +64,8 @@ python -m http.server 8080
 ```text
 http://localhost:8080
 ```
+
+状态面板在访客浏览器中检测 8 个网站的 HTTP 响应时间（每站最多 12 次），并展示 IPIP、IPinfo、ipwho.is 和 Cloudflare 看到的出口 IP，以及 IPv4 / IPv6 和基于 IPIP 城市的天气。结果可能受到 VPN 分流、跨域限制及第三方服务可用性的影响；HTTP 响应时间不等同于 ICMP Ping，IP 归属地也不是访客的实际位置。
 
 ## 更新 B 站视频
 
