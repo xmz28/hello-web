@@ -1,8 +1,8 @@
 const bootLines = [
     "[ OK ] Mounted /xmz/hello-web",
     "[ OK ] Started static blog renderer",
-    "[ OK ] Loaded visitor telemetry simulator",
-    "[ OK ] Synced Tokyo weather channel",
+    "[ OK ] Loaded browser network probes",
+    "[ OK ] City weather waiting for IPIP lookup",
     "[ OK ] Activated glassmorphism UI layer",
     "[ OK ] Music module waiting for user gesture",
     "[ READY ] hello-web dashboard online"
@@ -23,29 +23,15 @@ function seededNumber(seed, min, max) {
 }
 
 function setupDashboardWidgets() {
-    const todayKey = new Date().toISOString().slice(0, 10);
-    const totalKey = "xmzTotalVisits";
-    const total = Number(localStorage.getItem(totalKey) || 4820) + 1;
-    localStorage.setItem(totalKey, total);
-
-    setText("totalVisits", total.toLocaleString("zh-CN"));
-    updateOnlineCount();
-    setInterval(updateOnlineCount, 4000);
-
     renderBootLog();
     loadUpdates();
-    loadTokyoWeather();
     setupOnlineMusic();
+    setupNetworkChecks();
 }
 
 function setText(id, value) {
     const node = document.getElementById(id);
     if (node) node.textContent = value;
-}
-
-function updateOnlineCount() {
-    const base = 8 + Math.floor((Date.now() / 10000) % 7);
-    setText("onlineUsers", base + Math.floor(Math.random() * 5));
 }
 
 function renderBootLog() {
@@ -84,20 +70,58 @@ function renderUpdates(list, updates) {
     `).join("");
 }
 
-async function loadTokyoWeather() {
+let cityWeatherController;
+
+function resetIpipWeather(message) {
+    cityWeatherController?.abort();
+    cityWeatherController = undefined;
+    setText("cityWeatherTitle", "IPIP 城市天气");
+    setText("cityTemp", "--");
+    setText("cityWeather", message);
+    setText("cityWeatherMeta", "");
+}
+
+async function loadIpipWeather(location) {
+    cityWeatherController?.abort();
+    const city = location?.[2];
+    if (!city) {
+        resetIpipWeather("IPIP 未返回城市，无法获取天气");
+        return;
+    }
+    const controller = new AbortController();
+    cityWeatherController = controller;
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    setText("cityWeatherTitle", `${city}实时天气`);
+    setText("cityTemp", "--");
+    setText("cityWeather", "加载城市天气...");
+    setText("cityWeatherMeta", "城市来源：IPIP");
     try {
-        const url = "https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=Asia%2FTokyo";
-        const response = await fetch(url);
+        const geoUrl = new URL("https://geocoding-api.open-meteo.com/v1/search");
+        const china = location[0] === "中国" || location[0] === "China";
+        geoUrl.search = new URLSearchParams({ name: china ? city : `${city}, ${location[0]}`, count: "10", language: "zh", ...(china ? { countryCode: "CN" } : {}) });
+        const geoResponse = await fetch(geoUrl, { signal: controller.signal, credentials: "omit" });
+        if (!geoResponse.ok) throw new Error("Geocoding unavailable");
+        const geo = await geoResponse.json();
+        const normalize = name => String(name || "").replace(/(?:省|市)$/u, "").toLowerCase();
+        const place = (geo.results || []).find(result => normalize(result.name) === normalize(city) && (!china || !location[1] || normalize(result.admin1) === normalize(location[1])));
+        if (!place) throw new Error("City not found");
+        const url = new URL("https://api.open-meteo.com/v1/forecast");
+        url.search = new URLSearchParams({ latitude: place.latitude, longitude: place.longitude, current: "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m", timezone: "auto" });
+        const response = await fetch(url, { signal: controller.signal, credentials: "omit" });
+        if (!response.ok) throw new Error("Weather unavailable");
         const data = await response.json();
         const c = data.current;
-        setText("tokyoTemp", `${Math.round(c.temperature_2m)}°C`);
-        setText("tokyoMeta", `湿度 ${c.relative_humidity_2m}% · 风速 ${Math.round(c.wind_speed_10m)} km/h`);
-        setText("tokyoWeather", weatherLabel(c.weather_code));
+        if (cityWeatherController !== controller) return;
+        if (!Number.isFinite(c?.temperature_2m)) throw new Error("Invalid weather response");
+        setText("cityTemp", `${Math.round(c.temperature_2m)}°C`);
+        setText("cityWeatherMeta", `湿度 ${c.relative_humidity_2m}% · 风速 ${Math.round(c.wind_speed_10m)} km/h · 城市：IPIP / 天气：Open-Meteo`);
+        setText("cityWeather", weatherLabel(c.weather_code));
     } catch {
-        setText("tokyoTemp", "获取失败");
-        setText("tokyoMeta", "请检查网络或稍后重试");
-        setText("tokyoWeather", "获取失败");
-    }
+        if (cityWeatherController !== controller) return;
+        setText("cityTemp", "获取失败");
+        setText("cityWeatherMeta", "可重新检测公网 IP 后重试天气查询");
+        setText("cityWeather", "城市定位或天气服务未成功响应");
+    } finally { clearTimeout(timeout); }
 }
 
 function weatherLabel(code) {

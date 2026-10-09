@@ -50,9 +50,39 @@
     </section>
 
     <section class="dash-grid">
-        <article class="dash-card metric"><span>总访问量</span><strong id="totalVisits">--</strong></article>
-        <article class="dash-card metric"><span>当前在线</span><strong id="onlineUsers">--</strong></article>
-        <article class="dash-card weather"><span>东京实时天气</span><strong id="tokyoTemp">--</strong><p id="tokyoWeather">加载中</p><p id="tokyoMeta"></p></article>
+        <article class="dash-card ip-check">
+            <div class="check-heading">
+                <div><span>公网 IP 检查 · 多来源</span><h2>查看各服务看到的出口</h2></div>
+                <button id="ipRefresh" class="btn" type="button">检查公网 IP</button>
+            </div>
+            <p id="ipSummary" role="status">正在分别查询国内来源和国际来源。</p>
+            <div id="ipSources" class="ip-sources" aria-label="各来源出口 IP 与归属地"></div>
+            <p id="ipCheckNote" class="check-note">VPN 分流可能使各服务看到不同出口。IP 归属地来自数据库，可能与节点位置不同，也不是你本人的实际位置。打开页面会自动请求这 4 家服务。</p>
+            <div class="ip-check-links">
+                <a href="https://cleanip.io/" target="_blank" rel="noopener noreferrer">CleanIP 纯净度详情 ↗</a>
+                <a href="https://net.arsn.cn/ip" target="_blank" rel="noopener noreferrer">FlowLoss 多地 IP / 网络检测 ↗</a>
+            </div>
+        </article>
+        <article class="dash-card network-check">
+            <div class="check-heading">
+                <div><span>网络连接 · HTTP Ping</span><h2>常用网站延迟</h2></div>
+                <button id="networkRefresh" class="btn" type="button" aria-pressed="false">开始检测</button>
+            </div>
+            <p id="networkStatus" role="status">准备检测 8 个站点</p>
+            <div id="networkSites" class="network-sites" aria-label="各站点请求延迟"></div>
+            <p class="check-note">各站点独立连续检测 12 次，收到响应后立即开始下一次；超时 / 失败也计为一次，完成后停止。圆点对应本次 12 次请求。绿色 ≤150ms，黄色 ≤300ms，红色 &gt;300ms，灰色为超时 / 失败。测量浏览器到目标站点的 HTTP 响应耗时，受 VPN 分流、连接复用和服务端响应影响；不等同于 ICMP Ping 或丢包率。</p>
+        </article>
+        <article class="dash-card protocol-check">
+            <span>IPv4 检测</span><strong id="ipv4Address" role="status">检测中...</strong>
+            <p id="ipv4Meta" class="check-note">正在查询 IPv4 出口</p>
+            <button id="ipv4Refresh" class="btn" type="button">重新检测</button>
+        </article>
+        <article class="dash-card protocol-check">
+            <span>IPv6 检测</span><strong id="ipv6Address" role="status">检测中...</strong>
+            <p id="ipv6Meta" class="check-note">正在尝试 IPv6 连接</p>
+            <button id="ipv6Refresh" class="btn" type="button">重新检测</button>
+        </article>
+        <article class="dash-card weather"><span id="cityWeatherTitle">IPIP 城市天气</span><strong id="cityTemp">--</strong><p id="cityWeather">等待 IPIP 城市检测</p><p id="cityWeatherMeta"></p></article>
         <article class="dash-card updates"><span>最近更新日志</span><div id="updateList"></div></article>
         <article class="dash-card boot"><span>服务器启动日志</span><div id="bootLog" class="boot-log"></div></article>
         <article class="dash-card music"><span>音乐播放器</span><strong id="musicStatus">尝试自动播放中...</strong><audio id="onlineMusic" preload="auto" loop src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Classical_Sampler/Kevin_MacLeod_-_Canon_in_D_Major.mp3"></audio><button id="musicToggle" class="btn" type="button">播放</button></article>
@@ -61,6 +91,7 @@
 </main>
 
 <script src="site.js"></script>
+<script src="network-checks.js"></script>
 <script src="site-widgets.js"></script>
 <script>
 setupSiteControls();
