@@ -1,8 +1,8 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "platform": "Windows x64",
-  "bytes": 10112835,
-  "sha256": "8e20b3df148d75455fbfb3c90faa5e1a2fb95bbc464404553ef3d71232abf4ba",
+  "bytes": 10149810,
+  "sha256": "d9efb3eaa485bf46f233fc157fdadc16513ac4a8771a82950d79dc393e2569e5",
   "parts": [
     {
       "name": "NetworkRouteHelper-Windows-x64.exe.part01",
@@ -22,7 +22,7 @@
     },
     {
       "name": "NetworkRouteHelper-Windows-x64.exe.part05",
-      "bytes": 1724227
+      "bytes": 1761202
     }
   ]
 }

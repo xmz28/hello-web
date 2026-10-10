@@ -15,7 +15,7 @@ python_license = Path(sys.base_prefix) / "LICENSE.txt"
 if not python_license.is_file():
     raise RuntimeError("找不到 Python 运行环境许可证，请使用官方 Windows Python 构建")
 shutil.copy2(python_license, web / "LICENSE-Python.txt")
-files = ["dashboard.html", "theme-init.js", "style.css", "remixicon.css", "remixicon.woff2", "site.js", "network-checks.js", "network-tools.js", "site-widgets.js", "updates.json", "assets/images/2.jpg"]
+files = ["dashboard.html", "theme-init.js", "style.css", "remixicon.css", "remixicon.woff2", "interface-copy.js", "site.js", "network-checks.js", "network-tools.js", "site-widgets.js", "updates.json", "assets/images/2.jpg"]
 for name in files:
     output = web / name
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -46,6 +46,6 @@ for index, offset in enumerate(range(0, len(data), chunk_size), 1):
     chunk = data[offset:offset + chunk_size]
     (downloads / name).write_bytes(chunk)
     parts.append({"name": name, "bytes": len(chunk)})
-(downloads / "NetworkRouteHelper-Windows-x64.sha256").write_text(f"{digest}  {binary.name}\n", encoding="ascii")
-(downloads / "network-helper-release.json").write_text(json.dumps({"version": "1.1.0", "platform": "Windows x64", "bytes": len(data), "sha256": digest, "parts": parts}, indent=2), encoding="utf-8")
+(downloads / "NetworkRouteHelper-Windows-x64.sha256").write_text(f"{digest}  {binary.name}\n", encoding="ascii", newline="\n")
+(downloads / "network-helper-release.json").write_text(json.dumps({"version": "1.1.1", "platform": "Windows x64", "bytes": len(data), "sha256": digest, "parts": parts}, indent=2), encoding="utf-8", newline="\n")
 print(f"Built {binary.name}: {binary.stat().st_size / 1024 / 1024:.1f} MiB, SHA256 {digest}")
