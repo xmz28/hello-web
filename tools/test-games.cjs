@@ -97,4 +97,10 @@ swipeBoard.handlers.pointerdown[0]({ pointerType: 'touch', isPrimary: true, poin
 swipeBoard.handlers.pointerup[0]({ pointerId: 2, clientX: 10, clientY: 100, preventDefault() {} });
 assert.equal(run('grid2048[0][0]'), 2, 'Left swipe moves the tile');
 assert.equal(run('grid2048.flat().filter(Boolean).length'), 2);
-console.log('Passed: waiting states, pause/resume, full snake board, 2048 merges, Flappy lifecycle, visibility, AI cancellation, long press and swipe.');
+const themeState = '({snake, snakeScore, snakePaused, grid2048, score2048, mines, gobang, activeGame})';
+const beforeTheme = json(themeState);
+const beforeTimers = [...timers.keys()];
+context.window.handlers['site-theme-change'][0]();
+assert.deepEqual(json(themeState), beforeTheme, 'Theme repaint must preserve game progress and pause state');
+assert.deepEqual([...timers.keys()], beforeTimers, 'Theme repaint must not start or stop timers');
+console.log('Passed: waiting states, pause/resume, full snake board, 2048 merges, Flappy lifecycle, visibility, AI cancellation, long press, swipe and theme repaint without state resets.');

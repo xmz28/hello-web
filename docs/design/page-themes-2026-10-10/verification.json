@@ -1,0 +1,342 @@
+[
+  {
+    "page": "index",
+    "bg": "saturate(0.92) contrast(1.04) brightness(0.83)",
+    "overlay": "linear-gradient(rgba(7, 35, 65, 0.08) 0%, rgba(5, 30, 55, 0.02) 43%, rgba(3, 21, 41, 0.38) 100%), linear-gradient(to right, rgba(7, 30, 54, 0.16), rgba(0, 0, 0, 0) 35%, rgba(8, 28, 50, 0.08))",
+    "surfaces": [
+      {
+        "background": "rgba(24, 62, 91, 0.3) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "home-dock",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "page": "index",
+    "bg": "saturate(0.85) contrast(1.04) brightness(0.58)",
+    "overlay": "linear-gradient(rgba(3, 18, 34, 0.28), rgba(3, 18, 34, 0.62)), linear-gradient(90deg, rgba(5, 24, 44, 0.15), rgba(0, 0, 0, 0))",
+    "surfaces": [
+      {
+        "background": "rgba(7, 30, 51, 0.7) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "home-dock",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "dark",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "page": "home",
+    "bg": "saturate(0.94) contrast(1.04) brightness(0.82)",
+    "overlay": "linear-gradient(90deg, rgba(13, 47, 74, 0.12), rgba(0, 0, 0, 0) 46%, rgba(13, 47, 74, 0.1)), linear-gradient(rgba(10, 42, 69, 0.04), rgba(9, 37, 60, 0.26))",
+    "surfaces": [
+      {
+        "background": "radial-gradient(380px, rgba(143, 224, 255, 0.14), rgba(0, 0, 0, 0) 56%) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(35, 89, 124, 0.72), rgba(19, 61, 91, 0.68)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "command-panel about-module",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "radial-gradient(380px, rgba(143, 224, 255, 0.14), rgba(0, 0, 0, 0) 56%) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(35, 89, 124, 0.72), rgba(19, 61, 91, 0.68)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "command-panel interests-module",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "radial-gradient(380px, rgba(143, 224, 255, 0.14), rgba(0, 0, 0, 0) 56%) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(35, 89, 124, 0.72), rgba(19, 61, 91, 0.68)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "command-panel uptime-card",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "home",
+    "bg": "saturate(0.86) contrast(1.04) brightness(0.57)",
+    "overlay": "linear-gradient(rgba(4, 24, 42, 0.28), rgba(4, 21, 37, 0.58))",
+    "surfaces": [
+      {
+        "background": "radial-gradient(380px, rgba(117, 220, 255, 0.08), rgba(0, 0, 0, 0) 56%) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(15, 48, 73, 0.82), rgba(7, 28, 48, 0.8)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "command-panel about-module",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "radial-gradient(380px, rgba(117, 220, 255, 0.08), rgba(0, 0, 0, 0) 56%) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(15, 48, 73, 0.82), rgba(7, 28, 48, 0.8)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "command-panel interests-module",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "radial-gradient(380px, rgba(117, 220, 255, 0.08), rgba(0, 0, 0, 0) 56%) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(15, 48, 73, 0.82), rgba(7, 28, 48, 0.8)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "command-panel uptime-card",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "dark",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "blog",
+    "bg": "saturate(0.98) contrast(1.01) brightness(0.98)",
+    "overlay": "linear-gradient(90deg, rgba(222, 243, 255, 0.22), rgba(255, 255, 255, 0.02) 55%, rgba(225, 245, 255, 0.16)), linear-gradient(rgba(212, 241, 255, 0.03), rgba(224, 244, 255, 0.18))",
+    "surfaces": [
+      {
+        "background": "rgba(250, 253, 255, 0.88) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "comments-panel",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "blog",
+    "bg": "saturate(0.87) contrast(1.02) brightness(0.7)",
+    "overlay": "linear-gradient(rgba(6, 29, 49, 0.38), rgba(6, 26, 44, 0.64))",
+    "surfaces": [
+      {
+        "background": "rgba(13, 40, 61, 0.94) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "comments-panel",
+        "color": "rgb(225, 241, 251)"
+      }
+    ],
+    "theme": "dark",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "projects",
+    "bg": "saturate(0.9) brightness(0.76)",
+    "overlay": "linear-gradient(rgba(7, 32, 51, 0.3), rgba(6, 27, 46, 0.62))",
+    "surfaces": [
+      {
+        "background": "rgba(21, 59, 84, 0.8) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-feature project-card-dashboard",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "rgba(21, 59, 84, 0.8) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-feature project-card-nes",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "rgba(21, 59, 84, 0.8) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-small",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "dark",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "projects",
+    "bg": "saturate(0.96) brightness(0.98)",
+    "overlay": "linear-gradient(rgba(192, 225, 245, 0.12), rgba(163, 202, 227, 0.38))",
+    "surfaces": [
+      {
+        "background": "rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(213, 236, 249, 0.84), rgba(178, 212, 233, 0.82)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-feature project-card-dashboard",
+        "color": "rgb(21, 62, 92)"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(213, 236, 249, 0.84), rgba(178, 212, 233, 0.82)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-feature project-card-nes",
+        "color": "rgb(21, 62, 92)"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(213, 236, 249, 0.84), rgba(178, 212, 233, 0.82)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-small",
+        "color": "rgb(21, 62, 92)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "nav",
+    "bg": "saturate(1.08) brightness(1.02)",
+    "overlay": "linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.18))",
+    "surfaces": [
+      {
+        "background": "rgba(24, 65, 95, 0.55) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "rgba(24, 65, 95, 0.55) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "rgba(24, 65, 95, 0.55) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "nav",
+    "bg": "saturate(1.08) brightness(1.02)",
+    "overlay": "linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.58))",
+    "surfaces": [
+      {
+        "background": "linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.18), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.18), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.18), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "dark",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "dashboard",
+    "bg": "saturate(1.08) brightness(1.02)",
+    "overlay": "radial-gradient(circle at 50% 12%, rgba(110, 231, 249, 0.18), rgba(0, 0, 0, 0) 30%), linear-gradient(rgba(10, 32, 51, 0.26), rgba(10, 31, 49, 0.44))",
+    "surfaces": [
+      {
+        "background": "linear-gradient(135deg, rgba(102, 160, 193, 0.32), rgba(31, 75, 106, 0.32)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.18), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "dash-card ip-check",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "linear-gradient(135deg, rgba(102, 160, 193, 0.32), rgba(31, 75, 106, 0.32)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.18), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "dash-card network-check",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "linear-gradient(135deg, rgba(102, 160, 193, 0.32), rgba(31, 75, 106, 0.32)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.18), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "dash-card protocol-check",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "dashboard",
+    "bg": "saturate(0.94) brightness(0.8)",
+    "overlay": "radial-gradient(circle at 50% 12%, rgba(110, 231, 249, 0.09), rgba(0, 0, 0, 0) 30%), linear-gradient(rgba(5, 24, 41, 0.48), rgba(5, 23, 39, 0.72))",
+    "surfaces": [
+      {
+        "background": "linear-gradient(135deg, rgba(27, 62, 88, 0.75), rgba(12, 37, 59, 0.76)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.12), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "dash-card ip-check",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "linear-gradient(135deg, rgba(27, 62, 88, 0.75), rgba(12, 37, 59, 0.76)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.12), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "dash-card network-check",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "linear-gradient(135deg, rgba(27, 62, 88, 0.75), rgba(12, 37, 59, 0.76)) repeat scroll 0% 0% / auto padding-box border-box, rgba(0, 0, 0, 0) radial-gradient(circle at 100% 0%, rgba(110, 231, 249, 0.12), rgba(0, 0, 0, 0) 34%) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "dash-card protocol-check",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "dark",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "projects-final",
+    "bg": "saturate(0.96) brightness(0.98)",
+    "overlay": "linear-gradient(rgba(210, 234, 248, 0.2), rgba(210, 234, 248, 0.55) 45%, rgba(170, 210, 235, 0.48))",
+    "surfaces": [
+      {
+        "background": "rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(213, 236, 249, 0.84), rgba(178, 212, 233, 0.82)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-feature project-card-dashboard",
+        "color": "rgb(21, 62, 92)"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(213, 236, 249, 0.84), rgba(178, 212, 233, 0.82)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-feature project-card-nes",
+        "color": "rgb(21, 62, 92)"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(213, 236, 249, 0.84), rgba(178, 212, 233, 0.82)) repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "project-card project-card-small",
+        "color": "rgb(21, 62, 92)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "nav-final",
+    "bg": "saturate(1.08) brightness(1.02)",
+    "overlay": "linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.18))",
+    "surfaces": [
+      {
+        "background": "rgba(24, 65, 95, 0.4) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "rgba(24, 65, 95, 0.4) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "background": "rgba(24, 65, 95, 0.4) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "portal-category",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 1280,
+    "width": 1265
+  },
+  {
+    "page": "games",
+    "bg": "saturate(1.08) brightness(1.02)",
+    "overlay": "linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.18))",
+    "surfaces": [
+      {
+        "background": "rgba(198, 225, 241, 0.88) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "games-shell",
+        "color": "rgb(25, 62, 88)"
+      }
+    ],
+    "theme": "light",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "games",
+    "bg": "saturate(1.08) brightness(1.02)",
+    "overlay": "linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.58))",
+    "surfaces": [
+      {
+        "background": "rgba(12, 30, 49, 0.86) none repeat scroll 0% 0% / auto padding-box border-box",
+        "class": "games-shell",
+        "color": "rgb(255, 255, 255)"
+      }
+    ],
+    "theme": "dark",
+    "viewport": 390,
+    "width": 375
+  }
+]

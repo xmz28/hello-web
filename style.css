@@ -5686,6 +5686,13 @@ input {
 #routeHelp summary { cursor: pointer; }
 #routeMap { height: 340px; border-radius: 16px; overflow: hidden; margin: 20px 0; z-index: 0; background: rgba(20,45,70,.15); }
 #routeMap:empty::after { content: '开始追踪后显示跳点地图'; display: flex; height: 100%; align-items: center; justify-content: center; }
+#routeMap[data-empty-label]:empty::after { content: attr(data-empty-label); }
+
+/* Fit the added language controls without changing page palettes. */
+.terminal-window header .flag-emoji { width: auto; height: auto; border-radius: 0; background: none; }
+.terminal-window header:has(.nav-controls) { flex-wrap: wrap; }
+.terminal-window header .nav-controls { margin-left: 0; }
+.home-status .nav-controls { margin-left: auto; }
 .route-table-wrap { max-width: 100%; overflow-x: auto; }
 .route-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
 .route-table th, .route-table td { padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,.2); vertical-align: top; }
@@ -5769,4 +5776,115 @@ input {
     .games-page .games-main {
         padding-bottom: calc(164px + env(safe-area-inset-bottom));
     }
+}
+
+/* Per-page day/night refinements confirmed on 2026-10-10.
+   Keep each page's glass, gradients and illustration colors. */
+
+/* Home: existing appearance is the day mode. */
+:root[data-theme="dark"] .home-page { --home-panel: rgba(7, 30, 51, .7); --home-line: rgba(157, 213, 243, .3); }
+:root[data-theme="dark"] .home-page .site-bg { filter: saturate(.85) contrast(1.04) brightness(.58); }
+:root[data-theme="dark"] .home-page .site-overlay {
+    background: linear-gradient(180deg, rgba(3, 18, 34, .28), rgba(3, 18, 34, .62)), linear-gradient(90deg, rgba(5, 24, 44, .15), transparent);
+}
+
+/* Profile: a modest lift for day, deeper blue glass for night. */
+:root[data-theme="light"] .profile-page .site-bg { filter: saturate(.94) contrast(1.04) brightness(.82); }
+:root[data-theme="light"] .profile-page .site-overlay {
+    background: linear-gradient(90deg, rgba(13, 47, 74, .12), transparent 46%, rgba(13, 47, 74, .1)), linear-gradient(180deg, rgba(10, 42, 69, .04), rgba(9, 37, 60, .26));
+}
+:root[data-theme="light"] .profile-page .command-panel {
+    background: radial-gradient(380px circle at var(--mx) var(--my), rgba(143, 224, 255, .14), transparent 56%), linear-gradient(135deg, rgba(35, 89, 124, .72), rgba(19, 61, 91, .68));
+}
+:root[data-theme="dark"] .profile-page .site-bg { filter: saturate(.86) contrast(1.04) brightness(.57); }
+:root[data-theme="dark"] .profile-page .site-overlay { background: linear-gradient(180deg, rgba(4, 24, 42, .28), rgba(4, 21, 37, .58)); }
+:root[data-theme="dark"] .profile-page .command-panel {
+    background: radial-gradient(380px circle at var(--mx) var(--my), rgba(117, 220, 255, .08), transparent 56%), linear-gradient(135deg, rgba(15, 48, 73, .82), rgba(7, 28, 48, .8));
+}
+@media (max-width: 1100px) {
+    :root[data-theme="light"] .profile-page .profile-identity { background: rgba(26, 73, 107, .74); }
+    :root[data-theme="dark"] .profile-page .profile-identity { background: rgba(7, 28, 48, .82); }
+}
+
+/* Blog: day stays intact; night uses its existing editorial variables. */
+:root[data-theme="dark"] .blog-page {
+    --blog-ink: #e1f1fb; --blog-muted: #aecadd; --blog-cyan: #79d8f4;
+    --blog-line: rgba(153, 205, 235, .22); --blog-glass: rgba(15, 48, 72, .68);
+    --dock-bg: rgba(10, 39, 63, .76); --dock-mobile-bg: rgba(9, 34, 55, .95); --dock-border: rgba(169, 224, 251, .25);
+    background: #12344e;
+}
+:root[data-theme="dark"] .blog-page .site-bg { filter: saturate(.87) contrast(1.02) brightness(.7); }
+:root[data-theme="dark"] .blog-page .site-overlay { background: linear-gradient(180deg, rgba(6, 29, 49, .38), rgba(6, 26, 44, .64)); }
+:root[data-theme="dark"] .blog-page :is(.blog-hero > p:last-child, .video-snapshot-note, .tab b, .post-meta, .social-box p, .mobile-url) { color: var(--blog-muted); }
+:root[data-theme="dark"] .blog-page :is(.search-shell, .blog-sidebar blockquote, .blog-tags span, .blog-socials button, .feed-sort, .search-shell kbd) {
+    color: var(--blog-ink); background: rgba(20, 57, 82, .64); border-color: var(--blog-line);
+}
+:root[data-theme="dark"] .blog-page :is(.tab.active, .tab:hover, .feed-sort button[aria-pressed="true"], .feed-sort button:hover, .post-card:hover, .post-card:focus-visible) {
+    color: var(--blog-ink); background: rgba(83, 150, 187, .22); border-color: var(--blog-line); box-shadow: inset 0 1px rgba(192, 231, 251, .1);
+}
+:root[data-theme="dark"] .blog-page .search-input::placeholder { color: #a2bfd1; }
+:root[data-theme="dark"] .blog-page :is(.post-card, .blog-tags, .blog-sidebar, .feed-heading) { border-color: var(--blog-line); }
+:root[data-theme="dark"] .blog-page :is(.comments-panel, .post-dialog, .social-box) { color: var(--blog-ink); background: rgba(13, 40, 61, .94); border-color: var(--blog-line); }
+:root[data-theme="dark"] .blog-page .post-detail-body { background: linear-gradient(160deg, #173d58, #112f47); }
+:root[data-theme="dark"] .blog-page .post-detail-content { color: #c7ddea; }
+:root[data-theme="dark"] .blog-page .post-detail-content p:first-child { color: var(--blog-ink); }
+:root[data-theme="dark"] .blog-page .social-box .social-link { color: #102f45; }
+:root[data-theme="dark"] .blog-page .empty-state { background: rgba(20, 57, 82, .64); }
+
+/* Projects: lift the over-dark original first, then add translucent day glass. */
+:root[data-theme="dark"] .projects-page .site-bg { filter: saturate(.9) brightness(.76); }
+:root[data-theme="dark"] .projects-page .site-overlay { background: linear-gradient(180deg, rgba(7, 32, 51, .3), rgba(6, 27, 46, .62)); }
+:root[data-theme="dark"] .projects-page .project-card { background: rgba(21, 59, 84, .8); border-color: rgba(164, 225, 246, .28); }
+:root[data-theme="dark"] .projects-page .projects-site-card { background: linear-gradient(115deg, rgba(28, 78, 102, .82), rgba(40, 52, 82, .82)); }
+:root[data-theme="light"] .projects-page { color: #153e5c; --dock-bg: rgba(29, 77, 112, .6); }
+:root[data-theme="light"] .projects-page .site-bg { filter: saturate(.96) brightness(.98); }
+:root[data-theme="light"] .projects-page .site-overlay { background: linear-gradient(180deg, rgba(210, 234, 248, .2), rgba(210, 234, 248, .55) 45%, rgba(170, 210, 235, .48)); }
+:root[data-theme="light"] .projects-page :is(.project-card, .projects-site-card) {
+    background: linear-gradient(135deg, rgba(213, 236, 249, .84), rgba(178, 212, 233, .82)); border-color: rgba(236, 249, 255, .65);
+    box-shadow: inset 0 1px rgba(255, 255, 255, .5), 0 20px 50px rgba(22, 61, 89, .16);
+}
+:root[data-theme="light"] .projects-page :is(.projects-intro, .projects-section-heading > p, .project-summary, .project-availability, .project-eyebrow span, .projects-site-card p) { color: #3c6079; }
+:root[data-theme="light"] .projects-page .projects-intro { color: #21445f; }
+:root[data-theme="light"] .projects-page :is(.projects-kicker, .projects-section-heading span, .projects-site-card > div > span, .projects-hero h1 span, .projects-github, .project-action, .projects-site-card a, .project-eyebrow, .project-small-icon) { color: #096b8d; }
+:root[data-theme="light"] .projects-page :is(.projects-kicker, .projects-section-heading span, .projects-github) { color: #0c4e6a; }
+:root[data-theme="light"] .projects-page .project-tags li { color: #26546e; background: rgba(78, 136, 171, .1); border-color: rgba(59, 116, 152, .26); }
+:root[data-theme="light"] .projects-page :is(.projects-github:hover, .project-action:hover, .projects-site-card a:hover) { color: #164e70; }
+
+/* Games: only the framed interface changes; keep the page background untouched. */
+:root[data-theme="light"] .games-page { --game-canvas: #dceaf3; --game-snake: #087b83; --game-food: #c72f7c; --game-pipe: #258b69; }
+:root[data-theme="dark"] .games-page { --game-canvas: #081321; --game-snake: #6ee7f9; --game-food: #ff70c8; --game-pipe: #8df7b5; }
+:root[data-theme="light"] .games-page .games-shell { color: #193e58; background: rgba(198, 225, 241, .88); border-color: rgba(231, 246, 255, .7); }
+:root[data-theme="light"] .games-page .games-list { background: rgba(68, 116, 147, .16); border-color: rgba(49, 104, 139, .24); }
+:root[data-theme="light"] .games-page :is(.game-item, .game-head, .game-head h1, .game-head p, .game-head strong, .tetris-next) { color: #193e58; text-shadow: none; }
+:root[data-theme="light"] .games-page :is(.game-item.active, .game-item:hover) { background: rgba(48, 120, 159, .2); }
+:root[data-theme="light"] .games-page .game-item.active { box-shadow: inset 3px 0 #14728d; }
+:root[data-theme="light"] .games-page :is(.game-message, .game-actions .btn, .mobile-gamepad button) { color: #193e58; background: rgba(231, 244, 251, .8); border-color: rgba(51, 104, 137, .34); }
+:root[data-theme="light"] .games-page :is(.game-panel canvas, .board-2048, .mines-board, .grid-game) { background: var(--game-canvas); border-color: rgba(55, 112, 148, .28); box-shadow: inset 0 0 28px rgba(93, 154, 188, .08), 0 18px 36px rgba(28, 71, 100, .14); }
+:root[data-theme="light"] .games-page .tile-0 { background: rgba(86, 134, 165, .2); }
+:root[data-theme="light"] .games-page .mines-board button { color: #224b64; background: rgba(72, 127, 163, .2); }
+:root[data-theme="light"] .games-page .mines-board button.open { background: rgba(246, 252, 255, .9); }
+:root[data-theme="light"] .games-page .huarong-board > button { color: #244962; background: linear-gradient(135deg, rgba(94, 186, 209, .42), rgba(227, 147, 191, .35)); }
+:root[data-theme="light"] .games-page :is(button, canvas, .board-2048):focus-visible { outline-color: #14728d; }
+
+/* Links: improve day contrast with darker glass; night stays exactly as before. */
+:root[data-theme="light"] .portal-page .portal-category { background: rgba(24, 65, 95, .4); border-color: rgba(211, 237, 251, .5); }
+:root[data-theme="light"] .portal-page .portal-links a { color: #f3faff; background: rgba(10, 44, 72, .28); border-color: rgba(220, 242, 255, .24); }
+:root[data-theme="light"] .portal-page .portal-links a:hover { background: rgba(36, 99, 136, .72); }
+:root[data-theme="light"] .portal-page .portal-hero { text-shadow: 0 2px 14px rgba(15, 54, 84, .55); }
+
+/* Dashboard: gently brighten day; retain the technical glass in night. */
+:root[data-theme="light"] .dashboard-page .site-bg { opacity: .88; }
+:root[data-theme="light"] .dashboard-page .site-overlay { background: radial-gradient(circle at 50% 12%, rgba(110, 231, 249, .18), transparent 30%), linear-gradient(180deg, rgba(10, 32, 51, .26), rgba(10, 31, 49, .44)); }
+:root[data-theme="light"] .dashboard-page .dash-card { background: linear-gradient(135deg, rgba(102, 160, 193, .32), rgba(31, 75, 106, .32)), radial-gradient(circle at top right, rgba(110, 231, 249, .18), transparent 34%); }
+:root[data-theme="dark"] .dashboard-page .site-bg { opacity: .78; filter: saturate(.94) brightness(.8); }
+:root[data-theme="dark"] .dashboard-page .site-overlay { background: radial-gradient(circle at 50% 12%, rgba(110, 231, 249, .09), transparent 30%), linear-gradient(180deg, rgba(5, 24, 41, .48), rgba(5, 23, 39, .72)); }
+:root[data-theme="dark"] .dashboard-page .dash-card { background: linear-gradient(135deg, rgba(27, 62, 88, .75), rgba(12, 37, 59, .76)), radial-gradient(circle at top right, rgba(110, 231, 249, .12), transparent 34%); }
+:root[data-theme="dark"] .dashboard-page :is(.music-picker option, .tool-field select option) { color: #e6f3fa; background: #15394f; }
+
+/* Language menus remain readable on the brighter photo backgrounds. */
+:root[data-theme="light"] :is(.home-page, .profile-page, .projects-page, .dashboard-page) .lang-panel { background: rgba(17, 53, 80, .96); }
+@media (max-width: 700px) {
+    .games-page .game-item { min-width: 0; overflow-wrap: anywhere; }
+    .games-page .game-head { flex-wrap: wrap; }
+    .games-page .game-head > div { min-width: 0; }
 }

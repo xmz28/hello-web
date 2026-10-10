@@ -1,0 +1,71 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- navigation "主导航":
+  - link "返回首页":
+    - /url: index.html
+  - link "Home":
+    - /url: index.html
+    - generic: 
+    - generic: Home
+  - link "Profile":
+    - /url: home.html
+    - generic: 
+    - generic: Profile
+  - link "Blog":
+    - /url: blog.html
+    - generic: 
+    - generic: Blog
+  - link "My Work":
+    - /url: projects.html
+    - generic: 
+    - generic: My Work
+  - link "Visa Info":
+    - /url: visa.html
+    - generic: 
+    - generic: Visa Info
+  - link "Games":
+    - /url: games.html
+    - generic: 
+    - generic: Games
+  - link "Links":
+    - /url: nav.html
+    - generic: 
+    - generic: Links
+  - link "Status":
+    - /url: dashboard.html
+    - generic: 
+    - generic: Status
+  - text: 
+  - button "Language":
+    - generic: 
+  - 'button "Theme: Auto"':
+    - generic: 
+- main:
+  - generic "小游戏列表":
+    - button "🐍 贪吃蛇" [pressed]:
+      - generic: 🐍
+      - text: 贪吃蛇
+    - button "🔢 2048":
+      - generic: 🔢
+      - text: "2048"
+    - button "🧱 俄罗斯方块":
+      - generic: 🧱
+      - text: 俄罗斯方块
+    - button "💣 扫雷":
+      - generic: 💣
+      - text: 扫雷
+    - button "🐤 Flappy Bird":
+      - generic: 🐤
+      - text: Flappy Bird
+    - button "⚫ 五子棋":
+      - generic: ⚫
+      - text: 五子棋
+    - button "🧩 华容道":
+      - generic: 🧩
+      - text: 华容道
+  - heading "贪吃蛇" [level=1]
+  - paragraph: 方向键或下方按键控制，空格开始/暂停。
+  - strong: 得分 0
+  - status: 点击开始游戏，或按方向键开始
+  - button "重新开始"
+  - button "开始游戏"

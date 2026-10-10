@@ -1,0 +1,147 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- navigation "主导航":
+  - link "返回首页":
+    - /url: index.html
+  - link "Home":
+    - /url: index.html
+    - generic: 
+    - generic: Home
+  - link "Profile":
+    - /url: home.html
+    - generic: 
+    - generic: Profile
+  - link "Blog":
+    - /url: blog.html
+    - generic: 
+    - generic: Blog
+  - link "My Work":
+    - /url: projects.html
+    - generic: 
+    - generic: My Work
+  - link "Visa Info":
+    - /url: visa.html
+    - generic: 
+    - generic: Visa Info
+  - link "Games":
+    - /url: games.html
+    - generic: 
+    - generic: Games
+  - link "Links":
+    - /url: nav.html
+    - generic: 
+    - generic: Links
+  - link "Status":
+    - /url: dashboard.html
+    - generic: 
+    - generic: Status
+  - text: 
+  - button "Language":
+    - generic: 
+  - 'button "Theme: Auto"':
+    - generic: 
+- main:
+  - paragraph: SELECTED WORK / XMZ28
+  - heading "把想法做成 可以体验的作品。" [level=1]:
+    - text: 把想法做成
+    - generic: 可以体验的作品。
+  - paragraph: 从 ESP32 硬件与固件，到手机、桌面和浏览器里的小实验。这里挑出有代表性的项目，说明它们能做什么，以及目前公开了哪些内容。
+  - link "查看 GitHub 全部仓库":
+    - /url: https://github.com/xmz28?tab=repositories
+    - generic: 
+    - text: 查看 GitHub 全部仓库
+    - generic: 
+  - region "重点项目":
+    - text: 01 / HARDWARE
+    - heading "重点项目" [level=2]
+    - paragraph: 两种不同方向的 ESP32 实践
+    - article:
+      - generic: 
+      - generic: CAN / RS485
+      - paragraph:
+        - text: "01"
+        - generic: ESP32 · 车辆电子
+      - heading "ESP32 车辆仪表" [level=3]
+      - paragraph: 面向车辆使用的仪表固件，通过总线读取行驶与电池数据，在彩色屏幕显示速度、挡位、电量、功率和故障状态。它支持按键操作、无线连接与固件升级，仓库还提供接线资料、使用说明和实物照片。
+      - list "项目特点":
+        - listitem: ST7789 屏幕
+        - listitem: WiFi OTA
+        - listitem: 固件与接线文档
+      - paragraph:
+        - generic: 
+        - text: 公开固件、接线资料和用户文档；完整源码未公开。
+      - link "查看 ESP32 车辆仪表仓库，新标签页打开":
+        - /url: https://github.com/xmz28/esp32-vehicle-dashboard
+        - text: 查看项目
+        - generic: 
+    - article:
+      - generic: 
+      - generic: 800 × 480 / RGB
+      - paragraph:
+        - text: "02"
+        - generic: ESP32-S3 · 掌机固件
+      - heading "NES 掌机与 Xbox 手柄" [level=3]
+      - paragraph: 这套掌机固件驱动高分辨率彩屏、触摸面板、游戏手柄和音频功放，可在菜单中选择并运行红白机游戏。游戏中能调节背光与音量，也能通过组合键或触摸返回菜单；仓库提供源码和构建说明。
+      - list "项目特点":
+        - listitem: GT911 触摸
+        - listitem: USB 手柄
+        - listitem: 开源固件
+      - paragraph:
+        - generic: 
+        - text: 源码与构建说明已公开；仓库不包含商业游戏 ROM。
+      - link "查看 NES 掌机仓库，新标签页打开":
+        - /url: https://github.com/xmz28/NES_XBOX_S3
+        - text: 查看项目
+        - generic: 
+  - region "更多作品":
+    - text: 02 / SOFTWARE
+    - heading "更多作品" [level=2]
+    - paragraph: 手机、桌面与浏览器
+    - article:
+      - generic: 
+      - paragraph: ANDROID APP · APK
+      - heading "投屏导航 SE" [level=3]
+      - paragraph: 连接兼容仪表的无线网络后，这款手机应用可将相册媒体、摄像头画面和手机屏幕投到仪表。仪表固件达到要求时，还能从手机选择图片设置壁纸；仓库提供安装包、版本说明和基本操作步骤。
+      - paragraph: 公开 APK 与使用说明
+      - link "查看项目":
+        - /url: https://github.com/xmz28/mirror-nav-se-apk
+        - text: 查看项目
+        - generic: 
+    - article:
+      - generic: 
+      - paragraph: MACOS · SWIFT
+      - heading "iMac Fold" [level=3]
+      - paragraph: 这是一项面向英特尔一体机的桌面视觉实验：接收姿态追踪器的数据，将屏幕转动映射为实时透视折叠、模糊与淡出效果。用户可以校准展开角度、切换旋转轴和随时暂停，仓库公开了源码与构建说明。
+      - paragraph: 公开源码与构建说明
+      - link "查看项目":
+        - /url: https://github.com/xmz28/iMac-Fold
+        - text: 查看项目
+        - generic: 
+    - article:
+      - generic: 
+      - paragraph: WINDOWS · PYTHON
+      - heading "RevWave Simulator" [level=3]
+      - paragraph: 这款桌面程序实时合成并混合多层发动机音色，让声音随转速、负载和挡位变化。你可以用手柄或界面控制油门、刹车与变速箱，也能加入循环音频素材；项目提供多种车辆风格预设和运行说明。
+      - paragraph: 公开源码与运行说明
+      - link "查看项目":
+        - /url: https://github.com/xmz28/revwave-simulator
+        - text: 查看项目
+        - generic: 
+    - article:
+      - generic: 
+      - paragraph: WEB · THREE.JS
+      - heading "手势粒子宇宙" [level=3]
+      - paragraph: 这项浏览器实验通过摄像头识别手势，再切换粒子造型和动画，让双手直接参与画面的变化。项目采用纯前端实现，允许摄像头访问后即可体验；如果本地浏览器限制调用，也可以启动本地服务运行。
+      - paragraph: 公开源码；运行时需联网加载依赖
+      - link "查看项目":
+        - /url: https://github.com/xmz28/gesture-particle-universe
+        - text: 查看项目
+        - generic: 
+  - complementary "本站项目":
+    - text: 03 / THIS SITE
+    - heading "你正在浏览的个人网站" [level=2]
+    - paragraph: 这个网站本身也是一个作品，使用原生网页技术构建，汇集个人介绍、博客、小游戏、网站导航与状态面板。页面为桌面和手机屏幕调整布局，还加入明暗主题、多语言切换与交互；源码公开在仓库中。
+    - link "查看 hello-web 源码":
+      - /url: https://github.com/xmz28/hello-web
+      - text: 查看 hello-web 源码
+      - generic: 

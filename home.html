@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>个人简介</title>
 <script src="theme-init.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=page-themes-20261010-2">
 <link rel="stylesheet" href="remixicon.css">
 </head>
 
@@ -176,7 +176,8 @@
     </div>
 </div>
 
-<script src="site.js"></script>
+<script src="interface-copy.js"></script>
+<script src="site.js?v=page-themes-20261010-2"></script>
 <script src="social-modals.js"></script>
 <script>
 const homeLocales = {
@@ -207,7 +208,7 @@ const homeLocales = {
     "zh-TW": {
         tagline: "探索世界與技術邊界",
         aboutTitle: "關於我",
-        aboutText: "喜歡數位產品、旅行、攝影，也會折騰各種有意思的東西。",
+        aboutText: "熱愛技術與創造，專注於 Web 開發與嵌入式探索。喜歡把想法做成有趣的作品，也在旅行與攝影中尋找靈感。",
         tagDigital: "數位",
         tagTravel: "旅行",
         tagPhoto: "攝影",
@@ -226,12 +227,12 @@ const homeLocales = {
         mobileReadTitle: "手機瀏覽個人頁",
         mobileReadText: "掃碼在手機上開啟這個個人頁。",
         openMobileSite: "開啟個人頁",
-        uptimeLabel: "部落格已穩定運行"
+        uptimeLabel: "部落格運行時長"
     },
     en: {
         tagline: "Exploring life and the edge of technology",
         aboutTitle: "About Me",
-        aboutText: "I like gadgets, travel, photography, and tinkering with interesting ideas.",
+        aboutText: "I enjoy technology and creating things, with a focus on Web development and embedded systems. I turn ideas into projects and find inspiration in travel and photography.",
         tagDigital: "Gadgets",
         tagTravel: "Travel",
         tagPhoto: "Photo",
@@ -255,7 +256,7 @@ const homeLocales = {
     ja: {
         tagline: "世界とテクノロジーの境界を探る",
         aboutTitle: "私について",
-        aboutText: "ガジェット、旅行、写真、そして面白いものを試すことが好きです。",
+        aboutText: "技術とものづくりが好きで、Web 開発と組み込みシステムを探求しています。アイデアを作品にし、旅行や写真からもインスピレーションを得ています。",
         tagDigital: "ガジェット",
         tagTravel: "旅行",
         tagPhoto: "写真",
@@ -278,26 +279,25 @@ const homeLocales = {
     }
 };
 
-setupSiteControls(homeLocales);
-
 const uptimeStart = new Date("2026-04-29T13:20:00+08:00").getTime();
 const uptimeCounter = document.getElementById("uptimeCounter");
 
 function updateUptime() {
+    const units = { "zh-CN": ["天", "时", "分", "秒"], "zh-TW": ["天", "時", "分", "秒"], en: ["d", "h", "m", "s"], ja: ["日", "時間", "分", "秒"] }[getStoredLang()];
     const diff = Math.max(0, Date.now() - uptimeStart);
     const days = Math.floor(diff / 86400000);
     const hours = Math.floor(diff / 3600000) % 24;
     const minutes = Math.floor(diff / 60000) % 60;
     const seconds = Math.floor(diff / 1000) % 60;
     uptimeCounter.innerHTML = `
-        <span class="uptime-segment"><span class="uptime-number">${days}</span><span class="uptime-unit">天</span></span>
-        <span class="uptime-segment"><span class="uptime-number">${hours}</span><span class="uptime-unit">时</span></span>
-        <span class="uptime-segment"><span class="uptime-number">${minutes}</span><span class="uptime-unit">分</span></span>
-        <span class="uptime-segment"><span class="uptime-number">${seconds}</span><span class="uptime-unit">秒</span></span>
+        <span class="uptime-segment"><span class="uptime-number">${days}</span><span class="uptime-unit">${units[0]}</span></span>
+        <span class="uptime-segment"><span class="uptime-number">${hours}</span><span class="uptime-unit">${units[1]}</span></span>
+        <span class="uptime-segment"><span class="uptime-number">${minutes}</span><span class="uptime-unit">${units[2]}</span></span>
+        <span class="uptime-segment"><span class="uptime-number">${seconds}</span><span class="uptime-unit">${units[3]}</span></span>
     `;
 }
 
-updateUptime();
+setupSiteControls(homeLocales, updateUptime);
 setInterval(updateUptime, 1000);
 
 document.querySelectorAll(".command-panel").forEach(function(panel) {

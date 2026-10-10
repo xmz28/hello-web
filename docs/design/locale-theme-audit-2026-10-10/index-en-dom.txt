@@ -1,0 +1,44 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- banner "页面状态":
+  - generic: FUJI DIGITAL SPACE
+  - generic: 
+  - generic: ASIA / SHANGHAI
+- main:
+  - paragraph: WELCOME TO MY DIGITAL SPACE
+  - region "个人主页入口":
+    - img "小米周的头像"
+    - generic "在线"
+    - heading "小米周" [level=1]
+    - paragraph: AI Builder / Web Explorer
+    - navigation "主要导航":
+      - link "个人页":
+        - /url: home.html
+        - generic: 
+        - generic: 个人页
+      - link "博客":
+        - /url: blog.html
+        - generic: 
+        - generic: 博客
+      - link "我的作品":
+        - /url: projects.html
+        - generic: 
+        - generic: 我的作品
+      - link "签证信息":
+        - /url: visa.html
+        - generic: 
+        - generic: 签证信息
+      - link "小游戏":
+        - /url: games.html
+        - generic: 
+        - generic: 小游戏
+      - link "网站导航":
+        - /url: nav.html
+        - generic: 
+        - generic: 网站导航
+    - link "状态面板":
+      - /url: dashboard.html
+      - generic: 
+      - generic: 状态面板
+      - generic: 
+  - paragraph: SELECT A DESTINATION

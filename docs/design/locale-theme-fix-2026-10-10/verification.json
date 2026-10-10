@@ -1,0 +1,1113 @@
+[
+  {
+    "page": "home",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "个人简介",
+        "headings": [
+          "小米周",
+          "关于我",
+          "兴趣与热爱",
+          "博客运行时长",
+          "当前状态",
+          "项目焦点",
+          "快速入口"
+        ]
+      },
+      {
+        "lang": "zh-TW",
+        "title": "個人簡介",
+        "headings": [
+          "小米周",
+          "關於我",
+          "興趣與熱愛",
+          "部落格已穩定運行",
+          "目前狀態",
+          "專案焦點",
+          "快速入口"
+        ]
+      },
+      {
+        "lang": "ja",
+        "title": "プロフィール",
+        "headings": [
+          "小米周",
+          "私について",
+          "好きなこと",
+          "ブログ稼働時間",
+          "現在の状況",
+          "注目のプロジェクト",
+          "クイックリンク"
+        ]
+      },
+      {
+        "lang": "en",
+        "title": "Profile",
+        "headings": [
+          "小米周",
+          "About Me",
+          "Interests",
+          "Blog uptime",
+          "Current status",
+          "Project spotlight",
+          "Quick links"
+        ]
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [
+        "小米周",
+        "About Me",
+        "Interests",
+        "Blog uptime",
+        "Current status",
+        "Project spotlight",
+        "Quick links"
+      ],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "command-panel about-module",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "command-panel interests-module",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "command-panel uptime-card",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "command-panel current-status",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "command-panel project-focus",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "command-panel launch-module",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box bili-social-box",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box douyin-social-box",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "Profile",
+      "viewport": 1280,
+      "width": 1265
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [
+        "小米周",
+        "About Me",
+        "Interests",
+        "Blog uptime",
+        "Current status",
+        "Project spotlight",
+        "Quick links"
+      ],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "command-panel about-module",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "command-panel interests-module",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "command-panel uptime-card",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "command-panel current-status",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "command-panel project-focus",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "command-panel launch-module",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box bili-social-box",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box douyin-social-box",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "Profile",
+      "viewport": 1280,
+      "width": 1265
+    }
+  },
+  {
+    "page": "blog",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "我的博客",
+        "headings": [
+          "我的博客",
+          "随笔标签",
+          "最新内容",
+          "留言交流"
+        ]
+      },
+      {
+        "lang": "zh-TW",
+        "title": "我的部落格",
+        "headings": [
+          "我的部落格",
+          "隨筆標籤",
+          "最新內容",
+          "留言交流"
+        ]
+      },
+      {
+        "lang": "ja",
+        "title": "私のブログ",
+        "headings": [
+          "私のブログ",
+          "トピック",
+          "最新の投稿",
+          "コメント交流"
+        ]
+      },
+      {
+        "lang": "en",
+        "title": "My Blog",
+        "headings": [
+          "My Blog",
+          "Topics",
+          "Latest posts",
+          "Discussion"
+        ]
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [
+        "My Blog",
+        "Topics",
+        "Latest posts",
+        "Discussion"
+      ],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "post-dialog",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "qr-box social-box",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "My Blog",
+      "viewport": 1280,
+      "width": 1265
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [
+        "My Blog",
+        "Topics",
+        "Latest posts",
+        "Discussion"
+      ],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "post-dialog",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "qr-box social-box",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "My Blog",
+      "viewport": 1280,
+      "width": 1265
+    }
+  },
+  {
+    "page": "projects",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "项目与作品 · 小米周",
+        "headings": [
+          "把想法做成可以体验的作品。",
+          "重点项目",
+          "更多作品",
+          "你正在浏览的个人网站"
+        ]
+      },
+      {
+        "lang": "zh-TW",
+        "title": "專案與作品 · 小米周",
+        "headings": [
+          "把想法做成可以體驗的作品。",
+          "重點專案",
+          "更多作品",
+          "你正在瀏覽的個人網站"
+        ]
+      },
+      {
+        "lang": "ja",
+        "title": "作品 · 小米周",
+        "headings": [
+          "アイデアを体験できる作品へ。",
+          "注目のプロジェクト",
+          "その他の作品",
+          "今見ている個人サイト"
+        ]
+      },
+      {
+        "lang": "en",
+        "title": "Projects · 小米周",
+        "headings": [
+          "Turning ideas intothings you can experience.",
+          "Featured projects",
+          "More projects",
+          "The website you are browsing"
+        ]
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [
+        "Turning ideas intothings you can experience.",
+        "Featured projects",
+        "More projects",
+        "The website you are browsing"
+      ],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "project-card project-card-feature project-card-dashboard",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "project-card project-card-feature project-card-nes",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "project-card project-card-small",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "project-card project-card-small",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "project-card project-card-small",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "project-card project-card-small",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "Projects · 小米周",
+      "viewport": 1280,
+      "width": 1265
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [
+        "Turning ideas intothings you can experience.",
+        "Featured projects",
+        "More projects",
+        "The website you are browsing"
+      ],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "project-card project-card-feature project-card-dashboard",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "project-card project-card-feature project-card-nes",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "project-card project-card-small",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "project-card project-card-small",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "project-card project-card-small",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "project-card project-card-small",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "Projects · 小米周",
+      "viewport": 1280,
+      "width": 1265
+    }
+  },
+  {
+    "page": "nav",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "网站导航",
+        "headings": [
+          "网站导航",
+          "✨AI 工具",
+          "🧰开发工具",
+          "🎬视频 / 社交",
+          "📊硬件性能天梯图",
+          "🎮游戏 / 娱乐",
+          "💾下载 / 系统工具"
+        ]
+      },
+      {
+        "lang": "zh-TW",
+        "title": "網站導航",
+        "headings": [
+          "網站導航",
+          "✨AI 工具",
+          "🧰開發工具",
+          "🎬影片 / 社群",
+          "📊硬體效能排行榜",
+          "🎮遊戲 / 娛樂",
+          "💾下載 / 系統工具"
+        ]
+      },
+      {
+        "lang": "ja",
+        "title": "リンク集",
+        "headings": [
+          "リンク集",
+          "✨AI ツール",
+          "🧰開発ツール",
+          "🎬動画 / SNS",
+          "📊ハードウェア性能ランキング",
+          "🎮ゲーム / エンタメ",
+          "💾ダウンロード / システムツール"
+        ]
+      },
+      {
+        "lang": "en",
+        "title": "Links",
+        "headings": [
+          "Links",
+          "✨AI tools",
+          "🧰Developer tools",
+          "🎬Video / Social",
+          "📊Hardware rankings",
+          "🎮Games / Entertainment",
+          "💾Downloads / System tools"
+        ]
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [
+        "Links",
+        "✨AI tools",
+        "🧰Developer tools",
+        "🎬Video / Social",
+        "📊Hardware rankings",
+        "🎮Games / Entertainment",
+        "💾Downloads / System tools"
+      ],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "portal-category",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "portal-category",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "portal-category",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "portal-category portal-category-wide",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "portal-category",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "portal-category portal-category-full",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "Links",
+      "viewport": 1280,
+      "width": 1265
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [
+        "Links",
+        "✨AI tools",
+        "🧰Developer tools",
+        "🎬Video / Social",
+        "📊Hardware rankings",
+        "🎮Games / Entertainment",
+        "💾Downloads / System tools"
+      ],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "portal-category",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "portal-category",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "portal-category",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "portal-category portal-category-wide",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "portal-category",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "portal-category portal-category-full",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "Links",
+      "viewport": 1280,
+      "width": 1265
+    }
+  },
+  {
+    "page": "dashboard",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "状态面板",
+        "headings": [
+          "状态面板",
+          "查看各服务看到的出口",
+          "常用网站延迟",
+          "网络测速",
+          "路由追踪与地图"
+        ]
+      },
+      {
+        "lang": "zh-TW",
+        "title": "狀態面板",
+        "headings": [
+          "狀態面板",
+          "查看各服務看到的出口",
+          "常用網站延遲",
+          "網路測速",
+          "路由追蹤與地圖"
+        ]
+      },
+      {
+        "lang": "ja",
+        "title": "ステータス",
+        "headings": [
+          "ステータス",
+          "各サービスが観測する出口を比較",
+          "サイトの応答時間",
+          "通信速度テスト",
+          "経路追跡と地図"
+        ]
+      },
+      {
+        "lang": "en",
+        "title": "Status",
+        "headings": [
+          "Status",
+          "Compare the exits seen by each service",
+          "Website latency",
+          "Speed test",
+          "Traceroute and map"
+        ]
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [
+        "Status",
+        "Compare the exits seen by each service",
+        "Website latency",
+        "Speed test",
+        "Traceroute and map"
+      ],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card ip-check",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card network-check",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card protocol-check",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card protocol-check",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card weather",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card network-tool",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card network-tool",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card music",
+          "color": "rgb(21, 59, 83)"
+        },
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "dash-card boot",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "Status",
+      "viewport": 1280,
+      "width": 1265
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [
+        "Status",
+        "Compare the exits seen by each service",
+        "Website latency",
+        "Speed test",
+        "Traceroute and map"
+      ],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card ip-check",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card network-check",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card protocol-check",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card protocol-check",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card weather",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card network-tool",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card network-tool",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card music",
+          "color": "rgb(237, 246, 252)"
+        },
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "dash-card boot",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "Status",
+      "viewport": 1280,
+      "width": 1265
+    }
+  },
+  {
+    "page": "index",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "我的主页",
+        "headings": [
+          "小米周"
+        ]
+      },
+      {
+        "lang": "zh-TW",
+        "title": "我的主頁",
+        "headings": [
+          "小米周"
+        ]
+      },
+      {
+        "lang": "ja",
+        "title": "ホーム",
+        "headings": [
+          "小米周"
+        ]
+      },
+      {
+        "lang": "en",
+        "title": "My Homepage",
+        "headings": [
+          "小米周"
+        ]
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [
+        "小米周"
+      ],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "home-dock",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "My Homepage",
+      "viewport": 1280,
+      "width": 1280
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [
+        "小米周"
+      ],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "home-dock",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "My Homepage",
+      "viewport": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "page": "terminal",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "终端控制台",
+        "headings": []
+      },
+      {
+        "lang": "zh-TW",
+        "title": "終端控制台",
+        "headings": []
+      },
+      {
+        "lang": "ja",
+        "title": "ターミナル",
+        "headings": []
+      },
+      {
+        "lang": "en",
+        "title": "Terminal Console",
+        "headings": []
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "terminal-window",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "Terminal Console",
+      "viewport": 1280,
+      "width": 1280
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "terminal-window",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "Terminal Console",
+      "viewport": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "page": "ssh",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "假 SSH / Linux",
+        "headings": []
+      },
+      {
+        "lang": "zh-TW",
+        "title": "模擬 SSH / Linux",
+        "headings": []
+      },
+      {
+        "lang": "ja",
+        "title": "SSH / Linux シミュレーター",
+        "headings": []
+      },
+      {
+        "lang": "en",
+        "title": "SSH / Linux Simulator",
+        "headings": []
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "terminal-window ssh-window",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "SSH / Linux Simulator",
+      "viewport": 1280,
+      "width": 1280
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "terminal-window ssh-window",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "SSH / Linux Simulator",
+      "viewport": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "page": "games",
+    "langs": [
+      {
+        "lang": "zh-CN",
+        "title": "小游戏",
+        "headings": [
+          "贪吃蛇",
+          "2048",
+          "俄罗斯方块",
+          "扫雷",
+          "Flappy Bird",
+          "五子棋",
+          "华容道"
+        ]
+      },
+      {
+        "lang": "zh-TW",
+        "title": "小遊戲",
+        "headings": [
+          "貪食蛇",
+          "2048",
+          "俄羅斯方塊",
+          "踩地雷",
+          "Flappy Bird",
+          "五子棋",
+          "華容道"
+        ]
+      },
+      {
+        "lang": "ja",
+        "title": "ゲーム",
+        "headings": [
+          "スネーク",
+          "2048",
+          "テトリス",
+          "マインスイーパー",
+          "Flappy Bird",
+          "五目並べ",
+          "スライドパズル"
+        ]
+      },
+      {
+        "lang": "en",
+        "title": "Games",
+        "headings": [
+          "Snake",
+          "2048",
+          "Tetris",
+          "Minesweeper",
+          "Flappy Bird",
+          "Gomoku",
+          "Sliding puzzle"
+        ]
+      }
+    ],
+    "light": {
+      "bodyColor": "rgb(21, 59, 83)",
+      "headings": [
+        "Snake",
+        "2048",
+        "Tetris",
+        "Minesweeper",
+        "Flappy Bird",
+        "Gomoku",
+        "Sliding puzzle"
+      ],
+      "lang": "en",
+      "mode": "Theme: Light",
+      "overlay": "linear-gradient(rgba(233, 245, 252, 0.75), rgba(219, 237, 248, 0.92))",
+      "surfaces": [
+        {
+          "bg": "rgba(245, 251, 255, 0.94)",
+          "class": "games-shell",
+          "color": "rgb(21, 59, 83)"
+        }
+      ],
+      "theme": "light",
+      "title": "Games",
+      "viewport": 1280,
+      "width": 1265
+    },
+    "dark": {
+      "bodyColor": "rgb(237, 246, 252)",
+      "headings": [
+        "Snake",
+        "2048",
+        "Tetris",
+        "Minesweeper",
+        "Flappy Bird",
+        "Gomoku",
+        "Sliding puzzle"
+      ],
+      "lang": "en",
+      "mode": "Theme: Dark",
+      "overlay": "linear-gradient(rgba(4, 17, 31, 0.78), rgba(5, 18, 32, 0.94))",
+      "surfaces": [
+        {
+          "bg": "rgba(15, 35, 54, 0.95)",
+          "class": "games-shell",
+          "color": "rgb(237, 246, 252)"
+        }
+      ],
+      "theme": "dark",
+      "title": "Games",
+      "viewport": 1280,
+      "width": 1265
+    }
+  }
+]

@@ -11,7 +11,8 @@ function setupRouteDownload() {
         event.preventDefault();
         if (button.dataset.busy === "true") return;
         button.dataset.busy = "true";
-        const original = button.textContent;
+        const original = "下载路由助手 · Windows 免安装";
+        let completed = false;
         try {
             const metadataResponse = await fetch("downloads/network-helper-release.json", { cache: "no-store" });
             if (!metadataResponse.ok) throw new Error("无法读取下载清单");
@@ -37,11 +38,12 @@ function setupRouteDownload() {
             document.body.appendChild(link); link.click(); link.remove();
             setTimeout(() => URL.revokeObjectURL(url), 60000);
             button.textContent = "下载完成，双击运行助手";
+            completed = true;
         } catch (error) {
             button.textContent = `下载失败：${error.message}，点击重试`;
         } finally {
             button.dataset.busy = "false";
-            if (button.textContent === "下载完成，双击运行助手") setTimeout(() => { button.textContent = original; }, 6000);
+            if (completed) setTimeout(() => { if (button.dataset.busy !== "true") button.textContent = original; }, 6000);
         }
     });
 }

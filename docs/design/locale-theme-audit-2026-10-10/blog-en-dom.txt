@@ -1,0 +1,232 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- navigation "主导航":
+  - link "返回首页":
+    - /url: index.html
+  - link "Home":
+    - /url: index.html
+    - generic: 
+    - generic: Home
+  - link "Profile":
+    - /url: home.html
+    - generic: 
+    - generic: Profile
+  - link "Blog":
+    - /url: blog.html
+    - generic: 
+    - generic: Blog
+  - link "My Work":
+    - /url: projects.html
+    - generic: 
+    - generic: My Work
+  - link "Visa Info":
+    - /url: visa.html
+    - generic: 
+    - generic: Visa Info
+  - link "Games":
+    - /url: games.html
+    - generic: 
+    - generic: Games
+  - link "Links":
+    - /url: nav.html
+    - generic: 
+    - generic: Links
+  - link "Status":
+    - /url: dashboard.html
+    - generic: 
+    - generic: Status
+  - text: 
+  - button "Language":
+    - generic: 
+  - 'button "Theme: Dark"':
+    - generic: 
+- main:
+  - complementary "博客导航":
+    - paragraph: EDITORIAL / 01
+    - heading "My Blog" [level=1]
+    - paragraph: Notes on tech, AI, and small discoveries in life
+    - generic: 
+    - strong: "34"
+    - generic: 内容
+    - generic: 
+    - strong: 09/26
+    - generic: 最新发布
+    - generic: 
+    - searchbox "搜索文章"
+    - generic: /
+    - group "内容筛选":
+      - button " All 34" [pressed]:
+        - generic: 
+        - generic: All
+        - generic: "34"
+      - button " Tech 01":
+        - generic: 
+        - generic: Tech
+        - generic: "01"
+      - button " AI 01":
+        - generic: 
+        - generic: AI
+        - generic: "01"
+      - button " Videos 30":
+        - generic: 
+        - generic: Videos
+        - generic: "30"
+      - button " Life 02":
+        - generic: 
+        - generic: Life
+        - generic: "02"
+    - paragraph: B 站最近 30 条视频 · 更新于 2026-09-28
+    - heading " 随笔标签" [level=2]:
+      - generic: 
+      - text: 随笔标签
+    - generic: JavaScript
+    - generic: AI 工具
+    - generic: 旅行
+    - generic: 摄影
+    - generic: 数码
+    - blockquote:
+      - text: 用代码记录想法，
+      - text: 用镜头记录世界，
+      - text: 在不断折腾中，让热爱持续发生。
+      - generic: — 小米周
+    - group "社交与手机访问":
+      - button "GitHub":
+        - generic: 
+      - button "哔哩哔哩":
+        - generic: 
+      - button "抖音":
+        - generic: 
+      - button "手机访问博客页":
+        - generic: 
+  - article "精选文章":
+    - button "第一篇文章封面 Life 第一篇文章 这是我的第一篇博客，记录这个网站从想法到上线的过程。  2026-04-29  Views 123 01 / 34":
+      - img "第一篇文章封面"
+      - generic: Life
+      - strong: 第一篇文章
+      - emphasis: 这是我的第一篇博客，记录这个网站从想法到上线的过程。
+      - generic: 
+      - text: 2026-04-29
+      - generic: 
+      - text: Views 123
+      - generic: 01 / 34
+  - heading " 最新内容" [level=2]:
+    - generic: 
+    - text: 最新内容
+  - group "All Newest first Oldest first Most viewed":
+    - button "All" [pressed]
+    - button "Newest first"
+    - button "Oldest first"
+    - button "Most viewed"
+  - text: VIEW ALL
+  - generic: 
+  - region "内容列表":
+    - button "AI 学习记录封面 AI AI 学习记录 我开始用 AI 做网站了，也开始理解提示词和代码之间的关系。  2026-04-28  Views 256":
+      - img "AI 学习记录封面"
+      - generic: AI
+      - strong: AI 学习记录
+      - emphasis: 我开始用 AI 做网站了，也开始理解提示词和代码之间的关系。
+      - generic: 
+      - text: 2026-04-28
+      - generic: 
+      - text: Views 256
+      - generic: 
+    - button "日本旅行封面 Life 日本旅行 东京和富士山的旅行记录，整理一些值得保存的片段。  2026-04-20  Views 512":
+      - img "日本旅行封面"
+      - generic: Life
+      - strong: 日本旅行
+      - emphasis: 东京和富士山的旅行记录，整理一些值得保存的片段。
+      - generic: 
+      - text: 2026-04-20
+      - generic: 
+      - text: Views 512
+      - generic: 
+    - button "前端小笔记：从静态页到可交互封面 Tech 前端小笔记：从静态页到可交互 给静态页面加一点 JavaScript，就能让博客开始真正回应用户。  2026-04-18  Views 188":
+      - img "前端小笔记：从静态页到可交互封面"
+      - generic: Tech
+      - strong: 前端小笔记：从静态页到可交互
+      - emphasis: 给静态页面加一点 JavaScript，就能让博客开始真正回应用户。
+      - generic: 
+      - text: 2026-04-18
+      - generic: 
+      - text: Views 188
+      - generic: 
+    - button "从内存到续航：iPhone 与小米旗舰，差距还剩多少封面 Videos 从内存到续航：iPhone 与小米旗舰，差距还剩多少 来自小米周的 B 站视频  2026-09-26  Views 164":
+      - img "从内存到续航：iPhone 与小米旗舰，差距还剩多少封面"
+      - generic: Videos
+      - strong: 从内存到续航：iPhone 与小米旗舰，差距还剩多少
+      - emphasis: 来自小米周的 B 站视频
+      - generic: 
+      - text: 2026-09-26
+      - generic: 
+      - text: Views 164
+      - generic: 
+    - button "Wi-Fi 速率到底怎么算？从 QAM 到 OFDM 再到 MIMO封面 Videos Wi-Fi 速率到底怎么算？从 QAM 到 OFDM 再到 MIMO 来自小米周的 B 站视频  2026-09-24  Views 207":
+      - img "Wi-Fi 速率到底怎么算？从 QAM 到 OFDM 再到 MIMO封面"
+      - generic: Videos
+      - strong: Wi-Fi 速率到底怎么算？从 QAM 到 OFDM 再到 MIMO
+      - emphasis: 来自小米周的 B 站视频
+      - generic: 
+      - text: 2026-09-24
+      - generic: 
+      - text: Views 207
+      - generic: 
+    - button "我把 iPhone Duo 的折叠动画，魔改到了iMac上封面 Videos 我把 iPhone Duo 的折叠动画，魔改到了iMac上 来自小米周的 B 站视频  2026-09-23  Views 171":
+      - img "我把 iPhone Duo 的折叠动画，魔改到了iMac上封面"
+      - generic: Videos
+      - strong: 我把 iPhone Duo 的折叠动画，魔改到了iMac上
+      - emphasis: 来自小米周的 B 站视频
+      - generic: 
+      - text: 2026-09-23
+      - generic: 
+      - text: Views 171
+      - generic: 
+    - button "车速越快，震动越强？背后的 BLE 逆向与 CAN 联动原理封面 Videos 车速越快，震动越强？背后的 BLE 逆向与 CAN 联动原理 来自小米周的 B 站视频  2026-09-21  Views 143":
+      - img "车速越快，震动越强？背后的 BLE 逆向与 CAN 联动原理封面"
+      - generic: Videos
+      - strong: 车速越快，震动越强？背后的 BLE 逆向与 CAN 联动原理
+      - emphasis: 来自小米周的 B 站视频
+      - generic: 
+      - text: 2026-09-21
+      - generic: 
+      - text: Views 143
+      - generic: 
+    - button "车越快，震得越强？我真给它做出来了封面 Videos 车越快，震得越强？我真给它做出来了 来自小米周的 B 站视频  2026-09-20  Views 356":
+      - img "车越快，震得越强？我真给它做出来了封面"
+      - generic: Videos
+      - strong: 车越快，震得越强？我真给它做出来了
+      - emphasis: 来自小米周的 B 站视频
+      - generic: 
+      - text: 2026-09-20
+      - generic: 
+      - text: Views 356
+      - generic: 
+    - button "一个小玩意，为什么能让汽车充电桩给电动车充电？封面 Videos 一个小玩意，为什么能让汽车充电桩给电动车充电？ 来自小米周的 B 站视频  2026-09-18  Views 267":
+      - img "一个小玩意，为什么能让汽车充电桩给电动车充电？封面"
+      - generic: Videos
+      - strong: 一个小玩意，为什么能让汽车充电桩给电动车充电？
+      - emphasis: 来自小米周的 B 站视频
+      - generic: 
+      - text: 2026-09-18
+      - generic: 
+      - text: Views 267
+      - generic: 
+    - button "谁家电瓶车仪表能玩超级玛丽啊封面 Videos 谁家电瓶车仪表能玩超级玛丽啊 来自小米周的 B 站视频  2026-09-13  Views 379":
+      - img "谁家电瓶车仪表能玩超级玛丽啊封面"
+      - generic: Videos
+      - strong: 谁家电瓶车仪表能玩超级玛丽啊
+      - emphasis: 来自小米周的 B 站视频
+      - generic: 
+      - text: 2026-09-13
+      - generic: 
+      - text: Views 379
+      - generic: 
+  - button "Load more posts":
+    - generic: Load more posts
+    - generic: 
+  - region "评论区":
+    - text: COMMUNITY / DISCUSSION
+    - heading "留言交流" [level=2]:
+      - generic: 
+      - text: 留言交流
+    - paragraph: 欢迎留下想法，和大家聊聊技术与生活。
+- text:     

@@ -1,0 +1,12 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- main:
+  - strong: ssh xmz@hello-web
+  - link "返回状态面板":
+    - /url: dashboard.html
+  - generic: OpenSSH_9.8p1 xmz-shell
+  - generic: Connecting to hello-web.local...
+  - generic: "xmz@hello-web password: ******"
+  - generic: Welcome to XMZ Linux 2026.05 LTS
+  - generic: xmz@hello-web:~$
+  - textbox "xmz@hello-web:~$" [active]

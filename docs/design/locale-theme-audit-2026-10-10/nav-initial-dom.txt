@@ -1,0 +1,210 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- navigation "主导航":
+  - link "返回首页":
+    - /url: index.html
+  - link "Home":
+    - /url: index.html
+    - generic: 
+    - generic: Home
+  - link "Profile":
+    - /url: home.html
+    - generic: 
+    - generic: Profile
+  - link "Blog":
+    - /url: blog.html
+    - generic: 
+    - generic: Blog
+  - link "My Work":
+    - /url: projects.html
+    - generic: 
+    - generic: My Work
+  - link "Visa Info":
+    - /url: visa.html
+    - generic: 
+    - generic: Visa Info
+  - link "Games":
+    - /url: games.html
+    - generic: 
+    - generic: Games
+  - link "Links":
+    - /url: nav.html
+    - generic: 
+    - generic: Links
+  - link "Status":
+    - /url: dashboard.html
+    - generic: 
+    - generic: Status
+  - text: 
+  - button "Language":
+    - generic: 
+  - 'button "Theme: Auto"':
+    - generic: 
+- main:
+  - paragraph: XMZ Launchpad
+  - heading "网站导航" [level=1]
+  - region "网站导航列表":
+    - article:
+      - heading "✨ AI 工具" [level=2]:
+        - generic: ✨
+        - text: AI 工具
+      - link "💬 ChatGPT":
+        - /url: https://chatgpt.com
+        - generic: 💬
+        - text: ChatGPT
+      - link "🧠 Claude":
+        - /url: https://claude.ai
+        - generic: 🧠
+        - text: Claude
+      - link "💎 Gemini":
+        - /url: https://gemini.google.com
+        - generic: 💎
+        - text: Gemini
+      - link "🎨 Midjourney":
+        - /url: https://www.midjourney.com
+        - generic: 🎨
+        - text: Midjourney
+      - link "🔎 Perplexity":
+        - /url: https://www.perplexity.ai
+        - generic: 🔎
+        - text: Perplexity
+      - link "🤖 Poe":
+        - /url: https://poe.com
+        - generic: 🤖
+        - text: Poe
+    - article:
+      - heading "🧰 开发工具" [level=2]:
+        - generic: 🧰
+        - text: 开发工具
+      - link "🐙 GitHub":
+        - /url: https://github.com
+        - generic: 🐙
+        - text: GitHub
+      - link "⚡ Wokwi":
+        - /url: https://wokwi.com
+        - generic: ⚡
+        - text: Wokwi
+      - link "🧩 VS Code":
+        - /url: https://code.visualstudio.com
+        - generic: 🧩
+        - text: VS Code
+      - link "🔌 Arduino":
+        - /url: https://www.arduino.cc
+        - generic: 🔌
+        - text: Arduino
+      - link "🛠️ PlatformIO":
+        - /url: https://platformio.org
+        - generic: 🛠️
+        - text: PlatformIO
+      - link "📘 MDN Web Docs":
+        - /url: https://developer.mozilla.org
+        - generic: 📘
+        - text: MDN Web Docs
+    - article:
+      - heading "🎬 视频 / 社交" [level=2]:
+        - generic: 🎬
+        - text: 视频 / 社交
+      - link "▶️ YouTube":
+        - /url: https://www.youtube.com
+        - generic: ▶️
+        - text: YouTube
+      - link "𝕏 X":
+        - /url: https://x.com
+        - generic: 𝕏
+        - text: X
+      - link "🟠 Reddit":
+        - /url: https://www.reddit.com
+        - generic: 🟠
+        - text: Reddit
+      - link "✈️ Telegram":
+        - /url: https://web.telegram.org
+        - generic: ✈️
+        - text: Telegram
+      - link "📷 Instagram":
+        - /url: https://www.instagram.com
+        - generic: 📷
+        - text: Instagram
+      - link "🎧 Discord":
+        - /url: https://discord.com
+        - generic: 🎧
+        - text: Discord
+    - article:
+      - heading "📊 硬件性能天梯图" [level=2]:
+        - generic: 📊
+        - text: 硬件性能天梯图
+      - link "🖥️ 桌面 CPU 天梯图":
+        - /url: https://tieba.baidu.com/p/5005825360?see_lz=1
+        - generic: 🖥️
+        - text: 桌面 CPU 天梯图
+      - link "🎮 桌面显卡天梯图":
+        - /url: https://tieba.baidu.com/p/6133450546?see_lz=1
+        - generic: 🎮
+        - text: 桌面显卡天梯图
+      - link "💻 笔记本 CPU 天梯图":
+        - /url: https://www.365pcbuy.com/article.php?id=409
+        - generic: 💻
+        - text: 笔记本 CPU 天梯图
+      - link "🧩 笔记本显卡天梯图":
+        - /url: https://www.365pcbuy.com/article-398.html
+        - generic: 🧩
+        - text: 笔记本显卡天梯图
+      - link "📱 手机 / 平板 CPU 排行":
+        - /url: https://socpk.com/chart/chip-cpu
+        - generic: 📱
+        - text: 手机 / 平板 CPU 排行
+      - link "⚡ 手机 / 平板 GPU 排行":
+        - /url: https://socpk.com/chart/chip-gpu
+        - generic: ⚡
+        - text: 手机 / 平板 GPU 排行
+    - article:
+      - heading "🎮 游戏 / 娱乐" [level=2]:
+        - generic: 🎮
+        - text: 游戏 / 娱乐
+      - link "🎮 Steam":
+        - /url: https://store.steampowered.com
+        - generic: 🎮
+        - text: Steam
+      - link "🕹️ Epic Games":
+        - /url: https://store.epicgames.com
+        - generic: 🕹️
+        - text: Epic Games
+      - link "🟢 Xbox":
+        - /url: https://www.xbox.com
+        - generic: 🟢
+        - text: Xbox
+      - link "🌙 Moonlight":
+        - /url: https://moonlight-stream.org
+        - generic: 🌙
+        - text: Moonlight
+      - link "📊 SteamDB":
+        - /url: https://steamdb.info
+        - generic: 📊
+        - text: SteamDB
+      - link "🧬 Nexus Mods":
+        - /url: https://www.nexusmods.com
+        - generic: 🧬
+        - text: Nexus Mods
+    - article:
+      - heading "💾 下载 / 系统工具" [level=2]:
+        - generic: 💾
+        - text: 下载 / 系统工具
+      - link "🧪 图吧工具箱":
+        - /url: https://www.tbtool.cn
+        - generic: 🧪
+        - text: 图吧工具箱
+      - link "🪟 Microsoft 官方镜像下载":
+        - /url: https://www.microsoft.com/software-download
+        - generic: 🪟
+        - text: Microsoft 官方镜像下载
+      - link "🟩 NVIDIA 驱动下载":
+        - /url: https://www.nvidia.com/Download/index.aspx
+        - generic: 🟩
+        - text: NVIDIA 驱动下载
+      - link "🔵 Intel 驱动下载":
+        - /url: https://www.intel.com/content/www/us/en/download-center/home.html
+        - generic: 🔵
+        - text: Intel 驱动下载
+      - link "🔴 AMD 驱动下载":
+        - /url: https://www.amd.com/en/support
+        - generic: 🔴
+        - text: AMD 驱动下载

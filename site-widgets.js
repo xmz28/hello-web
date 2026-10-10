@@ -214,15 +214,16 @@ function setupTerminalPage(mode = "terminal") {
     input.addEventListener("keydown", (event) => {
         if (event.key !== "Enter") return;
         const command = input.value.trim();
-        printLine(output, `$ ${command}`);
+        printLine(output, `$ ${command}`, true);
         input.value = "";
         runCommand(output, command, mode);
     });
     input.focus();
 }
 
-function printLine(output, text) {
+function printLine(output, text, original = false) {
     const row = document.createElement("div");
+    if (original) row.setAttribute("data-original-content", "");
     row.textContent = text;
     output.appendChild(row);
     output.scrollTop = output.scrollHeight;

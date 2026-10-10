@@ -1,0 +1,236 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- navigation "主导航":
+  - link "返回首页":
+    - /url: index.html
+  - link "Home":
+    - /url: index.html
+    - generic: 
+    - generic: Home
+  - link "Profile":
+    - /url: home.html
+    - generic: 
+    - generic: Profile
+  - link "Blog":
+    - /url: blog.html
+    - generic: 
+    - generic: Blog
+  - link "My Work":
+    - /url: projects.html
+    - generic: 
+    - generic: My Work
+  - link "Visa Info":
+    - /url: visa.html
+    - generic: 
+    - generic: Visa Info
+  - link "Games":
+    - /url: games.html
+    - generic: 
+    - generic: Games
+  - link "Links":
+    - /url: nav.html
+    - generic: 
+    - generic: Links
+  - link "Status":
+    - /url: dashboard.html
+    - generic: 
+    - generic: Status
+  - text: 
+  - button "Language":
+    - generic: 
+  - 'button "Theme: Auto"':
+    - generic: 
+- main:
+  - paragraph: XMZ Control Center
+  - heading "状态面板" [level=1]
+  - article:
+    - generic: 公网 IP 检查 · 多来源
+    - heading "查看各服务看到的出口" [level=2]
+    - button "检查公网 IP" [disabled]
+    - status: 正在分别查询 4 家服务的出口信息...
+    - generic "各来源出口 IP 与归属地":
+      - article:
+        - heading "IPIP" [level=3]
+        - generic: 国内来源
+        - generic: 查询中...
+        - paragraph: 数据库归属地：--
+        - paragraph
+      - article:
+        - heading "IPinfo" [level=3]
+        - generic: 国际来源
+        - generic: 查询中...
+        - paragraph: 数据库归属地：--
+        - paragraph
+      - article:
+        - heading "ipwho.is" [level=3]
+        - generic: 国际来源
+        - generic: 查询中...
+        - paragraph: 数据库归属地：--
+        - paragraph
+      - article:
+        - heading "Cloudflare" [level=3]
+        - generic: 国际来源
+        - generic: 查询中...
+        - paragraph: 数据库归属地：--
+        - paragraph
+    - paragraph: VPN 分流可能使各服务看到不同出口。IP 归属地来自数据库，可能与节点位置不同，也不是你本人的实际位置。打开页面会自动请求这 4 家服务。
+    - link "CleanIP 纯净度详情 ↗":
+      - /url: https://cleanip.io/
+    - link "FlowLoss 多地 IP / 网络检测 ↗":
+      - /url: https://net.arsn.cn/ip
+  - article:
+    - generic: 网络连接 · HTTP Ping
+    - heading "常用网站延迟" [level=2]
+    - button "暂停检测" [pressed]
+    - status: 已完成 0 / 8 个站点 · 0 / 96 次请求
+    - generic "各站点请求延迟":
+      - article:
+        - heading "抖音 / ByteDance" [level=3]
+        - generic: 国内
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+      - article:
+        - heading "Bilibili" [level=3]
+        - generic: 国内
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+      - article:
+        - heading "微信" [level=3]
+        - generic: 国内
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+      - article:
+        - heading "淘宝" [level=3]
+        - generic: 国内
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+      - article:
+        - heading "GitHub" [level=3]
+        - generic: 国际
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+      - article:
+        - heading "jsDelivr" [level=3]
+        - generic: 国际
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+      - article:
+        - heading "Cloudflare" [level=3]
+        - generic: 国际
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+      - article:
+        - heading "YouTube" [level=3]
+        - generic: 国际
+        - generic: 待检测
+        - generic "最近 0 次请求：无记录"
+    - paragraph: 各站点独立连续检测 12 次，收到响应后立即开始下一次；超时 / 失败也计为一次，完成后停止。圆点对应本次 12 次请求。绿色 ≤150ms，黄色 ≤300ms，红色 >300ms，灰色为超时 / 失败。测量浏览器到目标站点的 HTTP 响应耗时，受 VPN 分流、连接复用和服务端响应影响；不等同于 ICMP Ping 或丢包率。
+  - article:
+    - generic: IPv4 检测
+    - status: 检测中...
+    - paragraph: 正在尝试 IPv4 专用查询服务
+    - button "重新检测" [disabled]
+  - article:
+    - generic: IPv6 检测
+    - status: 检测中...
+    - paragraph: 正在尝试 IPv6 专用查询服务
+    - button "重新检测" [disabled]
+  - article:
+    - generic: IPIP 城市天气
+    - strong: "--"
+    - paragraph: 正在查询 IPIP 城市...
+    - paragraph
+  - article:
+    - generic: 浏览器直连 · 国际节点
+    - heading "网络测速" [level=2]
+    - button "开始测速"
+    - text: 测速节点
+    - combobox "测速节点":
+      - option "日本东京 · A573 / LibreSpeed" [selected]
+      - option "美国洛杉矶 · Clouvider / LibreSpeed"
+    - status: 点击开始后测量延迟、下载与上传速度。
+    - generic: 下载
+    - strong: "--"
+    - generic: Mbps
+    - generic: 上传
+    - strong: "--"
+    - generic: Mbps
+    - generic: 延迟 / 抖动
+    - strong: "--"
+    - generic: ms
+    - generic: 测试流量
+    - strong: "0"
+    - generic: MiB · 有效载荷
+    - img "当前阶段速度曲线"
+    - paragraph: 仅手动启动。每阶段最多 8 秒；下载上限 64 MiB，上传上限 16 MiB，最多 3 个并发连接。HTTP 实测结果取决于节点、VPN 分流和当前网络，不代表套餐带宽；短样本会提示。测速时暂停常用网站检测，结束后恢复未完成的检测。
+  - article:
+    - generic: 本机 ICMP · Windows tracert
+    - heading "路由追踪与地图" [level=2]
+    - button "开始追踪" [disabled]
+    - generic "8 个预设网站":
+      - button "抖音"
+      - button "哔哩哔哩"
+      - button "微信"
+      - button "淘宝"
+      - button "GitHub"
+      - button "jsDelivr"
+      - button "Cloudflare"
+      - button "YouTube"
+    - text: 网站或 IP
+    - textbox "网站或 IP":
+      - /placeholder: example.com / IPv4 / IPv6
+      - text: github.com
+    - text: 协议
+    - combobox "协议":
+      - option "自动" [selected]
+      - option "IPv4"
+      - option "IPv6"
+    - status: 首次使用：下载并运行免安装助手，即可在自动打开的面板里追踪本机路由。
+    - generic "首次使用：下载免安装路由助手"
+    - paragraph: 浏览器不能直接执行本机 traceroute。Windows 10 / 11（64 位）访客下载下方助手，双击运行后会自动打开本地面板；无需安装 Python、输入命令或安装浏览器扩展。选择网站或输入 IP，结果和地图会自动显示。
+    - link "下载路由助手 · Windows 免安装":
+      - /url: downloads/NetworkRouteHelper-Windows-x64.exe
+    - link "助手已启动？打开追踪面板 ↗":
+      - /url: http://127.0.0.1:8765/dashboard.html
+    - button "检查本地连接"
+    - paragraph: 下载后需要你手动运行一次程序，网页不能自动安装或启动它。目前助手支持 Windows；macOS、Linux 和手机暂不提供本机追踪。测速与网站延迟检测仍可直接使用。
+    - generic "跳点 IP 估算位置地图": 开始追踪后显示跳点地图
+    - table:
+      - rowgroup:
+        - row "跳数 IP 三次响应时间 归属地 / 网络":
+          - columnheader "跳数"
+          - columnheader "IP"
+          - columnheader "三次响应时间"
+          - columnheader "归属地 / 网络"
+      - rowgroup:
+        - row "等待开始追踪":
+          - cell "等待开始追踪"
+    - paragraph: 最多 30 跳，约 100 秒。* 表示该次探测未响应，不等同于业务丢包。ICMP 可能不经过仅代理 HTTP 的 VPN；展示的是这台电脑实际收到的跳点。地图仅标记有坐标的公网 IP，虚线连接已知跳点，表示顺序而非实际光缆路线。IP 数据库位置为估算，Anycast IP 可能与实际机房不同；超时和私网地址不会伪造位置。归属地查询会向 IPinfo / ipwho.is 发送跳点 IP；底图来自 OpenStreetMap。
+  - article:
+    - generic: 音乐播放器 · Lo-fi 歌单
+    - strong: The Good Times
+    - status: 点击播放
+    - text: 曲目
+    - combobox "选择音乐曲目":
+      - option "1. The Good Times — HoliznaCC0" [selected]
+      - option "2. Blue Sky — 1000 Handz"
+      - option "3. Life On Cassette — HoliznaCC0"
+      - option "4. Tulip — 1000 Handz"
+      - option "5. Finding Yourself — HoliznaCC0"
+      - option "6. Lemongrass — 1000 Handz"
+      - option "7. City Lights — HoliznaCC0"
+      - option "8. Community — 1000 Handz"
+    - button "上一首"
+    - button "播放"
+    - button "下一首"
+    - paragraph:
+      - text: 音乐：HoliznaCC0 ·
+      - link "FMA 曲目页":
+        - /url: https://freemusicarchive.org/music/holiznacc0/be-happy-with-who-you-are/the-good-times/
+      - text: ·
+      - link "CC0 1.0":
+        - /url: https://creativecommons.org/publicdomain/zero/1.0/
+  - article:
+    - generic: 服务器启动日志
+    - generic: "[ OK ] Mounted /xmz/hello-web"
+    - generic: "[ OK ] Started static blog renderer"

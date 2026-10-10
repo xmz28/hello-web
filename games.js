@@ -9,6 +9,10 @@ const panels = {
     gobang: document.getElementById("gobangPanel"),
     huarong: document.getElementById("huarongPanel")
 };
+function gameColor(name, fallback) {
+    if (typeof getComputedStyle !== "function") return fallback;
+    return getComputedStyle(document.body).getPropertyValue(name).trim() || fallback;
+}
 let activeGame = "snake";
 const gamepad = document.querySelector(".mobile-gamepad");
 const actionControl = gamepad.querySelector('[data-control="action"]');
@@ -112,11 +116,11 @@ function placeSnakeFood() {
 }
 
 function drawSnake() {
-    snakeCtx.fillStyle = "#081321";
+    snakeCtx.fillStyle = gameColor("--game-canvas", "#081321");
     snakeCtx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-    snakeCtx.fillStyle = "#ff70c8";
+    snakeCtx.fillStyle = gameColor("--game-food", "#ff70c8");
     if (snakeFood) snakeCtx.fillRect(snakeFood.x * snakeSize + 2, snakeFood.y * snakeSize + 2, snakeSize - 4, snakeSize - 4);
-    snakeCtx.fillStyle = "#6ee7f9";
+    snakeCtx.fillStyle = gameColor("--game-snake", "#6ee7f9");
     snake.forEach((part, index) => {
         snakeCtx.globalAlpha = index === 0 ? 1 : 0.82;
         snakeCtx.fillRect(part.x * snakeSize + 2, part.y * snakeSize + 2, snakeSize - 4, snakeSize - 4);
@@ -320,7 +324,7 @@ function clearLines() {
 }
 
 function drawTetris() {
-    tetrisCtx.fillStyle = "#081321";
+    tetrisCtx.fillStyle = gameColor("--game-canvas", "#081321");
     tetrisCtx.fillRect(0, 0, tetrisCanvas.width, tetrisCanvas.height);
     tBoard.forEach((row, r) => row.forEach((color, c) => color && drawBlock(c, r, color)));
     tPiece.shape.forEach((row, r) => row.forEach((cell, c) => cell && drawBlock(tPiece.x + c, tPiece.y + r, tPiece.color)));
@@ -333,7 +337,7 @@ function drawBlock(x, y, color) {
 
 function drawTetrisNext() {
     tetrisNextCtx.clearRect(0, 0, tetrisNextCanvas.width, tetrisNextCanvas.height);
-    tetrisNextCtx.fillStyle = "rgba(5, 12, 22, 0.82)";
+    tetrisNextCtx.fillStyle = gameColor("--game-canvas", "rgba(5, 12, 22, 0.82)");
     tetrisNextCtx.fillRect(0, 0, tetrisNextCanvas.width, tetrisNextCanvas.height);
     if (!tNextPiece) return;
     const previewSize = 16;
@@ -561,9 +565,9 @@ function stepFlappy() {
     }
 }
 function drawFlappy() {
-    fCtx.fillStyle = "#081321";
+    fCtx.fillStyle = gameColor("--game-canvas", "#081321");
     fCtx.fillRect(0, 0, 360, 420);
-    fCtx.fillStyle = "#8df7b5";
+    fCtx.fillStyle = gameColor("--game-pipe", "#8df7b5");
     pipes.forEach((p) => {
         fCtx.fillRect(p.x, 0, 46, p.gap - 70);
         fCtx.fillRect(p.x, p.gap + 70, 46, 420);
@@ -880,3 +884,9 @@ startHuarong();
 mountGamepad();
 syncRealtimeTimers();
 focusGame();
+window.addEventListener("site-theme-change", () => {
+    drawSnake();
+    drawTetris();
+    drawTetrisNext();
+    drawFlappy();
+});

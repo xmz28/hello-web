@@ -91,11 +91,13 @@ const siteLocales = {
 };
 
 function getStoredLang() {
+    let lang;
     try {
-        return sessionSettings.siteLang || localStorage.getItem("siteLang") || "zh-CN";
+        lang = sessionSettings.siteLang || localStorage.getItem("siteLang");
     } catch {
-        return sessionSettings.siteLang || "zh-CN";
+        lang = sessionSettings.siteLang;
     }
+    return Object.hasOwn(siteLocales, lang) ? lang : "zh-CN";
 }
 
 function getStoredTheme() {
@@ -137,6 +139,27 @@ function applyTheme(mode = getStoredTheme()) {
         button.setAttribute("aria-label", `${locale.themeLabel}: ${modeLabel}`);
         button.title = `${locale.themeLabel}: ${modeLabel}`;
     }
+    if (typeof siteInterfaceCopy !== "undefined") {
+        syncSiteComments();
+        window.dispatchEvent(new CustomEvent("site-theme-change", { detail: { theme: resolvedTheme, mode } }));
+    }
+}
+
+// https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md
+function syncSiteComments() {
+    const script = document.getElementById("siteComments");
+    const frame = document.querySelector("iframe.giscus-frame");
+    // The client removes its script after creating the iframe.
+    if (!script && !frame) return;
+    const config = {
+        lang: getStoredLang(),
+        theme: getResolvedTheme() === "dark" ? "noborder_dark" : "noborder_light"
+    };
+    if (script) {
+        script.dataset.lang = config.lang;
+        script.dataset.theme = config.theme;
+    }
+    if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: config } }, "https://giscus.app");
 }
 
 function applyLanguage(pageLocales = {}, onChange) {
@@ -144,8 +167,8 @@ function applyLanguage(pageLocales = {}, onChange) {
     const locale = { ...siteLocales["zh-CN"], ...(siteLocales[lang] || {}) };
     const pageLocale = pageLocales[lang] || pageLocales["zh-CN"] || {};
 
-    // Most page body copy is Chinese; only fully translated pages may change html lang.
-    document.documentElement.lang = "zh-CN";
+    // Visa keeps its original localization contract; the other pages load UI copy.
+    document.documentElement.lang = typeof siteInterfaceCopy !== "undefined" ? lang : "zh-CN";
     document.querySelectorAll("[data-i18n]").forEach((node) => {
         const key = node.dataset.i18n;
         node.textContent = pageLocale[key] || locale[key] || key;
@@ -160,7 +183,8 @@ function applyLanguage(pageLocales = {}, onChange) {
         button.setAttribute("aria-pressed", String(button.dataset.langOption === lang));
     });
     document.querySelectorAll("[data-i18n-aria]").forEach((node) => {
-        node.setAttribute("aria-label", locale[node.dataset.i18nAria] || node.textContent.trim());
+        const key = node.dataset.i18nAria;
+        node.setAttribute("aria-label", pageLocale[key] || locale[key] || node.textContent.trim());
     });
     const langToggle = document.getElementById("langToggle");
     if (langToggle) langToggle.setAttribute("aria-label", locale.language);
@@ -169,6 +193,11 @@ function applyLanguage(pageLocales = {}, onChange) {
 }
 
 function setupSiteControls(pageLocales = {}, onChange) {
+    const refreshInterface = typeof setupInterfaceLocalization === "function" ? setupInterfaceLocalization() : null;
+    const refreshLanguage = () => {
+        applyLanguage(pageLocales, onChange);
+        refreshInterface?.();
+    };
     const themeToggle = document.getElementById("themeToggle");
     const langToggle = document.getElementById("langToggle");
     const langPanel = document.querySelector(".lang-panel");
@@ -206,7 +235,7 @@ function setupSiteControls(pageLocales = {}, onChange) {
     document.querySelectorAll("[data-lang-option]").forEach((button) => {
         button.addEventListener("click", () => {
             storeSiteSetting("siteLang", button.dataset.langOption);
-            applyLanguage(pageLocales, onChange);
+            refreshLanguage();
             closeLanguageMenu(true);
         });
     });
@@ -224,7 +253,19 @@ function setupSiteControls(pageLocales = {}, onChange) {
         if (getStoredTheme() === "auto") applyTheme("auto");
     });
 
-    applyLanguage(pageLocales, onChange);
+    if (refreshInterface) {
+        window.addEventListener("storage", (event) => {
+            if (event.storageArea !== localStorage || (event.key !== null && !["siteLang", "siteTheme"].includes(event.key))) return;
+            delete sessionSettings.siteLang;
+            delete sessionSettings.siteTheme;
+            refreshLanguage();
+        });
+        // Giscus may finish loading after the user changes either setting.
+        document.addEventListener("load", (event) => {
+            if (event.target.matches?.("iframe.giscus-frame")) syncSiteComments();
+        }, true);
+    }
+    refreshLanguage();
 }
 
 function categoryLabel(category, lang = getStoredLang()) {

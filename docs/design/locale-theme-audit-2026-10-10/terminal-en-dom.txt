@@ -1,0 +1,10 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- main:
+  - strong: XMZ Terminal
+  - link "返回状态面板":
+    - /url: dashboard.html
+  - generic: XMZ Web Console v1.0
+  - generic: Type help to list commands.
+  - generic: $
+  - textbox "$" [active]

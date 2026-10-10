@@ -1,0 +1,98 @@
+[
+  {
+    "page": "index",
+    "lang": "en",
+    "width": 390,
+    "viewport": 390
+  },
+  {
+    "page": "index",
+    "lang": "ja",
+    "width": 390,
+    "viewport": 390
+  },
+  {
+    "page": "home",
+    "lang": "en",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "home",
+    "lang": "ja",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "projects",
+    "lang": "en",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "projects",
+    "lang": "ja",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "nav",
+    "lang": "en",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "nav",
+    "lang": "ja",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "dashboard",
+    "lang": "en",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "dashboard",
+    "lang": "ja",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "games",
+    "lang": "en",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "games",
+    "lang": "ja",
+    "width": 375,
+    "viewport": 390
+  },
+  {
+    "page": "terminal",
+    "lang": "en",
+    "width": 390,
+    "viewport": 390
+  },
+  {
+    "page": "terminal",
+    "lang": "ja",
+    "width": 390,
+    "viewport": 390
+  },
+  {
+    "page": "ssh",
+    "lang": "en",
+    "width": 390,
+    "viewport": 390
+  },
+  {
+    "page": "ssh",
+    "lang": "ja",
+    "width": 390,
+    "viewport": 390
+  }
+]

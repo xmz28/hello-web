@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>我的博客</title>
 <script src="theme-init.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=page-themes-20261010-2">
 <link rel="stylesheet" href="remixicon.css">
 </head>
 
@@ -122,12 +122,12 @@
             <button id="closePost" class="close-button post-detail-close" type="button" aria-label="关闭文章详情"><i class="ri-close-line" aria-hidden="true"></i></button>
             <div class="post-detail-heading">
                 <span id="postCategory" class="post-detail-category"></span>
-                <h2 id="postTitle" class="post-detail-title"></h2>
+                <h2 id="postTitle" lang="zh-CN" data-original-content class="post-detail-title"></h2>
                 <div id="postMeta" class="post-detail-meta"></div>
             </div>
         </div>
         <div class="post-detail-body">
-            <div id="postContent" class="post-detail-content"></div>
+            <div id="postContent" lang="zh-CN" data-original-content class="post-detail-content"></div>
             <div class="post-detail-footer">
                 <span class="post-endmark" aria-hidden="true">FUJI DIGITAL SPACE / JOURNAL</span>
                 <a id="postLink" class="btn post-link" href="#" target="_blank" rel="noopener" data-i18n="biliWatch">去 B 站观看</a>
@@ -177,10 +177,12 @@
     </div>
 </div>
 
-<script src="site.js"></script>
+<script src="interface-copy.js"></script>
+<script src="site.js?v=page-themes-20261010-2"></script>
 <script src="social-modals.js"></script>
 <script src="blog-videos.js"></script>
-<script src="https://giscus.app/client.js"
+<template id="commentsConfig">
+<script id="siteComments" data-src="https://giscus.app/client.js"
         data-repo="xmz28/hello-web"
         data-repo-id="R_kgDOSPiVBA"
         data-category="General"
@@ -195,6 +197,7 @@
         crossorigin="anonymous"
         async>
 </script>
+</template>
 <script>
 const blogLocales = {
     "zh-CN": {
@@ -438,6 +441,7 @@ let activeCategory = "全部";
 let activeSort = "all";
 let visiblePostCount = 10;
 let lastFocusedElement = null;
+let activePostId = null;
 let bodyOverflowBeforePost = "";
 const postBackground = document.querySelectorAll(".skip-link, .site-nav, .blog-main");
 
@@ -474,12 +478,12 @@ function renderPosts() {
         featuredPost.hidden = false;
         featuredPost.innerHTML = `
             <button type="button" data-id="${escapeHtml(featured.id)}">
-                <img src="${escapeHtml(featured.image)}" alt="${escapeHtml(featured.title)}封面" referrerpolicy="no-referrer" decoding="async" onerror="this.onerror=null;this.src='assets/images/bg.jpg'">
+                <img src="${escapeHtml(featured.image)}" alt="${escapeHtml(featured.title)}" referrerpolicy="no-referrer" decoding="async" onerror="this.onerror=null;this.src='assets/images/bg.jpg'">
                 <span class="featured-shade" aria-hidden="true"></span>
                 <span class="post-category">${escapeHtml(categoryLabel(featured.category, lang))}</span>
                 <span class="featured-copy">
-                    <strong>${escapeHtml(featured.title)}</strong>
-                    <em>${escapeHtml(featured.summary)}</em>
+                    <strong lang="zh-CN" data-original-content>${escapeHtml(featured.title)}</strong>
+                    <em lang="zh-CN" data-original-content>${escapeHtml(featured.summary)}</em>
                     <small><i class="ri-calendar-line"></i>${escapeHtml(featured.date)}<i class="ri-eye-line"></i>${escapeHtml(pageText("views"))} ${escapeHtml(featured.views)}</small>
                 </span>
                 <span class="featured-index">01 / ${String(filtered.length).padStart(2, "0")}</span>
@@ -493,12 +497,12 @@ function renderPosts() {
     postGrid.innerHTML = filtered.slice(1, visiblePostCount + 1).map((post) => `
         <button class="post-card" type="button" data-id="${escapeHtml(post.id)}">
             <span class="post-thumb">
-                <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}封面" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/images/bg.jpg'">
+                <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/images/bg.jpg'">
                 <span class="post-category">${escapeHtml(categoryLabel(post.category, lang))}</span>
             </span>
             <span class="post-content">
-                <strong>${escapeHtml(post.title)}</strong>
-                <em>${escapeHtml(post.summary)}</em>
+                <strong lang="zh-CN" data-original-content>${escapeHtml(post.title)}</strong>
+                <em lang="zh-CN" data-original-content>${escapeHtml(post.summary)}</em>
                 <small class="post-meta">
                     <span><i class="ri-calendar-line"></i>${escapeHtml(post.date)}</span>
                     <span><i class="ri-eye-line"></i>${escapeHtml(pageText("views"))} ${escapeHtml(post.views)}</span>
@@ -522,6 +526,7 @@ function renderPosts() {
 function openPost(postId) {
     const post = posts.find((item) => item.id === postId);
     if (!post) return;
+    activePostId = postId;
 
     lastFocusedElement = document.activeElement;
     const postImage = document.getElementById("postImage");
@@ -530,7 +535,7 @@ function openPost(postId) {
         this.src = "assets/images/bg.jpg";
     };
     postImage.src = post.image;
-    postImage.alt = `${post.title}封面`;
+    postImage.alt = post.title;
     document.getElementById("postCategory").textContent = categoryLabel(post.category);
     document.getElementById("postTitle").textContent = post.title;
     document.getElementById("postMeta").textContent = `${post.date} · ${pageText("views")} ${post.views}`;
@@ -634,7 +639,17 @@ setupSiteControls(blogLocales, () => {
         label.textContent = categoryLabel(label.closest(".tab").dataset.category);
     });
     renderPosts();
+    const activePost = posts.find(post => post.id === activePostId);
+    if (activePost) {
+        document.getElementById("postCategory").textContent = categoryLabel(activePost.category);
+        document.getElementById("postMeta").textContent = `${activePost.date} · ${pageText("views")} ${activePost.views}`;
+    }
 });
+const commentsScript = document.getElementById("commentsConfig").content.querySelector("script").cloneNode(false);
+commentsScript.dataset.lang = getStoredLang();
+commentsScript.dataset.theme = getResolvedTheme() === "dark" ? "noborder_dark" : "noborder_light";
+commentsScript.src = commentsScript.dataset.src;
+document.querySelector(".giscus").append(commentsScript);
 </script>
 </body>
 </html>

@@ -1,0 +1,153 @@
+- link "跳到主内容":
+  - /url: "#mainContent"
+- navigation "主导航":
+  - link "返回首页":
+    - /url: index.html
+  - link "Home":
+    - /url: index.html
+    - generic: 
+    - generic: Home
+  - link "Profile":
+    - /url: home.html
+    - generic: 
+    - generic: Profile
+  - link "Blog":
+    - /url: blog.html
+    - generic: 
+    - generic: Blog
+  - link "My Work":
+    - /url: projects.html
+    - generic: 
+    - generic: My Work
+  - link "Visa Info":
+    - /url: visa.html
+    - generic: 
+    - generic: Visa Info
+  - link "Games":
+    - /url: games.html
+    - generic: 
+    - generic: Games
+  - link "Links":
+    - /url: nav.html
+    - generic: 
+    - generic: Links
+  - link "Status":
+    - /url: dashboard.html
+    - generic: 
+    - generic: Status
+  - text: 
+  - button "Language":
+    - generic: 
+  - 'button "Theme: Dark" [active]':
+    - generic: 
+- main:
+  - region "小米周":
+    - text: "01"
+    - generic: / USER
+    - img "小米周的个人头像"
+    - generic "在线"
+    - heading "小米周" [level=1]
+    - generic: 终端在线
+    - paragraph: Exploring life and the edge of technology
+    - blockquote:
+      - text: 用代码记录想法，用镜头记录世界，
+      - text: 在不断折腾中，让热爱持续发生。
+    - generic: 
+    - text: 中国 · 上海
+    - generic: 
+    - text: AI Builder
+    - generic: 
+    - text: 2026.06.25
+    - group "社交与手机访问":
+      - button "GitHub":
+        - generic: 
+      - button "B站":
+        - generic: 
+      - button "抖音":
+        - generic: 
+      - button "手机访问个人页":
+        - generic: 
+  - region "个人资料":
+    - article:
+      - heading " About Me" [level=2]:
+        - generic: 
+        - generic: About Me
+      - generic: ">_"
+      - paragraph: I like gadgets, travel, photography, and tinkering with interesting ideas.
+      - paragraph: // Keep Exploring. Keep Coding.
+      - img "旅行中拍摄的绿色草地与建筑"
+    - article:
+      - heading " 兴趣与热爱" [level=2]:
+        - generic: 
+        - text: 兴趣与热爱
+      - generic: 
+      - strong: Gadgets
+      - text: 新奇硬件
+      - text: 与生产力工具
+      - generic: 
+      - strong: Travel
+      - text: 探索未知
+      - text: 收集地图与故事
+      - generic: 
+      - strong: Photo
+      - text: 记录光影
+      - text: 定格美好瞬间
+      - generic: 
+      - strong: Tinkering
+      - text: 折腾硬件
+      - text: 创造有趣的东西
+    - article "博客稳定运行时间":
+      - heading " Blog uptime" [level=2]:
+        - generic: 
+        - generic: Blog uptime
+      - strong:
+        - generic: "163"
+        - generic: 天
+        - generic: "19"
+        - generic: 时
+        - generic: "35"
+        - generic: 分
+        - generic: "49"
+        - generic: 秒
+      - generic: 本次运行时间
+    - article:
+      - heading " 当前状态" [level=2]:
+        - generic: 
+        - text: 当前状态
+      - list:
+        - listitem: 专注模式 · 学习 Rust
+        - listitem: 优化个人项目 · 准备下一次旅行
+        - listitem: 记录生活与灵感
+    - article:
+      - heading "项目焦点" [level=2]: 项目焦点
+      - heading " NES 掌机与 Xbox 手柄" [level=3]:
+        - generic: 
+        - text: NES 掌机与 Xbox 手柄
+      - paragraph: ESP32-S3 驱动 800×480 彩屏、触摸与 USB 手柄，运行红白机游戏；源码和构建说明已公开。
+      - link "查看全部作品 ":
+        - /url: projects.html
+        - text: 查看全部作品
+        - generic: 
+    - article:
+      - heading " 快速入口" [level=2]:
+        - generic: 
+        - text: 快速入口
+      - link "GitHub 项目 · 代码 · 开源":
+        - /url: https://github.com/xmz28
+        - generic: 
+        - strong: GitHub
+        - generic: 项目 · 代码 · 开源
+        - generic: 
+      - link "B站空间 视频 · 教程 · 分享":
+        - /url: https://space.bilibili.com/338302827
+        - generic: 
+        - strong: B站空间
+        - generic: 视频 · 教程 · 分享
+        - generic: 
+      - link "抖音主页 随拍 · 旅行 · 日常":
+        - /url: https://v.douyin.com/x64M2NbYj0A/
+        - generic: 
+        - strong: 抖音主页
+        - generic: 随拍 · 旅行 · 日常
+        - generic: 
+- text:    

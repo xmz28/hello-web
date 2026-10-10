@@ -199,6 +199,7 @@ function setupNetworkChecks() {
         source.value = node("div", "ip-source-value", "待检测");
         source.location = node("p", "ip-source-location", "数据库归属地：--");
         source.network = node("p", "ip-source-network");
+        source.network.setAttribute("data-original-content", "");
         item.append(heading(source.name, source.group), source.value, source.location, source.network);
         sourcesContainer.append(item);
     });

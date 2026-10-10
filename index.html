@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>我的主页</title>
 <script src="theme-init.js"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=page-themes-20261010-2">
 <link rel="stylesheet" href="remixicon.css">
 </head>
 
@@ -24,6 +24,18 @@
         <i class="ri-map-pin-line" aria-hidden="true"></i>
         <span>ASIA / SHANGHAI</span>
     </div>
+<div class="nav-controls">
+        <div class="lang-menu">
+            <button id="langToggle" aria-controls="languageOptions" aria-expanded="false" class="icon-toggle" type="button" aria-label="语言"><i class="ri-translate-2"></i></button>
+            <div id="languageOptions" class="lang-panel" hidden>
+                <button type="button" data-lang-option="zh-CN"><span class="flag-emoji">🇨🇳</span>简体中文</button>
+                <button type="button" data-lang-option="zh-TW"><span class="flag-emoji">🇭🇰</span>繁體中文</button>
+                <button type="button" data-lang-option="en"><span class="flag-emoji">🇺🇸</span>English</button>
+                <button type="button" data-lang-option="ja"><span class="flag-emoji">🇯🇵</span>日本語</button>
+            </div>
+        </div>
+        <button id="themeToggle" class="icon-toggle" type="button" aria-label="主题" data-icon-ui="remix"><i class="ri-sun-line"></i></button>
+</div>
 </header>
 
 <main id="mainContent" tabindex="-1" class="home-center">
@@ -84,7 +96,8 @@
     <p class="home-hint"><span aria-hidden="true"></span> SELECT A DESTINATION</p>
 </main>
 
-<script src="site.js"></script>
+<script src="interface-copy.js"></script>
+<script src="site.js?v=page-themes-20261010-2"></script>
 <script>
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 function startParticles() {
@@ -115,20 +128,26 @@ if (!reduceMotion.matches) {
 
 const beijingTime = document.getElementById("beijingTime");
 const beijingDate = document.getElementById("beijingDate");
-const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
+let dateFormatter;
+let timeFormatter;
+function updateTimeLocale() {
+dateFormatter = new Intl.DateTimeFormat(getStoredLang(), {
     timeZone: "Asia/Shanghai",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
     weekday: "long"
 });
-const timeFormatter = new Intl.DateTimeFormat("zh-CN", {
+timeFormatter = new Intl.DateTimeFormat(getStoredLang(), {
     timeZone: "Asia/Shanghai",
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
     hour12: false
 });
+
+updateBeijingTime();
+}
 
 function updateBeijingTime() {
     const now = new Date();
@@ -137,7 +156,7 @@ function updateBeijingTime() {
     beijingDate.textContent = dateFormatter.format(now).replace(/\//g, ".");
 }
 
-updateBeijingTime();
+setupSiteControls({}, updateTimeLocale);
 setInterval(updateBeijingTime, 1000);
 
 const homeDock = document.querySelector(".home-dock");

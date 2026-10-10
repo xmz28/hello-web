@@ -1,0 +1,114 @@
+[
+  {
+    "page": "index",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "小米周",
+    "theme": "light",
+    "viewport": 390,
+    "width": 390
+  },
+  {
+    "page": "index",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "小米周",
+    "theme": "dark",
+    "viewport": 390,
+    "width": 390
+  },
+  {
+    "page": "home",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "小米周",
+    "theme": "light",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "home",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "小米周",
+    "theme": "dark",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "blog",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "我的博客",
+    "theme": "light",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "blog",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "我的博客",
+    "theme": "dark",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "projects",
+    "bodyColor": "rgb(21, 62, 92)",
+    "heading": "把想法做成可以体验的作品。",
+    "theme": "light",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "projects",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "把想法做成可以体验的作品。",
+    "theme": "dark",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "games",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "贪吃蛇",
+    "theme": "light",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "games",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "贪吃蛇",
+    "theme": "dark",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "nav",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "网站导航",
+    "theme": "light",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "nav",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "网站导航",
+    "theme": "dark",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "dashboard",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "状态面板",
+    "theme": "light",
+    "viewport": 390,
+    "width": 375
+  },
+  {
+    "page": "dashboard",
+    "bodyColor": "rgb(255, 255, 255)",
+    "heading": "状态面板",
+    "theme": "dark",
+    "viewport": 390,
+    "width": 375
+  }
+]
