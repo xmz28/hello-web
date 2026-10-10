@@ -21,6 +21,8 @@
 - 明暗主题与多语言切换
 - 响应式页面布局
 
+主要页面支持简体中文、繁体中文、英语和日语，语言与主题设置会在刷新及同一浏览器的其他标签页中同步。首页、个人页、博客、作品、导航、状态面板和小游戏分别调整了日间与夜间样式；小游戏切换主题时会保留当前进度。
+
 ## 项目结构
 
 ```text
@@ -48,6 +50,7 @@ hello-web/
 ├── network-tools.js    # 测速、路由追踪与地图交互
 ├── start-network-dashboard.cmd  # Windows 本地启动入口
 ├── style.css           # 页面样式
+├── interface-copy.js   # 多语言界面文案
 ├── site.js             # 公共交互逻辑
 ├── social-modals.js    # 社交与页面二维码弹窗
 ├── theme-init.js       # 页面主题初始化
