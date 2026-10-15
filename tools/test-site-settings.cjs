@@ -85,7 +85,7 @@ for (const lang of ['zh-CN', 'zh-TW', 'en', 'ja']) {
 for (const page of ['index', 'home', 'blog', 'projects', 'nav', 'dashboard', 'games', 'terminal', 'ssh']) {
     const html = fs.readFileSync(path.join(root, `${page}.html`), 'utf8');
     assert.doesNotMatch(html, /href="site-themes\.css"/);
-    assert.match(html, /src="interface-copy\.js"/);
+    assert.match(html, /src="interface-copy\.js(?:\?[^"\s]+)?"/);
     for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
         if (!/\bsrc=/.test(match[1])) new vm.Script(match[2], { filename: `${page}.html` });
     }

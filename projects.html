@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="小米周的项目与作品：ESP32 车辆仪表、ESP32-S3 NES 掌机、投屏导航及更多软件实验。">
+<meta name="description" content="小米周的项目与作品：DiPlay CarPlay 融合仪表、RK3399 NAS 与网络工具、ESP32 车辆仪表、NES 掌机及更多软件实验。">
 <title>项目与作品 · 小米周</title>
 <script src="theme-init.js"></script>
 <link rel="stylesheet" href="style.css?v=page-themes-20261010-2">
@@ -49,16 +49,38 @@
         <a class="projects-github" href="https://github.com/xmz28?tab=repositories" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i>查看 GitHub 全部仓库<i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
     </header>
 
+    <section class="projects-section" aria-labelledby="recentProjects">
+        <div class="projects-section-heading"><div><span>01 / LATEST</span><h2 id="recentProjects">最近更新</h2></div><p>CarPlay 融合仪表与 RK3399 工具链</p></div>
+        <div class="projects-more-grid">
+            <article class="project-card project-card-small">
+                <div class="project-small-icon"><i class="ri-road-map-line" aria-hidden="true"></i></div>
+                <div class="project-card-body"><p class="project-eyebrow">ANDROID · CARPLAY · ESP32 BLE</p><h3>DiPlay 手机融合仪表</h3><p class="project-summary">基于 DiPlay 手机适配版继续开发，让 Android 手机同时呈现 CarPlay 副屏地图、车辆仪表与音乐信息。支持主副屏切换、2:1 显示预设和日夜主题，并通过 ESP32 BLE 接收车辆数据。</p><p class="project-availability">改编项目；公开分支源码与 Debug APK，车辆数据仍待实车验收</p><a class="project-action" href="https://github.com/xmz28/DiPlay-Phone/tree/research/android-baseline" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div>
+            </article>
+            <article class="project-card project-card-small">
+                <div class="project-small-icon"><i class="ri-database-2-line" aria-hidden="true"></i></div>
+                <div class="project-card-body"><p class="project-eyebrow">RK3399 · ANDROID · ALPINE</p><h3>RK3399 Android NAS</h3><p class="project-summary">将已 root 的 RK3399 Android 设备变成多盘 NAS，提供 SMB、FTP、SFTP、WebDAV 和网页文件管理。配套脚本负责首次安装与升级，支持 USB 磁盘管理、局域网发现和 SSH 管理。</p><p class="project-availability">公开部署源码与文档；新版首次安装完整流程仍待验收</p><a class="project-action" href="https://github.com/xmz28/rk3399-android-nas" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div>
+            </article>
+            <article class="project-card project-card-small">
+                <div class="project-small-icon"><i class="ri-settings-3-line" aria-hidden="true"></i></div>
+                <div class="project-card-body"><p class="project-eyebrow">RK3399 · ANDROID · KOTLIN</p><h3>RK3399 Control</h3><p class="project-summary">运行在 RK3399 板端的 Android 控制台，集中管理 NAS 服务、Wi-Fi 热点、有线网络、路由与 USB 存储。提供经过密码认证的局域网接口，可与手机工具箱配合进行远程控制。</p><p class="project-availability">公开源码与 Debug 预览 APK；需已 root 的配套板端环境</p><a class="project-action" href="https://github.com/xmz28/rk3399-control" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div>
+            </article>
+            <article class="project-card project-card-small">
+                <div class="project-small-icon"><i class="ri-wifi-line" aria-hidden="true"></i></div>
+                <div class="project-card-body"><p class="project-eyebrow">ANDROID · NETWORK · KOTLIN</p><h3>RK3399 网络工具箱</h3><p class="project-summary">手机端的 RK3399 配套工具，支持自动发现设备、iperf3 测速，以及 SMB、FTP、SFTP 文件浏览与传输。连接板端控制台后，还能远程管理服务、网络和 USB 存储；手机无需 root。</p><p class="project-availability">公开源码与构建说明；支持 Android 9 及以上</p><a class="project-action" href="https://github.com/xmz28/rk3399-network-toolbox" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div>
+            </article>
+        </div>
+    </section>
+
     <section class="projects-section" aria-labelledby="featuredProjects">
-        <div class="projects-section-heading"><div><span>01 / HARDWARE</span><h2 id="featuredProjects">重点项目</h2></div><p>两种不同方向的 ESP32 实践</p></div>
+        <div class="projects-section-heading"><div><span>02 / HARDWARE</span><h2 id="featuredProjects">重点项目</h2></div><p>两种不同方向的 ESP32 实践</p></div>
         <div class="projects-feature-grid">
             <article class="project-card project-card-feature project-card-dashboard">
                 <div class="project-art" aria-hidden="true"><span class="project-art-orbit"></span><i class="ri-dashboard-3-line"></i><span class="project-art-code">CAN / RS485</span></div>
                 <div class="project-card-body">
                     <p class="project-eyebrow">01 <span>ESP32 · 车辆电子</span></p>
                     <h3>ESP32 车辆仪表</h3>
-                    <p class="project-summary">面向车辆使用的仪表固件，通过总线读取行驶与电池数据，在彩色屏幕显示速度、挡位、电量、功率和故障状态。它支持按键操作、无线连接与固件升级，仓库还提供接线资料、使用说明和实物照片。</p>
-                    <ul class="project-tags" aria-label="项目特点"><li>ST7789 屏幕</li><li>WiFi OTA</li><li>固件与接线文档</li></ul>
+                    <p class="project-summary">基于 CAN / RS485 的 ESP32 车辆仪表固件，在彩屏显示速度、挡位、电量、功率与车辆状态。新增 BLE 车辆遥测，可配合 DiPlay 手机融合仪表使用，并保留 WiFi OTA 升级；仓库提供固件、接线资料和使用说明。</p>
+                    <ul class="project-tags" aria-label="项目特点"><li>ST7789 屏幕</li><li>BLE / WiFi OTA</li><li>固件与接线文档</li></ul>
                     <p class="project-availability"><i class="ri-information-line" aria-hidden="true"></i>公开固件、接线资料和用户文档；完整源码未公开。</p>
                     <a class="project-action" href="https://github.com/xmz28/esp32-vehicle-dashboard" target="_blank" rel="noopener noreferrer" aria-label="查看 ESP32 车辆仪表仓库，新标签页打开">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
                 </div>
@@ -78,7 +100,7 @@
     </section>
 
     <section class="projects-section" aria-labelledby="moreProjects">
-        <div class="projects-section-heading"><div><span>02 / SOFTWARE</span><h2 id="moreProjects">更多作品</h2></div><p>手机、桌面与浏览器</p></div>
+        <div class="projects-section-heading"><div><span>03 / SOFTWARE</span><h2 id="moreProjects">更多作品</h2></div><p>手机、桌面与浏览器</p></div>
         <div class="projects-more-grid">
             <article class="project-card project-card-small"><div class="project-small-icon"><i class="ri-smartphone-line" aria-hidden="true"></i></div><div class="project-card-body"><p class="project-eyebrow">ANDROID APP · APK</p><h3>投屏导航 SE</h3><p class="project-summary">连接兼容仪表的无线网络后，这款手机应用可将相册媒体、摄像头画面和手机屏幕投到仪表。仪表固件达到要求时，还能从手机选择图片设置壁纸；仓库提供安装包、版本说明和基本操作步骤。</p><p class="project-availability">公开 APK 与使用说明</p><a class="project-action" href="https://github.com/xmz28/mirror-nav-se-apk" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div></article>
             <article class="project-card project-card-small"><div class="project-small-icon"><i class="ri-mac-line" aria-hidden="true"></i></div><div class="project-card-body"><p class="project-eyebrow">MACOS · SWIFT</p><h3>iMac Fold</h3><p class="project-summary">这是一项面向英特尔一体机的桌面视觉实验：接收姿态追踪器的数据，将屏幕转动映射为实时透视折叠、模糊与淡出效果。用户可以校准展开角度、切换旋转轴和随时暂停，仓库公开了源码与构建说明。</p><p class="project-availability">公开源码与构建说明</p><a class="project-action" href="https://github.com/xmz28/iMac-Fold" target="_blank" rel="noopener noreferrer">查看项目 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></div></article>
@@ -87,10 +109,10 @@
         </div>
     </section>
 
-    <aside class="projects-site-card" aria-label="本站项目"><div><span>03 / THIS SITE</span><h2>你正在浏览的个人网站</h2><p>这个网站本身也是一个作品，使用原生网页技术构建，汇集个人介绍、博客、小游戏、网站导航与状态面板。页面为桌面和手机屏幕调整布局，还加入明暗主题、多语言切换与交互；源码公开在仓库中。</p></div><a href="https://github.com/xmz28/hello-web" target="_blank" rel="noopener noreferrer">查看 hello-web 源码 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></aside>
+    <aside class="projects-site-card" aria-label="本站项目"><div><span>04 / THIS SITE</span><h2>你正在浏览的个人网站</h2><p>这个网站本身也是一个作品，使用原生网页技术构建，汇集个人介绍、博客、小游戏、网站导航与状态面板。页面为桌面和手机屏幕调整布局，还加入明暗主题、多语言切换与交互；源码公开在仓库中。</p></div><a href="https://github.com/xmz28/hello-web" target="_blank" rel="noopener noreferrer">查看 hello-web 源码 <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a></aside>
 </main>
 
-<script src="interface-copy.js"></script>
+<script src="interface-copy.js?v=projects-20261015"></script>
 <script src="site.js?v=page-themes-20261010-2"></script>
 <script>setupSiteControls();</script>
 </body>
