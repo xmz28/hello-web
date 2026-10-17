@@ -412,7 +412,7 @@ const fallbackPosts = [
 
 const videoSnapshot = window.blogVideoSnapshot;
 const videoPosts = Array.isArray(videoSnapshot?.posts) && videoSnapshot.posts.length
-    ? videoSnapshot.posts.slice(0, 30)
+    ? videoSnapshot.posts
     : fallbackPosts.filter((post) => post.category === "视频");
 const posts = fallbackPosts.filter((post) => post.category !== "视频").concat(videoPosts);
 const snapshotNote = document.getElementById("videoSnapshotNote");
