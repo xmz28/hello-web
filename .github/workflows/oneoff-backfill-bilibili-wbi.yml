@@ -1,0 +1,79 @@
+name: One-off Bilibili WBI backfill
+
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-backfill-bilibili-wbi.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Backfill to latest 60 via WBI API
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, re, time, urllib.parse, urllib.request
+          from datetime import datetime, timezone, timedelta
+          MID = 338302827
+          MIXIN = [46,47,18,2,53,8,23,32,15,50,10,31,58,3,45,35,27,43,5,49,33,9,42,19,29,28,14,39,12,38,41,13,37,48,7,16,24,55,40,61,26,17,0,1,60,51,30,4,22,25,54,21,56,59,6,63,57,62,11,36,20,34,44,52]
+          HEADERS = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/155 Safari/537.36','Referer':f'https://space.bilibili.com/{MID}/video','Origin':'https://space.bilibili.com'}
+          def get_json(url):
+              req=urllib.request.Request(url,headers=HEADERS)
+              with urllib.request.urlopen(req,timeout=25) as r: data=json.load(r)
+              if data.get('code')!=0: raise RuntimeError(f"Bilibili API: {data.get('code')} {data.get('message')}")
+              return data['data']
+          nav=get_json('https://api.bilibili.com/x/web-interface/nav')
+          img=nav['wbi_img']['img_url'].rsplit('/',1)[-1].split('.')[0]
+          sub=nav['wbi_img']['sub_url'].rsplit('/',1)[-1].split('.')[0]
+          raw_key=img+sub
+          mixin_key=''.join(raw_key[i] for i in MIXIN)[:32]
+          def signed_url(page):
+              p={'mid':MID,'pn':page,'ps':50,'order':'pubdate','wts':int(time.time())}
+              clean={k:re.sub(r"[!'()*]",'',str(v)) for k,v in p.items()}
+              q=urllib.parse.urlencode(sorted(clean.items()))
+              clean['w_rid']=hashlib.md5((q+mixin_key).encode()).hexdigest()
+              return 'https://api.bilibili.com/x/space/wbi/arc/search?'+urllib.parse.urlencode(sorted(clean.items()))
+          raw=open('blog-videos.js',encoding='utf-8').read()
+          m=re.match(r'^\s*window\.blogVideoSnapshot\s*=\s*(\{.*\})\s*;\s*$',raw,re.S)
+          if not m: raise RuntimeError('Invalid existing snapshot')
+          snap=json.loads(m.group(1)); existing=snap['posts']
+          if len(existing)!=30: raise RuntimeError(f'Expected 30 current videos, got {len(existing)}')
+          known={p['id'][6:] for p in existing}; anchor=existing[-1]['id'][6:]
+          ordered=[]
+          for page in range(1,5):
+              batch=get_json(signed_url(page))['list']['vlist']; ordered.extend(batch)
+              if len(batch)<50: break
+              time.sleep(2)
+          ids=[str(v['bvid']) for v in ordered]
+          if anchor not in ids: raise RuntimeError('Current oldest video not found in WBI list')
+          older=[v for v in ordered[ids.index(anchor)+1:] if str(v['bvid']) not in known][:30]
+          if len(older)!=30: raise RuntimeError(f'Only found {len(older)} older videos')
+          tz8=timezone(timedelta(hours=8))
+          def mkpost(v):
+              b=str(v['bvid']); ts=int(v.get('created') or 0); desc=re.sub(r'\s+',' ',str(v.get('description') or '').strip())
+              if desc in ('-','--'): desc=''
+              if len(desc)>150: desc=desc[:150]+'…'
+              return {'id':'video-'+b,'title':str(v.get('title') or ''),'summary':desc or '来自小米周的 B 站视频','category':'视频','date':datetime.fromtimestamp(ts,tz8).strftime('%Y-%m-%d'),'views':int(v.get('play') or 0),'image':str(v.get('pic') or '').replace('http://','https://',1),'url':f'https://www.bilibili.com/video/{b}/','content':['点击下方按钮前往 B 站观看完整视频。']}
+          snap['updatedAt']=datetime.now(tz8).strftime('%Y-%m-%d'); snap['source']='incremental-wbi-pubdate-list'; snap['complete']=True; snap['posts']=existing+[mkpost(v) for v in older]
+          if len(snap['posts'])!=60 or len({p['id'] for p in snap['posts']})!=60: raise RuntimeError('Final validation failed')
+          with open('blog-videos.js','w',encoding='utf-8',newline='\n') as f: f.write('window.blogVideoSnapshot = '+json.dumps(snap,ensure_ascii=False,separators=(',',':'))+';\n')
+          print('Snapshot video count:',len(snap['posts'])); print('Oldest:',snap['posts'][-1]['date'],snap['posts'][-1]['title'])
+          PY
+
+      - name: Commit updated snapshot
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog-videos.js
+          git commit -m "Backfill Bilibili videos to 60"
+          git push
