@@ -1,0 +1,45 @@
+name: One-off Bilibili backfill
+
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-backfill-bilibili.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Backfill 30 older Bilibili videos
+        shell: pwsh
+        run: ./tools/update-bilibili-videos.ps1 -Backfill -Count 30
+
+      - name: Verify snapshot contains 60 videos
+        shell: pwsh
+        run: |
+          $raw = [System.IO.File]::ReadAllText('blog-videos.js')
+          if ($raw -notmatch '(?s)^\s*window\.blogVideoSnapshot\s*=\s*(\{.*\})\s*;\s*$') { throw 'Invalid snapshot' }
+          $snapshot = $Matches[1] | ConvertFrom-Json
+          $count = @($snapshot.posts).Count
+          Write-Output "Snapshot video count: $count"
+          if ($count -ne 60) { throw "Expected 60 videos, got $count" }
+
+      - name: Commit updated snapshot
+        shell: bash
+        run: |
+          if git diff --quiet -- blog-videos.js; then
+            echo "No snapshot change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog-videos.js
+          git commit -m "Backfill Bilibili videos to 60"
+          git push
