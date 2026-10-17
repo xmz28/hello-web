@@ -78,6 +78,11 @@ assert.equal(run('getStoredLang()'), 'en', 'Controls must remain usable without 
 assert.equal(run('interfaceText("第 1 行第 2 列，已打开，周围 3 个雷", "en")'), 'Row 1, column 2, Revealed, 3 adjacent mines');
 assert.equal(run('interfaceText("数据库归属地：移动 · 日本", "en")'), 'Database location: 移动 · 日本', 'Measured/provider payloads must not be translated');
 assert.equal(run('interfaceText("console: 下载: command not found", "ja")'), 'console：下载：コマンドが見つかりません', 'Typed commands must be preserved');
+assert.equal(run('interfaceText("卡片 1，太阳，已配对", "en")'), 'Card 1, Sun, matched');
+assert.equal(run('interfaceText("全部配对成功！用了 8 步", "ja")'), '8 手ですべてのペアを見つけました！');
+for (const [lang, label] of [['zh-CN','打砖块'],['zh-TW','打磚塊'],['en','Brick Breaker'],['ja','ブロック崩し']]) {
+    assert.equal(run(`interfaceText("打砖块", "${lang}")`), label);
+}
 for (const lang of ['zh-CN', 'zh-TW', 'en', 'ja']) {
     assert.equal(run(`interfaceText("123 ms", "${lang}")`), '123 ms');
     assert.equal(run(`interfaceText("https://example.com", "${lang}")`), 'https://example.com');

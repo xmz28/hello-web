@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>小游戏</title>
 <script src="theme-init.js"></script>
-<link rel="stylesheet" href="style.css?v=page-themes-20261010-2">
+<link rel="stylesheet" href="style.css?v=games-20261017-4">
+<link rel="stylesheet" href="games-ui.css?v=games-20261017-6">
 <link rel="stylesheet" href="remixicon.css">
 </head>
 
@@ -54,6 +55,8 @@
             <button class="game-item" type="button" data-game="flappy"><span>🐤</span>Flappy Bird</button>
             <button class="game-item" type="button" data-game="gobang"><span>⚫</span>五子棋</button>
             <button class="game-item" type="button" data-game="huarong"><span>🧩</span>华容道</button>
+            <button class="game-item" type="button" data-game="memory"><span><i class="ri-gallery-line" aria-hidden="true"></i></span>记忆翻牌</button>
+            <button class="game-item" type="button" data-game="breaker"><span><i class="ri-layout-grid-line" aria-hidden="true"></i></span>打砖块</button>
         </div>
 
         <section class="game-panel active" id="snakePanel">
@@ -113,6 +116,24 @@
             <div id="huarongMessage" class="game-message" hidden>你赢了！</div>
             <div class="game-actions"><button class="btn" type="button" onclick="startHuarong()">重新开始</button></div>
         </section>
+        <section class="game-panel" id="memoryPanel">
+            <div class="game-head"><div><h1>记忆翻牌</h1><p>每次翻开两张卡片，找到所有相同图案。</p></div><strong>步数 <span id="memoryMoves">0</span></strong></div>
+            <div class="memory-toolbar">
+                <label><span>难度</span> <select id="memoryDifficulty"><option value="6">轻松 · 6 对</option><option value="8">标准 · 8 对</option><option value="10">挑战 · 10 对</option></select></label>
+                <span>最佳步数 <b id="memoryBest">—</b></span>
+            </div>
+            <div id="memoryBoard" class="memory-board" aria-label="记忆翻牌棋盘"></div>
+            <div id="memoryMessage" class="game-message" role="status"></div>
+            <div class="game-actions"><button id="memoryRestart" class="btn" type="button">重新开始</button></div>
+        </section>
+
+        <section class="game-panel" id="breakerPanel">
+            <div class="game-head"><div><h1>打砖块</h1><p>拖动挡板或按左右键移动，点击开始或空格发球。</p></div><strong>得分 <span id="breakerScore">0</span></strong></div>
+            <div class="breaker-stats"><span>生命 <b id="breakerLives">3</b></span><span>最高分 <b id="breakerBest">0</b></span></div>
+            <canvas id="breakerCanvas" width="360" height="360" tabindex="0" role="img" aria-label="打砖块棋盘，左右方向键移动挡板，空格开始或暂停"></canvas>
+            <div id="breakerMessage" class="game-message" role="status"></div>
+            <div class="game-actions"><button id="breakerRestart" class="btn" type="button">重新开始</button><button id="breakerPause" class="btn" type="button">开始游戏</button></div>
+        </section>
     </section>
 </main>
 
@@ -124,8 +145,9 @@
     <button type="button" data-control="down" aria-label="向下">↓</button>
 </div>
 
-<script src="interface-copy.js"></script>
+<script src="interface-copy.js?v=games-20261017-4"></script>
 <script src="site.js?v=page-themes-20261010-2"></script>
-<script src="games.js?v=page-themes-20261010-2"></script>
+<script src="games-extra.js?v=games-20261017-4"></script>
+<script src="games.js?v=games-20261017-4"></script>
 </body>
 </html>

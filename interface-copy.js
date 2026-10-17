@@ -2,6 +2,37 @@
    translated. Rows are Simplified Chinese | Traditional Chinese | English | Japanese.
    {n} placeholders retain measured values, hostnames and proper names. */
 const interfaceCopyRows = `
+记忆翻牌 | 記憶翻牌 | Memory Match | 神経衰弱
+打砖块 | 打磚塊 | Brick Breaker | ブロック崩し
+点击开始或空格发球 | 點擊開始或空白鍵發球 | Start or press Space to launch | 開始かスペースで発射
+每次翻开两张卡片，找到所有相同图案。 | 每次翻開兩張卡片，找到所有相同圖案。 | Flip two cards at a time to find every matching pair. | 2 枚ずつめくり、同じ絵柄のペアをすべて見つけましょう。
+拖动挡板或按左右键移动，点击开始或空格发球。 | 拖動擋板或按左右鍵移動，點擊開始或空白鍵發球。 | Drag the paddle or use Left/Right. Start or press Space to launch. | パドルをドラッグするか左右キーで移動。開始かスペースで発射。
+难度 | 難度 | Difficulty | 難易度
+轻松 · 6 对 | 輕鬆 · 6 對 | Easy · 6 pairs | かんたん・6 ペア
+标准 · 8 对 | 標準 · 8 對 | Normal · 8 pairs | ふつう・8 ペア
+挑战 · 10 对 | 挑戰 · 10 對 | Hard · 10 pairs | むずかしい・10 ペア
+最佳步数 | 最佳步數 | Best moves | 最少手数
+最高分 | 最高分 | Best score | ハイスコア
+生命 | 生命 | Lives | 残機
+记忆翻牌棋盘 | 記憶翻牌棋盤 | Memory matching board | 神経衰弱のカード
+打砖块棋盘，左右方向键移动挡板，空格开始或暂停 | 打磚塊棋盤，左右方向鍵移動擋板，空白鍵開始或暫停 | Brick Breaker board. Left/Right moves the paddle; Space starts or pauses. | ブロック崩し。左右キーでパドルを移動、スペースで開始・一時停止。
+已配对 {0}/{1} | 已配對 {0}/{1} | Matched {0}/{1} | ペア {0}/{1}
+全部配对成功！用了 {0} 步 | 全部配對成功！用了 {0} 步 | All pairs found in {0} moves! | {0} 手ですべてのペアを見つけました！
+全部击碎！得分 {0} | 全部擊碎！得分 {0} | All bricks cleared! Score {0} | 全ブロッククリア！スコア {0}
+游戏结束，得分 {0} | 遊戲結束，得分 {0} | Game over. Score {0} | ゲームオーバー。スコア {0}
+卡片 {0}，未翻开 | 卡片 {0}，未翻開 | Card {0}, face down | カード {0}、裏向き
+卡片 {0}，{1}，已翻开 | 卡片 {0}，{1}，已翻開 | Card {0}, {1}, face up | カード {0}、{1}、表向き
+卡片 {0}，{1}，已配对 | 卡片 {0}，{1}，已配對 | Card {0}, {1}, matched | カード {0}、{1}、ペア済み
+太阳 | 太陽 | Sun | 太陽
+月亮 | 月亮 | Moon | 月
+星星 | 星星 | Star | 星
+爱心 | 愛心 | Heart | ハート
+火箭 | 火箭 | Rocket | ロケット
+树叶 | 樹葉 | Leaf | 葉
+音符 | 音符 | Music note | 音符
+杯子 | 杯子 | Cup | カップ
+闪电 | 閃電 | Lightning | 稲妻
+礼物 | 禮物 | Gift | プレゼント
 最近更新 | 最近更新 | Recent additions | 最近の追加作品
 CarPlay 融合仪表与 RK3399 工具链 | CarPlay 融合儀表與 RK3399 工具鏈 | CarPlay dashboard and RK3399 tools | CarPlay メーターと RK3399 ツール
 DiPlay 手机融合仪表 | DiPlay 手機融合儀表 | DiPlay phone dashboard | DiPlay スマホ融合メーター

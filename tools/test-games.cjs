@@ -40,6 +40,7 @@ const context = vm.createContext({
     setTimeout: (fn) => { const id = ++nextTimer; timers.set(id, fn); return id; },
     clearInterval: (id) => timers.delete(id), clearTimeout: (id) => timers.delete(id),
 });
+vm.runInContext(fs.readFileSync(require('node:path').join(__dirname, '../games-extra.js'), 'utf8'), context);
 vm.runInContext(fs.readFileSync(require('node:path').join(__dirname, '../games.js'), 'utf8'), context);
 const run = (code) => vm.runInContext(code, context);
 const json = (code) => JSON.parse(run(`JSON.stringify(${code})`));
@@ -91,6 +92,18 @@ document.handlers.pointerup[0]();
 board.handlers.click[0]({ target: cell, detail: 1 });
 assert.equal(run('mines[0].flag'), true);
 assert.equal(run('mines[0].open'), false, 'Long press must not also open the cell');
+for (const first of [0, 27, 63]) {
+    run('startMines(); openMine(' + first + ')');
+    assert.equal(run('mines[' + first + '].mine'), false, 'The first reveal must be safe');
+    assert.equal(run('mines[' + first + '].open'), true);
+    assert.equal(run('mines[' + first + '].n'), 0, 'The neighboring cells must also be safe');
+    assert.equal(run('mines.filter(cell => cell.mine).length'), 10, 'First-reveal safety must preserve the mine count');
+}
+run('startMines()');
+const initiallyMined = run('mines.findIndex(cell => cell.mine)');
+run('openMine(' + initiallyMined + ')');
+assert.equal(run('mines[' + initiallyMined + '].mine'), false, 'An initially mined first cell must be relocated');
+assert.equal(run('mines.filter(cell => cell.mine).length'), 10);
 run('activeGame="2048"; grid2048=[[0,2,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]; game2048Over=false');
 const swipeBoard = document.getElementById('board2048');
 swipeBoard.handlers.pointerdown[0]({ pointerType: 'touch', isPrimary: true, pointerId: 2, clientX: 100, clientY: 100 });
@@ -103,4 +116,17 @@ const beforeTimers = [...timers.keys()];
 context.window.handlers['site-theme-change'][0]();
 assert.deepEqual(json(themeState), beforeTheme, 'Theme repaint must preserve game progress and pause state');
 assert.deepEqual([...timers.keys()], beforeTimers, 'Theme repaint must not start or stop timers');
+run('activeGame="breaker"; handleControl("action")');
+assert.equal(timers.size, 1, 'The shared controls must start Brick Breaker');
+run('pauseRealtimeGames(); activeGame="memory"; syncRealtimeTimers()');
+assert.equal(timers.size, 0, 'Switching to memory must pause Brick Breaker');
+run('activeGame="breaker"; syncRealtimeTimers()');
+assert.equal(timers.size, 0, 'Returning to Brick Breaker waits for explicit resume');
+run('handleControl("action"); document.hidden=true');
+document.handlers.visibilitychange[0]();
+assert.equal(timers.size, 0, 'Hidden pages must stop Brick Breaker');
+assert.equal(run('extraGames.breakerState().paused'), true);
+const pausedBreaker = json('extraGames.breakerState()');
+context.window.handlers['site-theme-change'][0]();
+assert.deepEqual(json('extraGames.breakerState()'), pausedBreaker);
 console.log('Passed: waiting states, pause/resume, full snake board, 2048 merges, Flappy lifecycle, visibility, AI cancellation, long press, swipe and theme repaint without state resets.');

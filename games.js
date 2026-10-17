@@ -7,13 +7,16 @@ const panels = {
     mines: document.getElementById("minesPanel"),
     flappy: document.getElementById("flappyPanel"),
     gobang: document.getElementById("gobangPanel"),
-    huarong: document.getElementById("huarongPanel")
+    huarong: document.getElementById("huarongPanel"),
+    memory: document.getElementById("memoryPanel"),
+    breaker: document.getElementById("breakerPanel")
 };
 function gameColor(name, fallback) {
     if (typeof getComputedStyle !== "function") return fallback;
     return getComputedStyle(document.body).getPropertyValue(name).trim() || fallback;
 }
 let activeGame = "snake";
+let extraGames;
 const gamepad = document.querySelector(".mobile-gamepad");
 const actionControl = gamepad.querySelector('[data-control="action"]');
 Object.values(panels).forEach((panel) => {
@@ -37,13 +40,14 @@ function updateGameControls() {
         tetris: { started: tStarted, paused: tPaused, over: tOver, message: "tetrisMessage", button: "tetrisPause" },
         flappy: { started: flappyStarted, paused: flappyPaused, over: flappyOver, message: "flappyMessage", button: "flappyPause" }
     };
+    if (extraGames) states.breaker = { ...extraGames.breakerState(), message: "breakerMessage", button: "breakerPause" };
     Object.entries(states).forEach(([game, state]) => {
         const button = document.getElementById(state.button);
         button.textContent = !state.started ? "开始游戏" : state.paused ? "继续游戏" : "暂停";
         button.disabled = state.over;
         button.setAttribute("aria-pressed", String(state.paused));
         if (!state.over) setMessage(state.message, !state.started
-            ? (game === "flappy" ? "点击画面、起飞或空格开始" : "点击开始游戏，或按方向键开始")
+            ? (game === "flappy" ? "点击画面、起飞或空格开始" : game === "breaker" ? "点击开始或空格发球" : "点击开始游戏，或按方向键开始")
             : state.paused ? "已暂停，点击继续游戏恢复" : "");
     });
     actionControl.textContent = activeGame === "flappy" ? "起飞"
@@ -56,10 +60,11 @@ function updateGameControls() {
 }
 
 function mountGamepad() {
-    gamepad.hidden = ["mines", "gobang"].includes(activeGame);
+    gamepad.hidden = ["mines", "gobang", "memory"].includes(activeGame);
     gamepad.classList.toggle("flight-controls", activeGame === "flappy");
+    gamepad.classList.toggle("paddle-controls", activeGame === "breaker");
     gamepad.querySelectorAll('[data-control]:not([data-control="action"])').forEach((button) => {
-        button.hidden = activeGame === "flappy";
+        button.hidden = activeGame === "flappy" || (activeGame === "breaker" && ["up", "down"].includes(button.dataset.control));
     });
     actionControl.hidden = ["2048", "huarong"].includes(activeGame);
     panels[activeGame].append(gamepad);
@@ -92,6 +97,7 @@ function handleControl(action) {
     if (activeGame === "tetris") controlTetris(action);
     if (activeGame === "flappy" && action === "action") flap();
     if (activeGame === "huarong") moveHuarongByControl(action);
+    if (activeGame === "breaker") extraGames.controlBreaker(action);
 }
 
 const snakeCanvas = document.getElementById("snakeCanvas");
@@ -333,6 +339,8 @@ function drawTetris() {
 function drawBlock(x, y, color) {
     tetrisCtx.fillStyle = color;
     tetrisCtx.fillRect(x * tSize + 1, y * tSize + 1, tSize - 2, tSize - 2);
+    tetrisCtx.strokeStyle = gameColor("--game-piece-edge", "rgba(255,255,255,.45)");
+    tetrisCtx.strokeRect(x * tSize + 1, y * tSize + 1, tSize - 2, tSize - 2);
 }
 
 function drawTetrisNext() {
@@ -346,8 +354,12 @@ function drawTetrisNext() {
     const offsetX = Math.floor((tetrisNextCanvas.width - shapeWidth) / 2);
     const offsetY = Math.floor((tetrisNextCanvas.height - shapeHeight) / 2);
     tetrisNextCtx.fillStyle = tNextPiece.color;
+    tetrisNextCtx.strokeStyle = gameColor("--game-piece-edge", "rgba(255,255,255,.45)");
     tNextPiece.shape.forEach((row, r) => row.forEach((cell, c) => {
-        if (cell) tetrisNextCtx.fillRect(offsetX + c * previewSize + 1, offsetY + r * previewSize + 1, previewSize - 2, previewSize - 2);
+        if (cell) {
+            tetrisNextCtx.fillRect(offsetX + c * previewSize + 1, offsetY + r * previewSize + 1, previewSize - 2, previewSize - 2);
+            tetrisNextCtx.strokeRect(offsetX + c * previewSize + 1, offsetY + r * previewSize + 1, previewSize - 2, previewSize - 2);
+        }
     }));
 }
 
@@ -409,6 +421,7 @@ function startTetris() {
 const minesBoard = document.getElementById("minesBoard");
 let mines = [];
 let mineDone = false;
+let mineFirstReveal = true;
 let mineFlagMode = false;
 let mineHoldTimer, minePress, suppressMineClick = false;
 
@@ -424,6 +437,7 @@ function flagMine(i) {
 }
 function startMines() {
     mineDone = false;
+    mineFirstReveal = true;
     clearTimeout(mineHoldTimer);
     minePress = null;
     suppressMineClick = false;
@@ -452,6 +466,19 @@ function neighbors8(r, c) {
 }
 function openMine(i) {
     if (mineDone || mines[i].flag || mines[i].open) return;
+    if (mineFirstReveal) {
+        // Keep the first cell and all adjacent cells safe, even after flagging.
+        mineFirstReveal = false;
+        const safe = new Set([i, ...neighbors8(Math.floor(i / 8), i % 8).map(([r, c]) => r * 8 + c)]);
+        const relocated = mines.filter(cell => safe.has(cell.i) && cell.mine);
+        const empty = mines.filter(cell => !safe.has(cell.i) && !cell.mine);
+        for (let n = empty.length - 1; n > 0; n--) {
+            const j = Math.floor(Math.random() * (n + 1));
+            [empty[n], empty[j]] = [empty[j], empty[n]];
+        }
+        relocated.forEach((cell, n) => { cell.mine = false; empty[n].mine = true; });
+        mines.forEach(cell => { cell.n = neighbors8(Math.floor(cell.i / 8), cell.i % 8).filter(([r, c]) => mines[r * 8 + c].mine).length; });
+    }
     mines[i].open = true;
     if (mines[i].mine) {
         mineDone = true;
@@ -572,10 +599,13 @@ function drawFlappy() {
         fCtx.fillRect(p.x, 0, 46, p.gap - 70);
         fCtx.fillRect(p.x, p.gap + 70, 46, 420);
     });
-    fCtx.fillStyle = "#ffd166";
+    fCtx.fillStyle = gameColor("--game-bird", "#ffd166");
     fCtx.beginPath();
     fCtx.arc(bird.x, bird.y, 14, 0, Math.PI * 2);
     fCtx.fill();
+    fCtx.strokeStyle = gameColor("--game-piece-edge", "#b47c19");
+    fCtx.lineWidth = 2;
+    fCtx.stroke();
 }
 
 const gobangCanvas = document.getElementById("gobangCanvas");
@@ -807,6 +837,7 @@ function syncRealtimeTimers() {
     tTimer = null;
     flappyTimer = null;
     updateGameControls();
+    extraGames?.sync(activeGame, document.hidden);
     if (document.hidden) return;
     if (activeGame === "snake" && snakeStarted && !snakePaused && !snakeOver) snakeTimer = setInterval(stepSnake, 120);
     if (activeGame === "tetris" && tStarted && !tPaused && !tOver) tTimer = setInterval(dropTetris, 600);
@@ -817,6 +848,7 @@ function pauseRealtimeGames() {
     if (snakeStarted && !snakeOver) snakePaused = true;
     if (tStarted && !tOver) tPaused = true;
     if (flappyStarted && !flappyOver) flappyPaused = true;
+    extraGames?.pause();
 }
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) pauseRealtimeGames();
@@ -868,12 +900,13 @@ document.addEventListener("keydown", (event) => {
     const inGame = target instanceof Element && Boolean(target.closest(".game-panel"));
     if (map[event.key] && inGame && !isTyping && !isNativeActivation) {
         if (event.repeat && map[event.key] === "action") return;
-        if (["mines", "gobang"].includes(activeGame)) return;
+        if (["mines", "gobang", "memory"].includes(activeGame)) return;
         event.preventDefault();
         handleControl(map[event.key]);
     }
 });
 
+extraGames = createExtraGames({ color: gameColor, onStateChange: syncRealtimeTimers });
 restartSnake();
 start2048();
 startTetris();
@@ -889,4 +922,5 @@ window.addEventListener("site-theme-change", () => {
     drawTetris();
     drawTetrisNext();
     drawFlappy();
+    extraGames.drawBreaker();
 });
